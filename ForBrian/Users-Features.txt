@@ -1,0 +1,48 @@
+Roles/Access:
+Admins -
+    Everything
+Guest (Unregistered) -
+    Sign up, Rooms,
+    Services
+Users (Registered) -
+    Booking, User Account,
+    Payment, Services,
+    Loyalty Program,
+Clerks -
+    Payment System,
+    Bookings
+Manager -
+    Everything
+House Keeping -
+    Booking System,
+    Services
+Valet -
+    Services, Booking
+Maintenance -
+    Services, Rooms
+
+Key Features:
+Login -
+    Sign up
+    Login
+    Edit Account Information
+    Card Information
+    User Image
+    Email
+    Phone
+    Address
+    Loyalty Program
+Booking System -
+    Preview of rooms
+    Cancel option
+    Clock in/clock out function
+    Suite Type
+General -
+    Payment system
+    Search function
+    Locations
+Services (About Hotel) -
+    Listing of services I.E. Valet, Room
+    Service, Parking, Maintenance, Amenities,
+    House cleaning, WIFI
+
