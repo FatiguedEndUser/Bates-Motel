@@ -1,0 +1,5 @@
+If you want to run the application:
+	- Open a terminal
+	- Navigate to the Bates-Motel folder
+	- (Linux/Mac) Run ./gradlew bootRun (Windows) .\gradlew.bat bootRun
+	- Once the project is running on a local host navigate too http://localhost:8080/NAME_OF_PAGE
