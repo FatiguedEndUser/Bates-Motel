@@ -1,0 +1,27 @@
+
+Customers - Any person who is not an employee looking or interested in booking a room.
+    1) Login - A customer can create and account to save information.
+    2) Loyalty Program - A customer can accrue points for rewards from booking the hotel, this can lead to discounts and extras.
+    3) Book rooms - The user can book a room for a stay
+    4) Check In System - A online system for checking in this will be for if the clerk or anyone isnt avalible to check you in. Maybe like a "Pre-check in"
+    5) Payment System - A online payment system to pay for the room and or services
+    6) Search Functionality - A system to search for rooms, services, or look to see room availabilty
+    7) Locations - Users can view locations of "Bates Motel"
+
+Admin/Managers - Self explanitory.
+    1) View Bookings - Managers can view the current, past, and shceduled bookings.
+    2) Access Payment System - Managers can check payment information to confirm or in some cases cancel bookings
+    3) Employee - Can create or delete employee accounts
+    4) Access Database - The Admin can access the database for a plethera of reasons for instance with the employee accounts if one is fired or quits they need to be able to add the    end date or remove them from the DB.
+    5) Clock In System - Can manage and adjust employee clock in times.
+    6) Customer Loyalty Points - Can view the customer loyalty  points and their history too apply or correct if there was a mistake from the payment system missing the points.
+    7)
+
+Employees - Employees include staff such as clerks, valet, maintance, room service, etc. Depending on the type of employee they may or may not have access to some of these. For example a valet would have no need to check Room Occupancy but a clerk would.
+    1) Clock in - The employee can log into there account to clock in/out
+    2) Employee Account - Employees will also have accounts this will have clock in/out, Check hours, PTO request, tax information, etc.
+    3) Check bookings - Check bookings for checking in customers or checking out.
+    4) Check Room Occupancy - Check to see if customers are currently occupying the room per their book in too allow for services like maintenance and or house keeping
+    5) Services - Check if the customer has had any services booked like room service, valet, etc.
+    6) Customer Loyalty Points - Check customer loyalty points too apply, but cannot adjust that capability only applies to admin/managers.
+    7)
