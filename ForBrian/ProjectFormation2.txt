@@ -15,7 +15,9 @@ Admin/Managers - Self explanitory.
     4) Access Database - The Admin can access the database for a plethera of reasons for instance with the employee accounts if one is fired or quits they need to be able to add the    end date or remove them from the DB.
     5) Clock In System - Can manage and adjust employee clock in times.
     6) Customer Loyalty Points - Can view the customer loyalty  points and their history too apply or correct if there was a mistake from the payment system missing the points.
-    7)
+    7) Manage Website Content - Update hotel descriptions, images, or other public-facing content.
+    8) Approve/Reject Employee PTO - Manage employees’ paid time off requests directly in the system.
+    9) Feedback Management - Collect, view, and respond to guest feedback or reviews.
 
 Employees - Employees include staff such as clerks, valet, maintance, room service, etc. Depending on the type of employee they may or may not have access to some of these. For example a valet would have no need to check Room Occupancy but a clerk would.
     1) Clock in - The employee can log into there account to clock in/out
@@ -24,4 +26,5 @@ Employees - Employees include staff such as clerks, valet, maintance, room servi
     4) Check Room Occupancy - Check to see if customers are currently occupying the room per their book in too allow for services like maintenance and or house keeping
     5) Services - Check if the customer has had any services booked like room service, valet, etc.
     6) Customer Loyalty Points - Check customer loyalty points too apply, but cannot adjust that capability only applies to admin/managers.
-    7)
+    7) Shift Swapping/Bidding - Allows employees to request or pick up extra shifts from coworkers who want to drop theirs.
+    8) Submit Maintenance/Service Requests - If an employee spots an issue, they can log a work order or request internally.
