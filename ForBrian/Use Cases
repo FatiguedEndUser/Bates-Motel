@@ -98,7 +98,7 @@ Use Case 12: Employee Submits Maintenance/Service Requests
 ****Version 2 (Enhanced): Hotel Management System: Expanded Use Cases with Flow Analysis****
 
 
-Use Case 1 (First Feature to Implement): User Registration & Login
+*Use Case 1 (First Feature to Implement): User Registration & Login*
 1. User: Customer (Guest becoming a Registered user)
 
 Basic Flow:
@@ -114,11 +114,209 @@ Preconditions:
    > The guest has internet access and a valid email address.
 
 Postconditions:
-  >The guest becomes a registered customer and is logged in.
+  > The guest becomes a registered customer and is logged in.
 
 
+*Use Case 2: Book a Room*
+2. User: Customer (Registered user)
+
+Basic Flow:
+   > The customer logs in and selects "Book a Room."
+   > They search for available rooms using dates and room type filters.
+   > The customer selects a room, reviews details, and confirms the booking.
+   > The system stores the reservation and sends a confirmation.
+
+Alternate Flow:
+   > If no rooms are available, the system displays alternative options or suggests modifying search criteria.
+
+Preconditions:
+   > The customer is logged in and there is room availability.
+
+Postconditions:
+   > A new booking is recorded in the system.
 
 
+*Use Case 3: Payment Processing*
+User: Customer, Clerk (on behalf of the customer)
+
+Basic Flow:
+   > The customer reviews the booking and total cost.
+   > They choose a payment method (credit card, loyalty points, or both) and enter payment details.
+   > The system processes the payment and confirms the transaction.
+   > The booking status is updated accordingly.
+
+Alternate Flow:
+   > If payment processing fails, an error message is shown and the customer is prompted to re-enter payment details.
+
+Preconditions:
+   > The customer has a valid payment method available.
+
+Postconditions:
+   > Payment is successfully processed, and the booking is confirmed.
 
 
+*Use Case 4: Loyalty Program Management*
+User: Customer, Manager (for adjustments)
 
+Basic Flow:
+   > A customer earns loyalty points through bookings or additional services.
+   > They view their current points balance in their account.
+   > During booking, the customer redeems points for discounts or upgrades.
+
+Alternate Flow:
+   > If the customer does not have enough points, the system informs them and suggests alternatives.
+
+Preconditions:
+   > The customer must have an active loyalty program account.
+
+Postconditions:
+   > Loyalty points are updated and applied to the booking if redeemed.
+
+
+*Use Case 5: Online Check-In*
+ User: Customer
+
+Basic Flow:
+   > The customer logs into their account and selects the "Online Check-In" option.
+   > They enter required information and confirm their arrival time.
+   > The system verifies the details and updates the check-in status.
+
+Alternate Flow:
+   > If the provided information is incomplete or incorrect, the system prompts the customer to correct it.
+
+Preconditions:
+   > The customer must have an active, confirmed booking.
+
+Postconditions:
+   > The customer’s check-in is recorded, helping to expedite on-site procedures.
+
+
+*Use Case 6: Manager Views Bookings*
+6. User: Admin/Manager
+
+Basic Flow:
+   > The manager logs into the system.
+   > They navigate to the bookings dashboard.
+   > The system displays current, upcoming, and past reservations with filtering options.
+
+Alternate Flow:
+   > If no bookings are available, a “No bookings found” message is displayed.
+
+Preconditions:
+   > The manager must be authenticated and have access rights to view bookings.
+
+Postconditions:
+   > The manager reviews the booking data to make informed decisions.
+
+
+*Use Case 7: Manager Manages Employee Accounts*
+User: Admin/Manager
+
+Basic Flow:
+   > The manager accesses the Employee Management section.
+   > They create, edit, or delete employee accounts as needed.
+   > Changes are saved, and confirmation is provided by the system.
+
+Alternate Flow:
+   > If an error occurs (e.g., duplicate username), the system displays an error and prompts for correction.
+
+Preconditions:
+   > The manager must be logged in and have the necessary privileges.
+
+Postconditions:
+   > Employee accounts are updated in the system.
+
+
+*Use Case 8: Manager Approves/Rejects Employee PTO*
+User: Admin/Manager
+
+Basic Flow:
+   > An employee submits a PTO request via their account.
+   > The manager reviews the request in their dashboard.
+   > The manager approves or rejects the request based on scheduling needs.
+   > The system updates the employee’s PTO balance and schedule accordingly.
+
+Alternate Flow:
+   > If the request is incomplete, the manager can request additional information before making a decision.
+
+Preconditions:
+   > A valid PTO request must be submitted by the employee.
+
+Postconditions:
+   > The PTO request status is updated and the employee is notified of the decision.
+
+
+*Use Case 9: Employee Clock In/Out*
+User: Employee (Clerks, Housekeeping, Valet, Maintenance, etc.)
+
+Basic Flow:
+   > The employee logs into the system at the start of their shift.
+   > They click “Clock In” to record the starting time.
+   > At the end of the shift, they click “Clock Out.”
+   > The system records both timestamps and updates the timesheet.
+
+Alternate Flow:
+   > If a network error occurs, the system allows for manual time entry upon resolution.
+
+Preconditions:
+   > The employee must be scheduled to work and have a valid account.
+
+Postconditions:
+   > The timesheet is updated with accurate clock-in/out times.
+
+
+*Use Case 10: Employee Checks Bookings & Room Occupancy*
+User: Employee (e.g., Clerk, Housekeeping)
+
+Basic Flow:
+   > The employee logs into their account.
+   > They navigate to the "Bookings & Occupancy" section.
+   > The system displays current bookings and occupancy status for each room.
+
+Alternate Flow:
+   > If no bookings exist, a “No current bookings” message is shown.
+
+Preconditions:
+   > The employee is logged in with appropriate permissions.
+
+Postconditions:
+   > The employee is informed about the current occupancy, helping them plan their tasks.
+
+
+*Use Case 11: Employee Manages Personal Account*
+User: Employee
+
+Basic Flow:
+   > The employee logs into their personal account.
+   > They view personal details such as contact information, PTO balance, and timesheet.
+   > The employee updates any details (e.g., contact info) or submits a PTO request if needed.
+   > The system confirms updates and displays the revised information.
+
+Alternate Flow:
+   > If the update fails (e.g., due to invalid input), an error message is displayed, prompting correction.
+
+Preconditions:
+   > The employee must have an active account and be authenticated.
+
+Postconditions:
+   > The employee’s personal information is updated in the system, and any submitted requests are recorded.
+
+
+*Use Case 12: Employee Submits Maintenance/Service Requests*
+User: Employee (Housekeeping, Maintenance, Valet, etc.)
+
+Basic Flow:
+   > The employee identifies an issue (e.g., broken AC, plumbing problem).
+   > They navigate to the “Maintenance/Service Request” section.
+   > The employee fills out a form with details of the issue and submits it.
+   > The system logs the request and notifies the maintenance team or Manager.
+
+Alternate Flow:
+   > If the submission fails (e.g., due to connectivity issues), an error message is displayed, and the employee is prompted to 
+  retry.
+
+Preconditions:
+   > The employee is logged in and has access to the request system.
+
+Postconditions:
+   > A maintenance/service request is recorded, and the responsible party is alerted for follow-up
