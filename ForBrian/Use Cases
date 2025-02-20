@@ -301,8 +301,7 @@ User: Employee (Housekeeping, Maintenance, Valet, etc.)
    > The system logs the request and notifies the maintenance team or Manager.
 
  Alternate Flow:
-   > If the submission fails (e.g., due to connectivity issues), an error message is displayed, and the employee is prompted to 
-  retry.
+   > If the submission fails (e.g., due to connectivity issues), an error message is displayed, and the employee is prompted to retry.
 
  Preconditions:
    > The employee is logged in and has access to the request system.
