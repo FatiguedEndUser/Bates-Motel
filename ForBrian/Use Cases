@@ -1,0 +1,124 @@
+
+****Version 1 (Basic): Hotel Management System: Standard Use Cases****
+
+Use Case 1 (First Feature to Implement): User Registration & Login
+1. User: Customer (Guest/Unregistered user becoming a Registered user)
+     °Description:
+        > A guest visits the website, creates an account by entering personal details (name, email, password, etc.), then logs 
+           in. This is necessary before accessing booking, loyalty, or payment features.
+
+   °Reason to Implement First:
+        > Registration and login are foundational features that unlock most of the other user-specific functionality.
+
+
+Use Case 2: Book a Room
+2. User: Customer (Registered user)
+     °Description:
+        > A registered customer searches available rooms for specified dates, selects a room type, and completes the reservation (potentially using loyalty points or standard payment).
+
+
+Use Case 3: Payment Processing
+3. User: Customer, Clerk (sometimes Manager)
+     °Description:
+        > A customer or clerk (on behalf of the customer) reviews the booking costs, selects a payment method (credit card, 
+          loyalty points, or both), and finalizes payment.
+        > The system confirms the payment and updates the booking status.
+
+
+Use Case 4: Loyalty Program Management
+4. User: Customer, Manager (for adjustments)
+     °Description:
+        > A customer earns points for each booking or additional service.
+        > They can view their points balance and redeem them for discounts or room upgrades.
+        > Manager can make manual adjustments if there’s an error.
+
+
+Use Case 5: Online Check-In
+5. User: Customer
+     °Description:
+         > A customer completes an online “pre-check-in,” providing necessary information and confirming arrival time. This 
+           helps streamline on-site check-in or if a clerk is unavailable.
+
+
+Use Case 6: Manager Views Bookings
+6. User: Admin/Manager
+     °Description:
+         > The Manager logs into the system and sees a dashboard of current, upcoming, and past reservations.
+         > They can filter by date, room type, or customer name, and take actions like canceling or modifying reservations if 
+           needed.
+
+
+Use Case 7: Manager Manages Employee Accounts
+7. User: Admin/Manager
+     °Description:
+         > The Manager can create or delete employee accounts, update roles (e.g., Clerk, Housekeeping, Valet), and ensure 
+           access privileges are properly assigned.
+         > If an employee quits or is fired, the Manager removes them from the system or sets an end date.
+
+
+Use Case 8: Manager Approves/Rejects Employee PTO
+8. User: Admin/Manager
+     °Description:
+         > An employee submits a PTO request through their employee account.
+         > The Manager reviews the request, checks scheduling needs, and either approves or rejects it.
+         > The system updates the employee’s PTO balance and schedules accordingly.
+
+
+Use Case 9: Employee Clock In/Out
+9. User: Employee (Clerks, Housekeeping, Valet, Maintenance, etc.)
+     °Description:
+         > An employee logs into their account to start or end their shift.
+         > The system records the timestamp and updates the employee’s timesheet.
+         > Managers can view or adjust these if an error occurs.
+
+
+Use Case 10: Employee Checks Bookings & Room Occupancy
+10. User: Employee (Clerk, Housekeeping, e.g.)
+      °Description:
+         > An employee looks up current bookings to see which rooms are occupied or due to be checked in/out.
+         > This helps coordinate check-ins, check-outs, housekeeping schedules, or maintenance tasks.
+
+
+Use Case 11: Employee Manages Personal Account
+11. User: Employee (any staff member)
+      °Description:
+         > The employee logs into their account.
+         > They can view or update personal details (name, contact info, etc.), check available PTO, review their timesheet,  
+           or access tax documentation.
+       
+
+Use Case 12: Employee Submits Maintenance/Service Requests
+12. User: Employee (Housekeeping, Maintenance, Valet, etc.)
+      °Description:
+         > If an employee spots an issue (e.g., broken AC, plumbing problem), they submit a request in the system.
+         > Maintenance employees or Managers see the request in their queue, assign it, and update status once completed.
+
+
+
+****Version 2 (Enhanced): Hotel Management System: Expanded Use Cases with Flow Analysis****
+
+
+Use Case 1 (First Feature to Implement): User Registration & Login
+1. User: Customer (Guest becoming a Registered user)
+
+Basic Flow:
+   > A guest navigates to the website and clicks "Sign Up."
+   > The guest enters personal details (name, email, password, etc.).
+   > The system validates the input and creates a new account.
+   > The guest logs in with the new credentials and is redirected to their dashboard.
+
+Alternate Flow:
+   > If registration fails (e.g., email already in use), an error message is displayed prompting the guest to try again.
+
+Preconditions:
+   > The guest has internet access and a valid email address.
+
+Postconditions:
+  >The guest becomes a registered customer and is logged in.
+
+
+
+
+
+
+
