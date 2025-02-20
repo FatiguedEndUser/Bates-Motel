@@ -117,7 +117,7 @@ User: Customer (Guest becoming a Registered user)
 
 
 *Use Case 2: Book a Room*
-2. User: Customer (Registered user)
+User: Customer (Registered user)
  Basic Flow:
    > The customer logs in and selects "Book a Room."
    > They search for available rooms using dates and room type filters.
@@ -152,7 +152,7 @@ User: Customer, Clerk (on behalf of the customer)
  Postconditions:
    > Payment is successfully processed, and the booking is confirmed.
 
-
+ 
 *Use Case 4: Loyalty Program Management*
 User: Customer, Manager (for adjustments)
  Basic Flow:
