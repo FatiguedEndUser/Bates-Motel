@@ -3,11 +3,11 @@ package dev.besharps.batesmotel.DB;
 import jakarta.persistence.*;
 
 
-@Entity(name= "Rooms")
+@Entity(name= "Student")
 @Table(
-        name = "Rooms",
+        name = "student",
         uniqueConstraints = {
-                @UniqueConstraint(name = "student_email_unique", columnNames = "room_id")
+                @UniqueConstraint(name = "student_email_unique", columnNames = "email")
         }
 )
 public class Student {
