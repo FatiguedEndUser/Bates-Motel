@@ -10,6 +10,7 @@ public class RoomsRepository {
 
     //Database pulls and or related logic will go here.
     List<Rooms> findAll() {
+        //Temp val
         return new ArrayList<>();
     }
 }
