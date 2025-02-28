@@ -1,4 +1,4 @@
-package dev.besharps.batesmotel.DB;
+package dev.besharps.batesmotel.DB.Rooms;
 
 import jakarta.persistence.*;
 
