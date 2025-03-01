@@ -13,8 +13,9 @@ public interface RoomsRepository extends JpaRepository<Rooms, Integer> {
     //FOR EXAMPLE:
 
     //JPQL - this is based on the class we created not the database.
-    @Query("SELECT roomId from Rooms")
+    @Query("SELECT roomId FROM Rooms")
     List<Rooms> findByRoomId(Integer roomId);
 
+    @Query("SELECT roomType FROM Rooms")
     List<Rooms> findByRoomType(int roomType);
 }
