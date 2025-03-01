@@ -1,4 +1,4 @@
 package dev.besharps.batesmotel.DB.Staff;
 
-public class StaffRepository {
+public interface StaffRepository {
 }
