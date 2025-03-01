@@ -15,6 +15,5 @@ public class BatesMotelApplication {
     public static void main(String[] args) {
         SpringApplication.run(BatesMotelApplication.class, args);
         log.info("Application started succesfully");
-
     }
 }

@@ -1,10 +1,19 @@
 package dev.besharps.batesmotel.DB.Rooms;
 
 import jakarta.persistence.*;
+import lombok.*;
+
 
 @Entity(name = "Rooms")
 @Table(name = "Rooms")
+@AllArgsConstructor
+@NoArgsConstructor
+@Builder
+@Setter
+@Getter
 public class Rooms {
+    //---------------------------------GETTERS/SETTERS---------------------------------------------//
+    //Getters and setters for each respective field
     //This (roomId) is our primary key (PK)
     @Id
     @SequenceGenerator(
@@ -45,55 +54,6 @@ public class Rooms {
             columnDefinition = "INTEGER"
     )
     private int roomNumber;
-
-    //----------------------------CONSTRUCTORS------------------------------------------------------//
-    public Rooms() {
-
-    }
-
-    Rooms(int roomId, String roomType, int floor, int roomNumber) {
-        this.roomId = roomId;
-        this.roomType = roomType;
-        this.floor = floor;
-        this.roomNumber = roomNumber;
-    }
-    //----------------------------CONSTRUCTORS------------------------------------------------------//
-
-
-    //---------------------------------GETTERS/SETTERS---------------------------------------------//
-    //Getters and setters for each respective field
-    public int getRoomId() {
-        return roomId;
-    }
-
-    public void setRoomId(int roomId) {
-        this.roomId = roomId;
-    }
-
-    public String getRoomType() {
-        return roomType;
-    }
-
-    public void setRoomType(String roomType) {
-        this.roomType = roomType;
-    }
-
-    public int getFloor() {
-        return floor;
-    }
-
-    public void setFloor(int floor) {
-        this.floor = floor;
-    }
-
-    public int getRoomNumber() {
-        return roomNumber;
-    }
-
-    public void setRoomNumber(int roomNumber) {
-        this.roomNumber = roomNumber;
-    }
-    //---------------------------------GETTERS/SETTERS---------------------------------------------//
 
     @Override
     public String toString() {
