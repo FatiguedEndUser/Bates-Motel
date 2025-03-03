@@ -31,7 +31,6 @@ public class User {
 
     @Column(
             name = "password",
-            updatable = true,
             nullable = false,
             columnDefinition = "TEXT"
     )
@@ -39,7 +38,6 @@ public class User {
 
     @Column(
             name = "email",
-            updatable = true,
             nullable = false,
             columnDefinition = "TEXT"
     )
@@ -47,7 +45,6 @@ public class User {
 
     @Column(
             name = "loyalty points",
-            updatable = true,
             nullable = false,
             columnDefinition = "INTEGER"
     )
