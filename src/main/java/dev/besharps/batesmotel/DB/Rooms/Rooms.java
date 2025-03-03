@@ -8,9 +8,10 @@ import lombok.*;
 @Table(name = "Rooms")
 @AllArgsConstructor
 @NoArgsConstructor
-@Builder
 @Setter
 @Getter
+@Builder
+@ToString
 public class Rooms {
     //---------------------------------GETTERS/SETTERS---------------------------------------------//
     //Getters and setters for each respective field
@@ -54,14 +55,4 @@ public class Rooms {
             columnDefinition = "INTEGER"
     )
     private int roomNumber;
-
-    @Override
-    public String toString() {
-        return "Rooms{" +
-                "roomId=" + roomId +
-                ", roomType='" + roomType + '\'' +
-                ", floor=" + floor +
-                ", roomNumber=" + roomNumber +
-                '}';
-    }
 }
