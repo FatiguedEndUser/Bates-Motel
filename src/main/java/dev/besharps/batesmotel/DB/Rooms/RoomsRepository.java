@@ -8,14 +8,9 @@ import java.util.List;
 
 @Repository
 public interface RoomsRepository extends JpaRepository<Rooms, Integer> {
-    //Crud operations come from JpaRepository class,
-    //  but we can specify specific crud operations and have our predefined
-    //  FOR EXAMPLE:
-
-    //JPQL - this is based on the class we created not the database.
-    @Query("SELECT roomId FROM Rooms")
-    List<Rooms> findByRoomId(Integer roomId);
-
-    @Query("SELECT roomType FROM Rooms")
-    List<Rooms> findByRoomType(int roomType);
+    List<Rooms> findByRoomType(String roomType);
+    List<Rooms> findByRoomNumber(Long roomNumber);
+    List<Rooms> findByAvailableTrue();
+    List<Rooms> findByAvailableFalse();
+    List<Rooms> findByAvailableTrueAndRoomNumber(Long roomNumber);
 }

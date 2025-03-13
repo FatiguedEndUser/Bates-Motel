@@ -3,8 +3,8 @@ package dev.besharps.batesmotel.DB.User;
 import jakarta.persistence.*;
 import lombok.*;
 
-@Entity(name = "User")
-@Table(name = "User")
+@Entity(name = "User") // Logical name of the entity
+@Table(name = "Users") // Physical table name in the database
 @AllArgsConstructor
 @NoArgsConstructor
 @Getter
@@ -12,41 +12,46 @@ import lombok.*;
 @Builder
 @ToString
 public class User {
+
     @Id
-    @SequenceGenerator(
-            name = "user",
-            sequenceName = "user",
-            allocationSize = 1
-    )
-    @GeneratedValue(
-            strategy = GenerationType.SEQUENCE,
-            generator = "user_sequence"
-    )
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "id", nullable = false, updatable = false)
+    private Long id;
+
     @Column(
-            name = "id",
-            updatable = false,
+            name = "username",
+            nullable = false,
+            unique = true,
             columnDefinition = "TEXT"
     )
-    private int UserName;
+    private String username;
 
     @Column(
             name = "password",
             nullable = false,
             columnDefinition = "TEXT"
     )
-    private String Password;
+    private String password;
 
     @Column(
             name = "email",
             nullable = false,
+            unique = true,
             columnDefinition = "TEXT"
     )
-    private String Email;
+    private String email;
 
     @Column(
-            name = "loyalty points",
+            name = "loyalty_points",
             nullable = false,
             columnDefinition = "INTEGER"
     )
-    private int LoyaltyPoints;
+    private int loyaltyPoints;
+
+    public User(String username, String password, String email, int loyaltyPoints) {
+        this.username = username;
+        this.password = password;
+        this.email = email;
+        this.loyaltyPoints = loyaltyPoints;
+    }
 }

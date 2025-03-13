@@ -27,15 +27,15 @@ public class Rooms {
             generator = "room_sequence"
     )
     @Column(
-            name = "id",
+            name = "roomId",
             updatable = false
     )
-    private int roomId;
+    private Long roomId;
 
     @Column(
             name = "roomType",
             updatable = true,
-            nullable = true,
+            nullable = false,
             columnDefinition = "TEXT"
     )
     private String roomType;
@@ -52,7 +52,16 @@ public class Rooms {
             name = "roomNumber",
             updatable = false,
             nullable = false,
+            unique = true,
             columnDefinition = "INTEGER"
     )
-    private int roomNumber;
+    private Long roomNumber;
+
+    @Column(
+            name = "Available",
+            updatable = true,
+            nullable = false
+    )
+    private boolean available;
+
 }
