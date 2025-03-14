@@ -1,4 +1,6 @@
 package dev.besharps.batesmotel.DB.User;
 
-public interface UserRepository {
+import org.springframework.data.jpa.repository.JpaRepository;
+
+public interface UserRepository extends JpaRepository<User, Integer> {
 }
