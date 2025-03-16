@@ -27,6 +27,7 @@ public class Bookings {
     )
     @Column(
             name = "bookingId",
+            nullable = false,
             updatable = false
     )
     private int bookingId;

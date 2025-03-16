@@ -21,6 +21,7 @@ public class BookingsController{
     }
 
     //GET
+    @ResponseStatus(HttpStatus.FOUND)
     @GetMapping("/find-all")
     List<Bookings> findAllBookings(){
         return bookingsRepository.findAll();
@@ -28,6 +29,7 @@ public class BookingsController{
 
     //This will find the id and assign it to bookings. if it is empty it will throw a http error
     //If not it will return our id
+    @ResponseStatus(HttpStatus.OK)
     @GetMapping("/{id}")
     Optional<Bookings> findBookingById(@PathVariable Integer id) {
         Optional<Bookings> bookings = bookingsRepository.findById(id);
