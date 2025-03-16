@@ -1,8 +1,7 @@
 package dev.besharps.batesmotel.DB.Customer;
 
-import dev.besharps.batesmotel.DB.Bookings.Bookings;
 import dev.besharps.batesmotel.Exceptions.BookingNotFoundException;
-import dev.besharps.batesmotel.Exceptions.LastNameNotFound;
+import jakarta.validation.Valid;
 import lombok.NoArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
@@ -48,11 +47,20 @@ public class CustomerController {
         return Optional.of(customerRepository.findByLastName(lastName));
     }
 
-    //TODO: Implement findByPhoneNumber
+    //TODO: Implement findByPhoneNumber, findByEmail
 
     //POST
+    //Post methods might need parameters that fill in from a form
+    @ResponseStatus(HttpStatus.CREATED)
+    @GetMapping("")
+    void createCustomer(@Valid @RequestBody Customer customer) {
+        customerRepository.save(customer);
+    }
 
     //PUT
+    void updateCustomer(@Valid @RequestBody Customer customer) {
+
+    }
 
     //DELETE
     @ResponseStatus(HttpStatus.NO_CONTENT)

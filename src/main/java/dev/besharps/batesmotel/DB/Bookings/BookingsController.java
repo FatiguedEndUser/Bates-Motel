@@ -23,7 +23,7 @@ public class BookingsController{
     //GET
     @ResponseStatus(HttpStatus.FOUND)
     @GetMapping("/find-all")
-    List<Bookings> findAllBookings(){
+    List<Bookings> findAll(){
         return bookingsRepository.findAll();
     }
 
@@ -40,6 +40,7 @@ public class BookingsController{
     }
 
     //POST
+    //Post methods might need parameters that fill in from a form
     @ResponseStatus(HttpStatus.CREATED)
     @PostMapping("")
     void createBookings(@Valid @RequestBody Bookings bookings) {
