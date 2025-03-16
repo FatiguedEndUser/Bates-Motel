@@ -34,6 +34,14 @@ public class MaintenanceController {
         return maintenanceRepository.findById(id);
     }
 
+    Optional<Maintenance> findByRoomId(@PathVariable Integer id) {
+        Optional<Maintenance> maintenance = maintenanceRepository.findById(id);
+        if (maintenance.isEmpty()) {
+            throw new MaintenanceNotFoundException();
+        }
+        return maintenance;
+    }
+
     //POST
 
     //PUT

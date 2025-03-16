@@ -1,6 +1,7 @@
 package dev.besharps.batesmotel.DB.Customer;
 
 import dev.besharps.batesmotel.Exceptions.BookingNotFoundException;
+import dev.besharps.batesmotel.Exceptions.CustomerNotFoundException;
 import jakarta.validation.Valid;
 import lombok.NoArgsConstructor;
 import org.springframework.http.HttpStatus;
@@ -27,10 +28,10 @@ public class CustomerController {
 
     @ResponseStatus(HttpStatus.OK)
     @GetMapping("/{id}")
-    Optional<Customer> findBookingById(@PathVariable Integer id) {
+    Optional<Customer> findCustomerById(@PathVariable Integer id) {
         Optional<Customer> customer = customerRepository.findById(id);
         if (customer.isEmpty()) {
-            throw new BookingNotFoundException();
+            throw new CustomerNotFoundException();
         }
         return customer;
     }
@@ -38,7 +39,7 @@ public class CustomerController {
     @ResponseStatus(HttpStatus.OK)
     @GetMapping("/{firstName}")
     Optional<Customer> findByFirstName(@PathVariable String firstName) {
-        return Optional.of(customerRepository.findByLastName(firstName));
+        return Optional.of(customerRepository.findByFirstName(firstName));
     }
 
     @ResponseStatus(HttpStatus.OK)
