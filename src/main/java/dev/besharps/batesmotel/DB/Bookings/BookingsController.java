@@ -59,7 +59,7 @@ public class BookingsController{
     //DELETE
     @ResponseStatus(HttpStatus.NO_CONTENT)
     @DeleteMapping("/{id}")
-    void deleteBookings(@PathVariable Integer id) {
+    void deleteById(@PathVariable Integer id) {
         bookingsRepository.deleteById(id);
     }
 }

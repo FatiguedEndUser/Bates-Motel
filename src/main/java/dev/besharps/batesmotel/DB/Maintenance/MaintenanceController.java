@@ -47,4 +47,9 @@ public class MaintenanceController {
     //PUT
 
     //DELETE
+    @ResponseStatus(HttpStatus.NO_CONTENT)
+    @DeleteMapping("/{id}")
+    void deleteById(@PathVariable Integer id) {
+        maintenanceRepository.deleteById(id);
+    }
 }
