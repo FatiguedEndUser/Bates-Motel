@@ -1,5 +1,6 @@
 package dev.besharps.batesmotel.DB.Maintenance;
 
+import jakarta.validation.Valid;
 import lombok.NoArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
@@ -43,8 +44,16 @@ public class MaintenanceController {
     }
 
     //POST
+    @ResponseStatus(HttpStatus.CREATED)
+    @GetMapping("")
+    void createMaintenance(@Valid @RequestBody Maintenance maintenance) {
+        maintenanceRepository.save(maintenance);
+    }
 
     //PUT
+    void updateMaintenance(@Valid @RequestBody Maintenance maintenance, @PathVariable Integer id) {
+        //TODO implement update method to update a booking
+    }
 
     //DELETE
     @ResponseStatus(HttpStatus.NO_CONTENT)
