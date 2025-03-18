@@ -31,7 +31,7 @@ public class BookingsController{
     //If not it will return our id
     @ResponseStatus(HttpStatus.OK)
     @GetMapping("/{id}")
-    Optional<Bookings> findBookingById(@PathVariable Integer id) {
+    Optional<Bookings> findById(@PathVariable Integer id) {
         Optional<Bookings> bookings = bookingsRepository.findById(id);
         if (bookings.isEmpty()) {
             throw new BookingNotFoundException();
@@ -43,7 +43,7 @@ public class BookingsController{
     //Post methods might need parameters that fill in from a form
     @ResponseStatus(HttpStatus.CREATED)
     @PostMapping("")
-    void createBookings(@Valid @RequestBody Bookings bookings) {
+    void create(@Valid @RequestBody Bookings bookings) {
         bookingsRepository.save(bookings);
     }
 
@@ -51,8 +51,8 @@ public class BookingsController{
     //WILL NEED UPDATE METHOD IMPLEMENTED IN REPO
     @ResponseStatus(HttpStatus.NO_CONTENT)
     @PutMapping("/{id}")
-    void updateBookings(@Valid @RequestBody Bookings bookings, @PathVariable String id) {
-        //TODO implement update method to update a booking
+    void update(@Valid @RequestBody Bookings bookings, @PathVariable String id) {
+        //TODO implement update method
         //bookingsRepository.update(bookings);
     }
 
