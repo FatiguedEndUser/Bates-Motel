@@ -1,16 +1,12 @@
 package dev.besharps.batesmotel.DB.Bookings;
 
+import dev.besharps.batesmotel.DB.Customer.Customer;
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
-import org.springframework.web.bind.annotation.PathVariable;
-
-import java.awt.print.Book;
-import java.util.Optional;
 
 @Repository
 public interface BookingsRepository extends JpaRepository<Bookings, Integer> {
-/*QUERIES ARE MADE IN THE INTERFACE
-  QUERIES ARE ONLY NEEDED FOR CUSTOM QUERIES
-  THIS INTERFACE HAS DEFAULT IMPLEMENTATIONS OF BASIC CRUD OPS
-  OTHER THAN THAT NOTHING ELSE NEEDS TO GO IN THIS FILE*/
+    @Query("select Bookings b, Customer c from Bookings where c.customerId = :id")
+    Bookings findByCustomer(Customer customer, Integer id);
 }

@@ -1,6 +1,7 @@
 package dev.besharps.batesmotel.DB.Bookings;
 
 //DEPENDENCY IMPORTS
+import dev.besharps.batesmotel.DB.Customer.Customer;
 import dev.besharps.batesmotel.Exceptions.BookingNotFoundException;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
@@ -39,6 +40,15 @@ public class BookingsController{
         }
         return bookings;
     }
+
+    Optional<Customer> findByCustomerID(@PathVariable Integer id){
+        Optional<Customer> customer = findByCustomerID(id);
+        if (customer.isEmpty()) {
+            throw new BookingNotFoundException();
+        }
+        return customer;
+    }
+
 
     //POST
     //Post methods might need parameters that fill in from a form
