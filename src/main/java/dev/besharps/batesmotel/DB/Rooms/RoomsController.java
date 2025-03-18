@@ -52,7 +52,7 @@ public class RoomsController {
     }
     //DELETE
     @ResponseStatus(HttpStatus.NO_CONTENT)
-    @DeleteMapping("/{id}")
+    @DeleteMapping("/delete/{id}")
     void deleteById(@PathVariable Integer id) {
         roomsRepository.deleteById(id);
     }

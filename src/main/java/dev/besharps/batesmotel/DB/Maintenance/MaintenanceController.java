@@ -59,7 +59,7 @@ public class MaintenanceController {
 
     //DELETE
     @ResponseStatus(HttpStatus.NO_CONTENT)
-    @DeleteMapping("/{id}")
+    @DeleteMapping("/delete/{id}")
     void deleteById(@PathVariable Integer id) {
         maintenanceRepository.deleteById(id);
     }
