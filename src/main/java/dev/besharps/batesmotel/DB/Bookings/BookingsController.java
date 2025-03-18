@@ -1,21 +1,22 @@
 package dev.besharps.batesmotel.DB.Bookings;
 
+//DEPENDENCY IMPORTS
 import dev.besharps.batesmotel.Exceptions.BookingNotFoundException;
 import jakarta.validation.Valid;
-import lombok.NoArgsConstructor;
+import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
+//STANDARD LIB
 import java.util.List;
 import java.util.Optional;
 
 //Mapping needs to be changed and access limited too admins or clerks
 @RestController
 @RequestMapping("/bookings")
-@NoArgsConstructor
+@RequiredArgsConstructor
 public class BookingsController{
     private BookingsRepository bookingsRepository;
-
     public BookingsController(BookingsRepository bookingsRepository) {
         this.bookingsRepository = bookingsRepository;
     }

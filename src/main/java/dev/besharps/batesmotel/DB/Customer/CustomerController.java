@@ -1,18 +1,19 @@
 package dev.besharps.batesmotel.DB.Customer;
 
-import dev.besharps.batesmotel.Exceptions.BookingNotFoundException;
+//DEPENDENCY IMPORTS
 import dev.besharps.batesmotel.Exceptions.CustomerNotFoundException;
 import jakarta.validation.Valid;
-import lombok.NoArgsConstructor;
+import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
+//STANDARD LIB
 import java.util.List;
 import java.util.Optional;
 
 @RestController
 @RequestMapping("/customer")
-@NoArgsConstructor
+@RequiredArgsConstructor
 public class CustomerController {
     private CustomerRepository customerRepository;
     public CustomerController(CustomerRepository customerRepository) {
@@ -28,7 +29,7 @@ public class CustomerController {
 
     @ResponseStatus(HttpStatus.OK)
     @GetMapping("/{id}")
-    Optional<Customer> findCustomerById(@PathVariable Integer id) {
+    Optional<Customer> findById(@PathVariable Integer id) {
         Optional<Customer> customer = customerRepository.findById(id);
         if (customer.isEmpty()) {
             throw new CustomerNotFoundException();
@@ -53,8 +54,8 @@ public class CustomerController {
     //POST
     //Post methods might need parameters that fill in from a form
     @ResponseStatus(HttpStatus.CREATED)
-    @GetMapping("")
-    void createCustomer(@Valid @RequestBody Customer customer) {
+    @PostMapping("")
+    void create(@Valid @RequestBody Customer customer) {
         customerRepository.save(customer);
     }
 

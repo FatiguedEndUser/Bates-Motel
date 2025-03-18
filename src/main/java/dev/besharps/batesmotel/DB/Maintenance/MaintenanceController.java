@@ -1,17 +1,19 @@
 package dev.besharps.batesmotel.DB.Maintenance;
 
+//DEPENDENCY IMPORTS
 import jakarta.validation.Valid;
-import lombok.NoArgsConstructor;
+import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
+//STANDARD LIB
 import java.util.List;
 import java.util.Optional;
 import dev.besharps.batesmotel.Exceptions.MaintenanceNotFoundException;
 
 @RestController
 @RequestMapping("/maintenance")
-@NoArgsConstructor
+@RequiredArgsConstructor
 public class MaintenanceController {
     private MaintenanceRepository maintenanceRepository;
     public MaintenanceController(MaintenanceRepository maintenanceRepository) {
@@ -27,12 +29,12 @@ public class MaintenanceController {
 
     @ResponseStatus(HttpStatus.OK)
     @GetMapping("/{id}")
-    Optional<Maintenance> findMaintenanceById(@PathVariable Integer id) {
+    Optional<Maintenance> findById(@PathVariable Integer id) {
         Optional<Maintenance> maintenance = maintenanceRepository.findById(id);
         if (maintenance.isEmpty()) {
             throw new MaintenanceNotFoundException();
         }
-        return maintenanceRepository.findById(id);
+        return maintenance;
     }
 
     Optional<Maintenance> findByRoomId(@PathVariable Integer id) {
@@ -45,8 +47,8 @@ public class MaintenanceController {
 
     //POST
     @ResponseStatus(HttpStatus.CREATED)
-    @GetMapping("")
-    void createMaintenance(@Valid @RequestBody Maintenance maintenance) {
+    @PostMapping("")
+    void create(@Valid @RequestBody Maintenance maintenance) {
         maintenanceRepository.save(maintenance);
     }
 

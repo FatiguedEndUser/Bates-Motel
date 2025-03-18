@@ -1,20 +1,25 @@
 package dev.besharps.batesmotel.DB.Rooms;
 
+//DEPENDENCY IMPORTS
 import jakarta.validation.Valid;
+
+import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
+//STANDARD LIB
 import java.util.List;
 import java.util.Optional;
 import dev.besharps.batesmotel.Exceptions.RoomNotFoundException;
 
 @RestController
 @RequestMapping("/rooms")
+@RequiredArgsConstructor
 //RequiredArcConstructor is nice but lets worry about refactoring code after we know everything is properly setup
 //@RequiredArgsConstructor
 public class RoomsController {
-    private final RoomsRepository roomsRepository;
-    public RoomsController(RoomsRepository roomsRepository) {
+    private RoomsRepository roomsRepository;
+    public RoomsController(RoomsRepository roomsRepository){
         this.roomsRepository = roomsRepository;
     }
 
