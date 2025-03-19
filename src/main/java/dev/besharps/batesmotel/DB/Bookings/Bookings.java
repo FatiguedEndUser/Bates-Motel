@@ -13,7 +13,6 @@ import java.time.LocalDate;
 @NoArgsConstructor
 @Setter
 @Getter
-@Builder
 @ToString
 public class Bookings {
     @Id
@@ -28,6 +27,7 @@ public class Bookings {
     )
     @Column(
             name = "bookingId",
+            nullable = false,
             updatable = false
     )
     private int bookingId;
@@ -54,21 +54,18 @@ public class Bookings {
     @JoinColumn(
             name = "serviceId",
             referencedColumnName = "serviceId",
-            foreignKey = @ForeignKey(name = "booking_service_fk"),
-            nullable = true
+            foreignKey = @ForeignKey(name = "booking_service_fk")
     )
     private Services service;
 
     @Column(
             name = "startDate",
-            updatable = true,
             nullable = false
     )
     private LocalDate startDate;
 
     @Column(
             name = "endDate",
-            updatable = true,
             nullable = false
     )
     private LocalDate endDate;
