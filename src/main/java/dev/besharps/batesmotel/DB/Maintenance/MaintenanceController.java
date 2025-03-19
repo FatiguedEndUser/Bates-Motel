@@ -53,6 +53,11 @@ public class MaintenanceController {
     }
 
     //PUT
+    //What fields should be updatable?
+    // -
+    // -
+    @ResponseStatus(HttpStatus.NO_CONTENT)
+    @PutMapping("")
     void updateMaintenance(@Valid @RequestBody Maintenance maintenance, @PathVariable Integer id) {
         //TODO implement update method to update a booking
     }

@@ -47,6 +47,9 @@ public class RoomsController {
         roomsRepository.save(room);
     }
     //PUT
+    //What fields should be updatable?
+    // -
+    // -
     void update(@Valid @RequestBody Rooms room, @PathVariable Integer id) {
         //TODO: Implement update method
     }

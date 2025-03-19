@@ -60,7 +60,14 @@ public class CustomerController {
     }
 
     //PUT
-    void updateCustomer(@Valid @RequestBody Customer customer) {
+    //What fields should be updatable?
+    // - lastName
+    // - phoneNumber
+    // - address
+    // - carInformation
+    @ResponseStatus(HttpStatus.NO_CONTENT)
+    @PutMapping("")
+    void updateLastName(@Valid @RequestBody Customer customer) {
 
     }
 

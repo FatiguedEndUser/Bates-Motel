@@ -60,11 +60,15 @@ public class BookingsController{
 
     //PUT
     //WILL NEED UPDATE METHOD IMPLEMENTED IN REPO
+    //What fields should be updatable?
+    // - services
+    // - startDate???
+    // - endDate???
     @ResponseStatus(HttpStatus.NO_CONTENT)
     @PutMapping("/{id}")
-    void update(@Valid @RequestBody Bookings bookings, @PathVariable String id) {
+    void updateServices(@Valid @RequestBody Bookings bookings, @PathVariable String id) {
         //TODO implement update method
-        //bookingsRepository.update(bookings);
+        //bookingsRepository.updateServices(bookings);
     }
 
     //DELETE
