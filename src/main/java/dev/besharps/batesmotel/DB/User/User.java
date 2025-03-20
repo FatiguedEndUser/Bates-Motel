@@ -1,5 +1,6 @@
 package dev.besharps.batesmotel.DB.User;
 
+import dev.besharps.batesmotel.DB.UserType.UserType;
 import jakarta.persistence.*;
 import lombok.*;
 
@@ -16,7 +17,7 @@ public class User {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id", nullable = false, updatable = false)
-    private Long id;
+    private int id;
 
     @Column(
             name = "username",
@@ -46,12 +47,12 @@ public class User {
             nullable = false,
             columnDefinition = "INTEGER"
     )
+
     private int loyaltyPoints;
 
-    public User(String username, String password, String email, int loyaltyPoints) {
-        this.username = username;
-        this.password = password;
-        this.email = email;
-        this.loyaltyPoints = loyaltyPoints;
-    }
+    @OneToOne(
+            fetch = FetchType.EAGER)
+    @JoinColumn(name = "usertype_id",
+            referencedColumnName = "userTypeId")
+    private UserType userType;
 }

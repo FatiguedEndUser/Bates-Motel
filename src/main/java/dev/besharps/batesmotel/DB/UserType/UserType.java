@@ -1,19 +1,34 @@
 package dev.besharps.batesmotel.DB.UserType;
 
+import dev.besharps.batesmotel.DB.User.User;
 import jakarta.persistence.*;
-import lombok.Getter;
-import lombok.Setter;
+import lombok.*;
 
+@Entity(name = "UserType")
 @Getter
 @Setter
-@Entity
+@Builder
+@AllArgsConstructor
+@NoArgsConstructor
 public class UserType {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(
-            name = "userTypeId"
+            name = "userTypeId",
+            nullable = false,
+            unique = true
     )
-    private Long id;
+    private int id;
 
+    @OneToOne(
+            mappedBy = "userType"
+    )
+    private User user;
+
+    @Column(
+            name="typeName",
+            nullable = false
+    )
     private String typeName;
+
 }
