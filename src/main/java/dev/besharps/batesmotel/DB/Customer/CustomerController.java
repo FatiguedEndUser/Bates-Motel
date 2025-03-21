@@ -37,17 +37,17 @@ public class CustomerController {
         return customer;
     }
 
-    @ResponseStatus(HttpStatus.OK)
-    @GetMapping("/{firstName}")
-    Optional<Customer> findByFirstName(@PathVariable String firstName) {
-        return Optional.of(customerRepository.findByFirstName(firstName));
-    }
-
-    @ResponseStatus(HttpStatus.OK)
-    @GetMapping("/{lastName}")
-    Optional<Customer> findByLastName(@PathVariable String lastName) {
-        return Optional.of(customerRepository.findByLastName(lastName));
-    }
+//    @ResponseStatus(HttpStatus.OK)
+//    @GetMapping("/{firstName}")
+//    Optional<Customer> findByFirstName(@PathVariable String firstName) {
+//        return Optional.of(customerRepository.findByFirstName(firstName));
+//    }
+//
+//    @ResponseStatus(HttpStatus.OK)
+//    @GetMapping("/{lastName}")
+//    Optional<Customer> findByLastName(@PathVariable String lastName) {
+//        return Optional.of(customerRepository.findByLastName(lastName));
+//    }
 
     //TODO: Implement findByPhoneNumber, findByEmail
 

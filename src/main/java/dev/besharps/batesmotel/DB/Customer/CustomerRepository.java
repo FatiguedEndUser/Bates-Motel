@@ -11,18 +11,18 @@ import java.util.List;
 
 public interface CustomerRepository extends JpaRepository<Customer, Integer> {
 
-    @Query("select c from Customer c where c.firstName == :firstName ")
-    Customer findByFirstName(@Param("firstName") String firstName);
-
-    @Query("select c from Customer c where c.lastName == :lastName ")
-    Customer findByLastName(@Param("lastName") String lastName);
-
-    //TODO: Implement
-    @Query
-    Customer findByPhoneNumber(String phoneNumber);
-
-    //TODO: update method is a little more difficult than i anticipated
-    //Maybe multiple update methods that then can be called in one method too update all
-    @Query("update Customer set firstName = :firstName, set lastName = :lastName")
-    Customer updateCustomer(@Valid @RequestBody String firstName, String lastName);
+//    @Query("select c from Customer c where c.firstName == :firstName ")
+//    Customer findByFirstName(@Param("firstName") String firstName);
+//
+//    @Query("select c from Customer c where c.lastName == :lastName ")
+//    Customer findByLastName(@Param("lastName") String lastName);
+//
+//    //TODO: Implement
+//    @Query
+//    Customer findByPhoneNumber(String phoneNumber);
+//
+//    //TODO: update method is a little more difficult than i anticipated
+//    //Maybe multiple update methods that then can be called in one method too update all
+//    @Query("update Customer set firstName = :firstName, set lastName = :lastName")
+//    Customer updateCustomer(@Valid @RequestBody String firstName, String lastName);
 }
