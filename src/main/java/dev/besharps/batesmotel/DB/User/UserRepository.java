@@ -20,12 +20,6 @@ public interface UserRepository extends JpaRepository<User, Integer> {
 
     @Query("SELECT u.loyaltyPoints FROM User u where u.id = :id")
     int getLoyaltyPoints(@Param("id") Integer id);
-
-
-
-import org.springframework.data.jpa.repository.JpaRepository;
-
-public interface UserRepository extends JpaRepository<User, Integer> {
-
 }
+
 
