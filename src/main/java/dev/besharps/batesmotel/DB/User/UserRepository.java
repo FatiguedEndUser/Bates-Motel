@@ -1,5 +1,6 @@
 package dev.besharps.batesmotel.DB.User;
 
+
 import jakarta.transaction.Transactional;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Modifying;
@@ -21,6 +22,10 @@ public interface UserRepository extends JpaRepository<User, Integer> {
     int getLoyaltyPoints(@Param("id") Integer id);
 
 
+
+import org.springframework.data.jpa.repository.JpaRepository;
+
+public interface UserRepository extends JpaRepository<User, Integer> {
 
 }
 

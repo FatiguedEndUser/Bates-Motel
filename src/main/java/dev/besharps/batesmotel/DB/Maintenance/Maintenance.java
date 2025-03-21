@@ -27,6 +27,7 @@ public class Maintenance {
     )
     @Column(
             name = "maintenanceId",
+            nullable = false,
             updatable = false
     )
     private int maintenanceId;

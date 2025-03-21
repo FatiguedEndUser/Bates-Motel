@@ -25,25 +25,32 @@ public class Customer {
     )
     @Column(
             name = "customerId",
+            nullable = false,
             updatable = false
     )
     private int customerId;
 
     @Column(
-            name = "name",
-            updatable = true,
+            name = "firstName",
             nullable = false,
             columnDefinition = "TEXT"
     )
-    private String name;
+    private String firstName;
 
     @Column(
-            name = "number",
+            name = "lastName",
+            nullable = false,
+            columnDefinition = "TEXT"
+    )
+    private String lastName;
+
+    @Column(
+            name = "phoneNumber",
             updatable = true,
             nullable = true,
             columnDefinition = "TEXT"
     )
-    private String number;
+    private String phoneNumber;
 
     @Column(
             name = "address",
