@@ -5,15 +5,17 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.boot.autoconfigure.domain.EntityScan;
 import org.springframework.boot.autoconfigure.jdbc.DataSourceAutoConfiguration;
+import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
+
 /*----------------------------------------------------------------------------------*/
-
-@SpringBootApplication(exclude = {DataSourceAutoConfiguration.class})
+// In your main application class (BatesMotelApplication.java)
+@SpringBootApplication
+@EntityScan(basePackages = "dev.besharps.batesmotel.DB") // For entities
+@EnableJpaRepositories(basePackages = "dev.besharps.batesmotel.DB") // For repositories
 public class BatesMotelApplication {
-    private static final Logger log = LoggerFactory.getLogger(BatesMotelApplication.class);
-
     public static void main(String[] args) {
         SpringApplication.run(BatesMotelApplication.class, args);
-        log.info("Application started successfully");
     }
 }

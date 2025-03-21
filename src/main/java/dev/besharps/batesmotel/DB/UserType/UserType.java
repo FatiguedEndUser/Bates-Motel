@@ -1,7 +1,34 @@
 package dev.besharps.batesmotel.DB.UserType;
 
+import dev.besharps.batesmotel.DB.User.User;
+import jakarta.persistence.*;
+import lombok.*;
+
+@Entity(name = "UserType")
+@Getter
+@Setter
+@Builder
+@AllArgsConstructor
+@NoArgsConstructor
 public class UserType {
-    //Maybe have hardcoded because we know all the staff and user roles. So there is no need to add or delete from a
-    // server db
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(
+            name = "userTypeId",
+            nullable = false,
+            unique = true
+    )
+    private int id;
+
+    @OneToOne(
+            mappedBy = "userType"
+    )
+    private User user;
+
+    @Column(
+            name="typeName",
+            nullable = false
+    )
+    private String typeName;
 
 }

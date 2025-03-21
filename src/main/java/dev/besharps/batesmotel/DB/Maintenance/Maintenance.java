@@ -33,6 +33,7 @@ public class Maintenance {
     private int maintenanceId;
 
     @ManyToOne
+
     @JoinColumn(
             name = "roomId",
             referencedColumnName = "roomId",

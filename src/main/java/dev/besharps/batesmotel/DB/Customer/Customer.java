@@ -75,5 +75,7 @@ public class Customer {
             foreignKey = @ForeignKey(name = "customer_usertype_fk"),
             nullable = false
     )
+
+    // Needs fixing
     private UserType userType;
 }
