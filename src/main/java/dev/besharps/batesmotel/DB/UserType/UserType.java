@@ -18,6 +18,7 @@ public class UserType {
             nullable = false,
             unique = true
     )
+
     private int id;
 
     @OneToOne(
