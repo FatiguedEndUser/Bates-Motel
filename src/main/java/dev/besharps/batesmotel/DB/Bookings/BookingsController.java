@@ -41,13 +41,13 @@ public class BookingsController{
         return bookings;
     }
 
-    Optional<Customer> findByCustomerID(@PathVariable Integer id){
-        Optional<Customer> customer = findByCustomerID(id);
-        if (customer.isEmpty()) {
-            throw new BookingNotFoundException();
-        }
-        return customer;
-    }
+//    Optional<Customer> findByCustomerID(@PathVariable Integer id){
+//        Optional<Customer> customer = findByCustomerID(id);
+//        if (customer.isEmpty()) {
+//            throw new BookingNotFoundException();
+//        }
+//        return customer;
+//    }
 
 
     //POST
