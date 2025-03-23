@@ -36,7 +36,6 @@ class UserRepositoryTest {
     @BeforeEach
     @Transactional
     void setUp() {
-
         User user = User.builder()
                 .username("Jake")
                 .password("12345")
