@@ -31,7 +31,7 @@ class UserRepositoryTest {
     @Autowired
     private UserService userService;
 
-    private Logger logger = LoggerFactory.getLogger(this.getClass());
+    private final Logger logger = LoggerFactory.getLogger(this.getClass());
 
     @BeforeEach
     @Transactional
@@ -43,7 +43,7 @@ class UserRepositoryTest {
                 .email("jake@gmail.com")
                 .loyaltyPoints(100)
                 .build();
-        userService.createUser(user, "Admin");
+        userService.createUser(user, 1);
     }
 
     @Test
@@ -70,7 +70,7 @@ class UserRepositoryTest {
 
         assertNotNull(newUser);
 
-        userService.createUser(newUser, "Customer");
+        userService.createUser(newUser, 0);
 
     }
 

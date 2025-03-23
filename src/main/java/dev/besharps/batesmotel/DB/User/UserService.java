@@ -20,9 +20,17 @@ public class UserService {
     private UserTypeRepository userTypeRepository;
 
     @Transactional
-    public void createUser(User user, String Type) {
+    public void createUser(User user, int typeNumber) {
+        String userRole = switch (typeNumber) {
+            case 1 -> "Customer";
+            case 2 -> "Maintenance";
+            case 3 -> "Clerk";
+            case 4 -> "Manager";
+            case 5 -> "Admin";
+            default -> throw new IllegalStateException("Unexpected value: " + typeNumber);
+        };
         UserType userType = UserType.builder()
-                .typeName(Type)
+                .typeName(userRole)
                 .build();
         userTypeRepository.save(userType);
         user.setUserType(userType);

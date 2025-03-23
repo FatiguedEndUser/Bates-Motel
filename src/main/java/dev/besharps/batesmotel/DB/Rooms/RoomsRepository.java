@@ -8,5 +8,7 @@ import java.util.List;
 
 @Repository
 public interface RoomsRepository extends JpaRepository<Rooms, Integer> {
-  
+    List<Rooms> findByRoomType(String roomType);
+    List<Rooms> findByRoomNumber(Long roomNumber);
+    List<Rooms> findByAvailableTrue();
 }
