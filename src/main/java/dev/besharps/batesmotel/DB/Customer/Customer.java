@@ -68,14 +68,9 @@ public class Customer {
     )
     private String carInformation;
 
-//    @ManyToOne
-//    @JoinColumn(
-//            name = "userTypeId",
-//            referencedColumnName = "userTypeId",
-//            foreignKey = @ForeignKey(name = "customer_usertype_fk"),
-//            nullable = false
-//    )
-//
-//    // Needs fixing
-//    private UserType userType;
+    @OneToOne(
+            fetch = FetchType.EAGER)
+    @JoinColumn(name = "usertype_id",
+            referencedColumnName = "userTypeId")
+    private UserType userType;
 }

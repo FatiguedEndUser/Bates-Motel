@@ -1,0 +1,47 @@
+package dev.besharps.batesmotel.RepositoryTests;
+
+import dev.besharps.batesmotel.BatesMotelApplication;
+import dev.besharps.batesmotel.DB.Customer.Customer;
+import dev.besharps.batesmotel.DB.Customer.CustomerRepository;
+import dev.besharps.batesmotel.DB.UserType.UserType;
+import dev.besharps.batesmotel.DB.UserType.UserTypeRepository;
+import jakarta.transaction.Transactional;
+import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.extension.ExtendWith;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.test.context.junit.jupiter.SpringExtension;
+
+import java.util.logging.Logger;
+
+@ExtendWith(SpringExtension.class)
+@SpringBootTest(classes = BatesMotelApplication.class)
+class CustomerRepositoryTest {
+
+    @Autowired
+    private CustomerRepository customerRepository;
+
+    @Autowired
+    private UserTypeRepository userTypeRepository;
+
+    Logger logger = Logger.getLogger(RoomsRepositoryTest.class.getName());
+
+    @Test
+    @Transactional
+    public void createCustomerTest() {
+        UserType userType = UserType.builder()
+                .typeName("Customer")
+                .build();
+        userTypeRepository.save(userType);
+        Customer customer = Customer.builder()
+                .firstName("Lexie")
+                .lastName("Brown")
+                .address("1600 Pennsylvania Avenue NW")
+                .carInformation("Hatchback")
+                .phoneNumber("6120392232")
+                .userType(userType)
+                .build();
+        customerRepository.save(customer);
+    }
+
+}

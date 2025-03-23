@@ -23,9 +23,16 @@ public interface CustomerRepository extends JpaRepository<Customer, Integer> {
     // Maybe multiple update methods that then can be called in one method to update all
     @Transactional
     @Modifying
-    @Query("UPDATE Customer c SET c.firstName = :firstName, c.lastName = :lastName WHERE c.customerId = :id")
-    void updateFirstNameAndLastName(
+    @Query("UPDATE Customer c SET c.firstName = :firstName WHERE c.customerId = :id")
+    void updateFirstName(
             @Param("firstName") String firstName,
+            @Param("id") Integer id
+    );
+
+    @Transactional
+    @Modifying
+    @Query("UPDATE Customer c SET c.lastName = :lastName WHERE c.customerId = :id")
+    void updateLastName(
             @Param("lastName") String lastName,
             @Param("id") Integer id
     );
