@@ -1,28 +1,48 @@
 package dev.besharps.batesmotel.DB.Customer;
 
-import jakarta.validation.Valid;
+import jakarta.transaction.Transactional;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
-import org.springframework.web.bind.annotation.RequestBody;
-
+import org.springframework.stereotype.Repository;
 import java.util.List;
 
+@Repository
 public interface CustomerRepository extends JpaRepository<Customer, Integer> {
+    @Query("SELECT c FROM Customer c WHERE c.firstName = :firstName")
+    List<Customer> findByFirstName(@Param("firstName") String firstName);
 
-/*    @Query("select c from Customer c where c.firstName == :firstName ")
-    Customer findByFirstName(@Param("firstName") String firstName);
 
-    @Query("select c from Customer c where c.lastName == :lastName ")
-    Customer findByLastName(@Param("lastName") String lastName);
+    @Query("SELECT c FROM Customer c WHERE c.lastName = :lastName ")
+    List<Customer> findByLastName(@Param("lastName") String lastName);
 
-    //TODO: Implement
-    @Query
-    Customer findByPhoneNumber(String phoneNumber);
+    @Query("SELECT c FROM Customer c WHERE c.phoneNumber = :number ")
+    List<Customer> findbyPhoneNumber(@Param("number") String number);
 
-    //TODO: update method is a little more difficult than i anticipated
-    //Maybe multiple update methods that then can be called in one method too update all
-    @Query("update Customer set firstName = :firstName, set lastName = :lastName")
-    Customer updateCustomer(@Valid @RequestBody String firstName, String lastName);*/
+    // Maybe multiple update methods that then can be called in one method to update all
+    @Transactional
+    @Modifying
+    @Query("UPDATE Customer c SET c.firstName = :firstName, c.lastName = :lastName WHERE c.customerId = :id")
+    void updateFirstNameAndLastName(
+            @Param("firstName") String firstName,
+            @Param("lastName") String lastName,
+            @Param("id") Integer id
+    );
+
+    @Transactional
+    @Modifying
+    @Query("UPDATE Customer c SET c.phoneNumber = :number WHERE c.customerId = :id")
+    void updatePhoneNumber(
+            @Param("phoneNumber") String phoneNumber,
+            @Param("id") Integer id
+    );
+
+    @Transactional
+    @Modifying
+    @Query("UPDATE Customer c SET c.address = :address WHERE c.customerId = :id")
+    void updateAddress(
+            @Param("address") String address,
+            @Param("id") Integer id
+    );
 }
