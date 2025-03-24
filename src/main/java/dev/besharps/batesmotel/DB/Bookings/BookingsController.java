@@ -16,7 +16,6 @@ import java.util.Optional;
 //Mapping needs to be changed and access limited too admins or clerks
 @RestController
 @RequestMapping("/bookings")
-@RequiredArgsConstructor
 public class BookingsController{
     @Autowired
     private BookingsRepository bookingsRepository;

@@ -14,7 +14,6 @@ import dev.besharps.batesmotel.Exceptions.MaintenanceNotFoundException;
 
 @RestController
 @RequestMapping("/maintenance")
-@RequiredArgsConstructor
 public class MaintenanceController {
     @Autowired
     private MaintenanceRepository maintenanceRepository;

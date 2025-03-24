@@ -14,7 +14,6 @@ import java.util.Optional;
 
 @RestController
 @RequestMapping("/customer")
-@RequiredArgsConstructor
 public class CustomerController {
     @Autowired
     private CustomerRepository customerRepository;

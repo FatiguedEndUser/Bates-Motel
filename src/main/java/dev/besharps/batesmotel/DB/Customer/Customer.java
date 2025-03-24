@@ -68,14 +68,14 @@ public class Customer {
     )
     private String carInformation;
 
-    @ManyToOne
-    @JoinColumn(
-            name = "typeId",
-            referencedColumnName = "userTypeId",
-            foreignKey = @ForeignKey(name = "customer_usertype_fk"),
-            nullable = false
-    )
-
-    // Needs fixing
-    private UserType userType;
+//    @ManyToOne
+//    @JoinColumn(
+//            name = "userTypeId",
+//            referencedColumnName = "userTypeId",
+//            foreignKey = @ForeignKey(name = "customer_usertype_fk"),
+//            nullable = false
+//    )
+//
+//    // Needs fixing
+//    private UserType userType;
 }
