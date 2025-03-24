@@ -4,6 +4,7 @@ package dev.besharps.batesmotel.DB.Rooms;
 import jakarta.validation.Valid;
 
 import lombok.RequiredArgsConstructor;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
@@ -18,10 +19,8 @@ import dev.besharps.batesmotel.Exceptions.RoomNotFoundException;
 //RequiredArcConstructor is nice but lets worry about refactoring code after we know everything is properly setup
 //@RequiredArgsConstructor
 public class RoomsController {
+    @Autowired
     private RoomsRepository roomsRepository;
-    public RoomsController(RoomsRepository roomsRepository){
-        this.roomsRepository = roomsRepository;
-    }
 
     //GET
     @ResponseStatus(HttpStatus.FOUND)

@@ -3,6 +3,7 @@ package dev.besharps.batesmotel.DB.Maintenance;
 //DEPENDENCY IMPORTS
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
@@ -15,10 +16,8 @@ import dev.besharps.batesmotel.Exceptions.MaintenanceNotFoundException;
 @RequestMapping("/maintenance")
 @RequiredArgsConstructor
 public class MaintenanceController {
+    @Autowired
     private MaintenanceRepository maintenanceRepository;
-    public MaintenanceController(MaintenanceRepository maintenanceRepository) {
-        this.maintenanceRepository = maintenanceRepository;
-    }
 
     //GET
     @ResponseStatus(HttpStatus.FOUND)
