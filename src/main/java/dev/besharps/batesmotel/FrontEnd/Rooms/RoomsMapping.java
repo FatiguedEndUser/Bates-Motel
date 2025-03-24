@@ -5,8 +5,9 @@ import org.springframework.web.bind.annotation.GetMapping;
 
 @Controller
 public class RoomsMapping {
-    @GetMapping("Room-Standard")
+    @GetMapping("/Room-Standard")
     public String RoomsStandard() {
-        return "Room-Standard";
+        return "StandardRoom";
     }
 }
+
