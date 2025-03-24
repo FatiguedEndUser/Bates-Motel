@@ -5,7 +5,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 
 @Controller
 public class RoomsMapping {
-    @GetMapping("/Room-Standard")
+    @GetMapping("/Standard-Rooms")
     public String RoomsStandard() {
         return "StandardRoom";
     }
