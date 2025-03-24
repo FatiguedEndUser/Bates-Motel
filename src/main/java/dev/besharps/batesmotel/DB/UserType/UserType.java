@@ -1,5 +1,6 @@
 package dev.besharps.batesmotel.DB.UserType;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import dev.besharps.batesmotel.DB.User.User;
 import jakarta.persistence.*;
 import lombok.*;
@@ -24,6 +25,7 @@ public class UserType {
     @OneToOne(
             mappedBy = "userType"
     )
+    @JsonBackReference
     private User user;
 
     @Column(
