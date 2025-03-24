@@ -4,6 +4,7 @@ package dev.besharps.batesmotel.DB.Customer;
 import dev.besharps.batesmotel.Exceptions.CustomerNotFoundException;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
@@ -15,10 +16,8 @@ import java.util.Optional;
 @RequestMapping("/customer")
 @RequiredArgsConstructor
 public class CustomerController {
+    @Autowired
     private CustomerRepository customerRepository;
-    public CustomerController(CustomerRepository customerRepository) {
-        this.customerRepository = customerRepository;
-    }
 
     //GET
     @ResponseStatus(HttpStatus.FOUND)

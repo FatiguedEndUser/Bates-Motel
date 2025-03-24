@@ -5,6 +5,7 @@ import dev.besharps.batesmotel.DB.Customer.Customer;
 import dev.besharps.batesmotel.Exceptions.BookingNotFoundException;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
@@ -17,10 +18,8 @@ import java.util.Optional;
 @RequestMapping("/bookings")
 @RequiredArgsConstructor
 public class BookingsController{
+    @Autowired
     private BookingsRepository bookingsRepository;
-    public BookingsController(BookingsRepository bookingsRepository) {
-        this.bookingsRepository = bookingsRepository;
-    }
 
     //GET
     @ResponseStatus(HttpStatus.FOUND)
