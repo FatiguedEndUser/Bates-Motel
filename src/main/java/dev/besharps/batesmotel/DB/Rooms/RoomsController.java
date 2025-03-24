@@ -15,7 +15,6 @@ import dev.besharps.batesmotel.Exceptions.RoomNotFoundException;
 
 @RestController
 @RequestMapping("/rooms")
-@RequiredArgsConstructor
 //RequiredArcConstructor is nice but lets worry about refactoring code after we know everything is properly setup
 //@RequiredArgsConstructor
 public class RoomsController {

@@ -1,0 +1,328 @@
+/* Reset */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* Body */
+body {
+    font-family: Arial, sans-serif;
+    background-color: #000;
+    color: #fff;
+}
+
+/*
+  =========================
+     TOP HEADER STYLING
+  =========================
+*/
+
+/* Overall header container */
+.top-header {
+    display: flex;
+    background-color: #000;
+    padding: 0;
+}
+
+/* Left side: blue block with logo image */
+.logo-block {
+    background-color: #008FD5;
+    padding: 2vw 4vw;
+}
+.logo-image {
+    height: 5.5vw;
+    width: auto;
+}
+
+/* Right side: main navigation (orange pills) */
+.main-nav {
+    display: flex;
+    align-items: center;
+    gap: 1vw;
+    padding: 1vw 34vw;
+}
+.main-nav .nav-link {
+    background-color: #FFA500;
+    color: #000;
+    text-decoration: none;
+    font-weight: 500;
+    padding: 0.5rem 1rem;
+    border-radius: 2rem;
+}
+.main-nav .nav-link:hover {
+    opacity: 0.85;
+}
+.main-nav .active {
+    border: 0.15rem solid #000;
+}
+
+/*
+  =========================
+      ROOMS HEADER
+  =========================
+*/
+.rooms-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #000;
+    padding: 1.25vw;
+}
+.rooms-title {
+    color: #008fd5;
+    font-size: 2.25vw;
+    font-weight: bold;
+    text-transform: uppercase;
+    letter-spacing: 0.14vw;
+    margin-left: 37.5vw;
+}
+.room-types a {
+    color: #008fd5;
+    margin: 0 1vw;
+
+    font-size: 1.06vw;
+    font-weight: bold;
+    padding-right: 1vw;
+}
+.room-types a:hover {
+    text-decoration: underline;
+}
+
+/* =========================================
+   ROOM CARDS (MIDDLE SECTION)
+   ========================================= */
+
+/* Container for all room cards */
+.rooms-container {
+    width: 80%;
+    margin: 2.5vw auto;
+    display: flex;
+    flex-direction: column;
+    gap: 1.25vw;
+}
+
+/* Each card: white background, so the image can appear “in front,”
+   with orange & white behind it. */
+.room-card {
+    position: relative;
+    background-color: #fff;
+    border-radius: 0.625vw;
+    overflow: hidden;
+    display: flex;
+    min-height: 12.5vw;
+}
+
+/* Left side: the image portion. Higher z-index so it appears on top. */
+.room-image {
+    flex: 2;
+    position: relative;
+    z-index: 2;
+    height: 20vw;
+    overflow: hidden;
+}
+
+/* Ensure the image fills the container and crops properly */
+.room-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+
+/* Middle/Right side: orange area for room details */
+.room-info {
+    flex: 3;
+    background-color: #FFA500;
+    color: #000;
+    padding: 3.125vw 2.5vw 1.25vw 1.25vw;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    position: relative;
+}
+
+/* Room title, subtitle, bed info, etc. */
+.room-title {
+    font-size: 1.875vw;
+    margin-bottom: 0.625vw;
+    margin-left: 5vw;
+}
+.room-subtitle {
+    font-style: italic;
+    margin-bottom: 0.625vw;
+    margin-left: 5.625vw;
+}
+.room-beds,
+.room-appliances {
+    margin-bottom: 0.625vw;
+    margin-left: 5.625vw;
+}
+
+/* Book Room button: top-right inside the orange area */
+.book-room-btn {
+    position: absolute;
+    top: 8.100vw;
+    right: 3.125vw;
+    background-color: #000;
+    color: #fff;
+    text-decoration: none;
+    padding: 1.56vw 1.56vw;
+    border-radius: 0.25rem;
+    font-weight: bold;
+    transition: background-color 0.3s;
+}
+.book-room-btn:hover {
+    background-color: #333;
+}
+
+/* White strip at the bottom with the price */
+.room-price {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    background-color: #fdfcfc;
+    color: #040404;
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    padding: 1.25vw;
+}
+.price-amount {
+    font-size: 2.375vw;
+    font-weight: bold;
+    margin-right: 0.3125vw;
+}
+.price-night {
+    /* 20px -> 1.25vw */
+    font-size: 1.25vw;
+    font-weight: normal;
+}
+
+/* Responsive: stack vertically on smaller screens */
+@media (max-width: 768px) {
+    .room-card {
+        flex-direction: column;
+        min-height: auto;
+    }
+    .room-image,
+    .room-info {
+        flex: none;
+        width: 100%;
+    }
+    /* Move button/price so they don't overlap on small screens */
+    .book-room-btn {
+        position: static;
+        margin-top: 1rem;
+    }
+    .room-price {
+        position: static;
+        margin-top: 1rem;
+        justify-content: flex-start;
+    }
+}
+
+/* ========================
+   RESPONSIVE MEDIA QUERY
+   ======================== */
+@media (max-width: 768px) {
+    .main-nav {
+        flex-wrap: wrap;
+        justify-content: center;
+        padding: 1rem; /* let the nav breathe on smaller screens */
+    }
+    .rooms-header {
+        flex-direction: column;
+        align-items: center;
+    }
+    .rooms-title {
+        margin-left: 0;
+        margin-bottom: 1rem;
+        /* reduce title size a bit for small screens if desired */
+        font-size: 2rem;
+    }
+    .rooms-container {
+        width: 90%;
+        margin: 2rem auto;
+    }
+    .room-info {
+        padding: 1rem;
+    }
+    .footer-content {
+        flex-direction: column;
+        gap: 1rem;
+    }
+    .footer-links {
+        margin: 1rem 0;
+    }
+}
+
+/*
+  =========================
+        FOOTER
+  =========================
+*/
+.footer {
+    border-top: 0.0625rem solid #fff;
+    border-bottom: 0.0625rem solid #fff;
+    background-color: #000;
+    padding: 1.25vw 0;
+}
+
+.footer-container {
+    width: 80%;
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+/* Left: Logo Block */
+.footer-logo-block {
+    flex: 1;
+}
+.footer-logo-image {
+    height: 5.5vw;
+    width: auto;
+}
+
+/* Center: Contact Info */
+.footer-contact-block {
+    flex: 1;
+    text-align: center;
+    color: #fff;
+    font-size: 0.9vw;
+}
+
+/* Right: Links */
+.footer-links-block {
+    flex: 1;
+    text-align: right;
+}
+.footer-links-block a {
+    color: #fff;
+    text-decoration: none;
+    margin-left: 1.25vw;
+    font-weight: 500;
+    position: relative;
+    padding-bottom: 0.125rem;
+}
+.footer-links-block a:hover {
+    text-decoration: underline;
+}
+
+/* Optional: highlight an active link in orange with an underline */
+.footer-links-block a.active {
+    color: #FFA500;
+}
+.footer-links-block a.active::after {
+    content: "";
+    display: block;
+    width: 100%;
+    height: 0.125rem;
+    background-color: #FFA500;
+    position: absolute;
+    left: 0;
+    bottom: 0;
+}
