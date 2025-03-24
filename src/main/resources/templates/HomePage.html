@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bates Hotel</title>
+   <style>
+     body {
+    font-family: Steelfish, serif;
+    margin: 0;
+    padding: 0;
+    background-color: #000;
+    color: #fff;
+    }
+
+    header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px;
+    background-color: #111;
+    }
+
+    .logo {
+    font-size: 24px;
+    font-weight: bold;
+    color: #fff;
+    }
+
+    .logo span {
+    color: #2a9df4;
+    }   
+
+    nav ul {
+    list-style: none;
+    display: flex;
+    gap: 15px;
+    }
+
+    nav ul li a {
+    text-decoration: none;
+    color: #fff;
+    padding: 8px 15px;
+    background-color: #F2AF6C;
+    border-radius: 5px;
+    }
+
+    .hero {
+    background: url('hero.jpg') no-repeat center center/cover;
+    height: 400px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    }
+
+    .search-bar {
+    background: rgba(0, 0, 0, 0.8);
+    padding: 15px;
+    border-radius: 10px;
+    display: flex;
+    gap: 10px;
+    }
+
+    .search-bar input, .search-bar button {
+    padding: 10px;
+    border: none;
+    border-radius: 5px;
+    }
+
+    .rooms, .services {
+    text-align: center;
+    padding: 50px 20px;
+    }
+
+    .room-list {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    }
+
+    .room {
+    background: #F2AF6C;
+    padding: 15px;
+    border-radius: 10px;
+    }
+
+    .room img {
+    width: 200px;
+    height: 150px;
+    border-radius: 5px;
+    }
+
+    .services ul {
+    list-style: none;
+    padding: 0;
+    }
+
+    .services ul li {
+    margin: 10px 0;
+    }
+
+    footer {
+    background-color: #111;
+    text-align: center;
+    padding: 20px;
+    }
+
+    footer ul {
+    list-style: none;
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    }
+
+    footer ul li a {
+    text-decoration: none;
+    color: #2a9df4;
+    }
+
+   </style>
+</head>
+<body>
+    <header>
+        <div class="logo">Bates<span>Hotel</span></div>
+        <nav>
+            <ul>
+                <li><a href="Home Page.html">Home</a></li>
+                <li><a href="Rooms.html">Rooms</a></li>
+                <li><a href="#">Offers</a></li>
+                <li><a href="#">About</a></li>
+                <li><a href="#">Login/Register</a></li>
+            </ul>
+        </nav>
+    </header>
+    
+    <section class="hero">
+        <div class="search-bar">
+            <input type="date" placeholder="Check In">
+            <input type="date" placeholder="Check Out">
+            <input type="number" placeholder="Guests">
+            <button>Search</button>
+        </div>
+    </section>
+    
+    <section class="rooms">
+        <h2>ROOMS</h2>
+        <div class="room-list">
+            <div class="room">
+                <img src="room1.jpg" alt="Room Image">
+                <p>The Pinewood Retreat - $400</p>
+            </div>
+            <div class="room">
+                <img src="room2.jpg" alt="Room Image">
+                <p>The Blue View Suite - $600</p>
+            </div>
+            <div class="room">
+                <img src="room3.jpg" alt="Room Image">
+                <p>The Hickstead Special - $1000</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- User Information Section -->
+    <section class="user-info">
+        <h2>User Information</h2>
+        <p><strong>User Name:</strong> <span th:text="${user.userName}">User Name</span></p>
+        <p><strong>Email:</strong> <span th:text="${user.Email}">Email</span></p>
+        <p><strong>Loyalty Points:</strong> <span th:text="${user.LoyaltyPoints}">Loyalty Points</span></p>
+    </section>
+    
+    <section class="services">
+        <h2>SERVICES</h2>
+        <ul>
+            <li>Valet Service</li>
+            <li>Room Service</li>
+            <li>Parking</li>
+            <li>Maintenance</li>
+            <li>Housekeeping</li>
+            <li>Spa & Wellness</li>
+            <li>Amenities: Wi-Fi, Pool, Fitness Center, Business Center</li>
+        </ul>
+    </section>
+    
+    <footer>
+        <p>Contact: (555) 123-4567 | Email: contact@bateshotel.com</p>
+        <ul>
+            <li><a href="Home Page.html">Home</a></li>
+            <li><a href="#">Privacy Policy</a></li>
+            <li><a href="#">FAQ</a></li>
+        </ul>
+    </footer>
+</body>
+</html>
