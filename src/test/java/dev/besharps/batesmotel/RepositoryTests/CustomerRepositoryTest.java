@@ -3,6 +3,8 @@ package dev.besharps.batesmotel.RepositoryTests;
 import dev.besharps.batesmotel.BatesMotelApplication;
 import dev.besharps.batesmotel.DB.Customer.Customer;
 import dev.besharps.batesmotel.DB.Customer.CustomerRepository;
+import dev.besharps.batesmotel.DB.Customer.CustomerService;
+import dev.besharps.batesmotel.DB.User.UserRepository;
 import dev.besharps.batesmotel.DB.UserType.UserType;
 import dev.besharps.batesmotel.DB.UserType.UserTypeRepository;
 import jakarta.transaction.Transactional;
@@ -10,6 +12,7 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.test.annotation.Rollback;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
 
 import java.util.logging.Logger;
@@ -24,10 +27,12 @@ class CustomerRepositoryTest {
     @Autowired
     private UserTypeRepository userTypeRepository;
 
-    Logger logger = Logger.getLogger(RoomsRepositoryTest.class.getName());
+    @Autowired
+    private CustomerService customerService;
 
     @Test
     @Transactional
+    @Rollback(false)
     public void createCustomerTest() {
         UserType userType = UserType.builder()
                 .typeName("Customer")
@@ -44,4 +49,11 @@ class CustomerRepositoryTest {
         customerRepository.save(customer);
     }
 
+
+    @Test
+    @Transactional
+    @Rollback(false)
+    public void updateCustomerTest() {
+        customerService.updateCustomer(3, "Bella", null, null, null, null);
+    }
 }
