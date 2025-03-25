@@ -71,7 +71,7 @@ public class CustomerController {
 
     //DELETE
     @ResponseStatus(HttpStatus.NO_CONTENT)
-    @GetMapping("/delete/{id}")
+    @DeleteMapping("/delete/{id}")
     void deleteById(@PathVariable Integer id) {
         customerRepository.deleteById(id);
     }
