@@ -3,7 +3,6 @@ package dev.besharps.batesmotel.DB.Customer;
 //DEPENDENCY IMPORTS
 import dev.besharps.batesmotel.Exceptions.CustomerNotFoundException;
 import jakarta.validation.Valid;
-import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
@@ -15,10 +14,10 @@ import java.util.Optional;
 @RestController
 @RequestMapping("/customer")
 public class CustomerController {
+
     @Autowired
     private CustomerRepository customerRepository;
 
-    //GET
     @ResponseStatus(HttpStatus.FOUND)
     @GetMapping("/find-all")
     List<Customer> findAll() {
@@ -53,29 +52,78 @@ public class CustomerController {
         return customerRepository.findByLastName(lastName);
     }
 
-    //TODO: Implement findByPhoneNumber, findByEmail
+    @ResponseStatus(HttpStatus.OK)
+    @GetMapping("/phone-number/{number}")
+    List<Customer> findByPhoneNumberContaining(@PathVariable String number) {
+        if (customerRepository.findByPhoneNumberContaining(number).isEmpty()) {
+            throw new CustomerNotFoundException();
+        }
+        return customerRepository.findByPhoneNumberContaining(number);
+    }
 
-    //POST
-    //Post methods might need parameters that fill in from a form
+    // TODO Wait for front end to create a customer form to implement creation of a customer
     @ResponseStatus(HttpStatus.CREATED)
     @PostMapping("")
     void create(@Valid @RequestBody Customer customer) {
         customerRepository.save(customer);
     }
 
-    //PUT
-    //What fields should be updatable?
-    // - lastName
-    // - phoneNumber
-    // - address
-    // - carInformation
+    // TODO Add each mapping update all
     @ResponseStatus(HttpStatus.NO_CONTENT)
-    @PutMapping("")
-    void updateLastName(@Valid @RequestBody Customer customer) {
-
+    @PutMapping("/update/first/{id}")
+    void updateFirstName(@PathVariable Integer id, @RequestParam String firstName) {
+        Customer customer = customerRepository.findById(id).orElse(null);
+        if (customer == null) {
+            throw new CustomerNotFoundException();
+        }
+        customer.setFirstName(firstName);
+        customerRepository.save(customer);
     }
 
-    //DELETE
+    @ResponseStatus(HttpStatus.NO_CONTENT)
+    @PutMapping("/update/last/{id}")
+    void updateLastName(@PathVariable Integer id, @RequestParam String lastName) {
+        Customer customer = customerRepository.findById(id).orElse(null);
+        if (customer == null) {
+            throw new CustomerNotFoundException();
+        }
+        customer.setLastName(lastName);
+        customerRepository.save(customer);
+    }
+
+    @ResponseStatus(HttpStatus.NO_CONTENT)
+    @PutMapping("/update/phone/{id}")
+    void updatePhoneNumber(@PathVariable Integer id, @RequestParam String number) {
+        Customer customer = customerRepository.findById(id).orElse(null);
+        if (customer == null) {
+            throw new CustomerNotFoundException();
+        }
+        customer.setPhoneNumber(number);
+        customerRepository.save(customer);
+    }
+
+    @ResponseStatus(HttpStatus.NO_CONTENT)
+    @PutMapping("/update/address/{id}")
+    void updateAddress(@PathVariable Integer id, @RequestParam String address) {
+        Customer customer = customerRepository.findById(id).orElse(null);
+        if (customer == null) {
+            throw new CustomerNotFoundException();
+        }
+        customer.setAddress(address);
+        customerRepository.save(customer);
+    }
+
+    @ResponseStatus(HttpStatus.NO_CONTENT)
+    @PutMapping("/update/car/{id}")
+    void updateCar(@PathVariable Integer id, @RequestParam String car) {
+        Customer customer = customerRepository.findById(id).orElse(null);
+        if (customer == null) {
+            throw new CustomerNotFoundException();
+        }
+        customer.setAddress(car);
+        customerRepository.save(customer);
+    }
+
     @ResponseStatus(HttpStatus.NO_CONTENT)
     @GetMapping("/delete/{id}")
     void deleteById(@PathVariable Integer id) {

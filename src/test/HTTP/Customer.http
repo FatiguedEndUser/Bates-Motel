@@ -1,3 +1,4 @@
+# FETCHES
 ### Fetch single user
 GET localhost:8080/customer/1
 ### Get all users
@@ -7,4 +8,26 @@ GET localhost:8080/customer/find-all
 GET localhost:8080/customer/first-name/lexie
 
 ### Fetch by last name
-GET localhost:8080/customer/last-name/
+GET localhost:8080/customer/last-name/Brown
+
+### Fetch by phone number
+GET localhost:8080/customer/phone-number/612
+
+### Fetch by email
+GET localhost:8080/customer/email/612
+
+# SETS
+### Set first name
+PUT localhost:8080/customer/update/first/1?firstName=Lexie
+
+### Set last name
+PUT localhost:8080/customer/update/last/1?lastName=Brown
+
+### Set phone number
+PUT localhost:8080/customer/update/phone/1?number=6123950021
+
+### Set address
+PUT localhost:8080/customer/update/address/1?address=1600 Pennsylvania Avenue NW
+
+### Set car
+PUT localhost:8080/customer/update/car/1?car=Hatchback

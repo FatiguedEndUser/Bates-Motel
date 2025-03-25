@@ -16,10 +16,8 @@ public interface CustomerRepository extends JpaRepository<Customer, Integer> {
     @Query("SELECT c FROM Customer c WHERE LOWER(c.lastName) = LOWER(:lastName)")
     List<Customer> findByLastName(@Param("lastName") String lastName);
 
-    @Query("SELECT c FROM Customer c WHERE c.phoneNumber = :number")
-    List<Customer> findbyPhoneNumber(@Param("number") String number);
+    List<Customer> findByPhoneNumberContaining(String number);
 
-    // Maybe multiple update methods that then can be called in one method to update all
     @Transactional
     @Modifying
     @Query("UPDATE Customer c SET c.firstName = :firstName WHERE c.customerId = :id")
