@@ -10,13 +10,13 @@ import java.util.List;
 
 @Repository
 public interface CustomerRepository extends JpaRepository<Customer, Integer> {
-    @Query("SELECT c FROM Customer c WHERE c.firstName = :firstName")
+    @Query("SELECT c FROM Customer c WHERE LOWER(c.firstName) = LOWER(:firstName)")
     List<Customer> findByFirstName(@Param("firstName") String firstName);
 
-    @Query("SELECT c FROM Customer c WHERE c.lastName = :lastName ")
+    @Query("SELECT c FROM Customer c WHERE LOWER(c.lastName) = LOWER(:lastName)")
     List<Customer> findByLastName(@Param("lastName") String lastName);
 
-    @Query("SELECT c FROM Customer c WHERE c.phoneNumber = :number ")
+    @Query("SELECT c FROM Customer c WHERE c.phoneNumber = :number")
     List<Customer> findbyPhoneNumber(@Param("number") String number);
 
     // Maybe multiple update methods that then can be called in one method to update all

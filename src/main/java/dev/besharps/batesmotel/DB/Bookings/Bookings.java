@@ -34,7 +34,7 @@ public class Bookings {
 
     @ManyToOne
     @JoinColumn(
-            name = "customerId",
+            name = "customerId",   
             referencedColumnName = "customerId",
             foreignKey = @ForeignKey(name = "booking_customer_fk"),
             nullable = false
