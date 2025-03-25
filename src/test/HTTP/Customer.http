@@ -1,0 +1,10 @@
+### Fetch single user
+GET localhost:8080/customer/1
+### Get all users
+GET localhost:8080/customer/find-all
+
+### Fetch by first name
+GET localhost:8080/customer/first-name/lexie
+
+### Fetch by last name
+GET localhost:8080/customer/last-name/
