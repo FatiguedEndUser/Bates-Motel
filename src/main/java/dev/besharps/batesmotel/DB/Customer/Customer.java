@@ -46,24 +46,18 @@ public class Customer {
 
     @Column(
             name = "phoneNumber",
-            updatable = true,
-            nullable = true,
             columnDefinition = "TEXT"
     )
     private String phoneNumber;
 
     @Column(
             name = "address",
-            updatable = true,
-            nullable = true,
             columnDefinition = "TEXT"
     )
     private String address;
 
     @Column(
             name = "carInformation",
-            updatable = true,
-            nullable = true,
             columnDefinition = "TEXT"
     )
     private String carInformation;

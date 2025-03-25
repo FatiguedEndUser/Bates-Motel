@@ -5,6 +5,7 @@ import dev.besharps.batesmotel.Exceptions.CustomerNotFoundException;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 //STANDARD LIB
@@ -68,7 +69,15 @@ public class CustomerController {
         customerRepository.save(customer);
     }
 
-    // TODO Add each mapping update all
+    @ResponseStatus(HttpStatus.OK)
+    @PutMapping("/update/customer")
+    public Customer update(@Valid @RequestBody Customer customer) {
+        if (!customerRepository.existsById(customer.getCustomerId())) {
+            throw new CustomerNotFoundException();
+        }
+        return customerRepository.save(customer);
+    }
+
     @ResponseStatus(HttpStatus.NO_CONTENT)
     @PutMapping("/update/first/{id}")
     void updateFirstName(@PathVariable Integer id, @RequestParam String firstName) {
