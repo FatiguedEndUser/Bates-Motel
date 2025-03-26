@@ -13,19 +13,7 @@
 
   <!-- HEADER -->
   <header class="top-header">
-    <!-- Left side: blue block behind logo -->
-    <div class="logo-block"></div>
-    <img src="/img/Logo.png" alt="Hotel Logo" class="logo-image"/>
-
-    <!-- Right side: Navigation Menu (orange pills) -->
-    <nav class="main-nav">
-      <a th:href="@{/dashboard}" class="nav-link">Dashboard</a>
-      <a th:href="@{/}" class="nav-link">Home</a>
-      <a th:href="@{/rooms/standard-rooms}" class="nav-link active">Rooms</a>
-      <a th:href="@{/offers}" class="nav-link">Offers</a>
-      <a th:href="@{/about}" class="nav-link">About</a>
-      <a th:href="@{/login}" class="nav-link">Login/Register</a>
-    </nav>
+    <div th:replace="fragments/navbar"></div>
   </header>
 
   <!-- SECOND ROW: "ROOMS" TITLE & ROOM TYPE LINKS -->
@@ -55,7 +43,7 @@
         <p class="room-beds">2 Beds | 1 King Bed</p>
         <p class="room-appliances">Room Appliances: Microwave, Minifridge</p>
         <!-- Book Room button goes to /payment -->
-        <a class="book-room-btn" th:href="@{/Pages/Payment.html}">Book Room</a>
+        <a class="book-room-btn" th:href="@{/payment}">Book Room</a>
       </div>
       <!-- White strip at bottom with price -->
       <div class="room-price">
@@ -73,7 +61,7 @@
         <p class="room-subtitle">Standard Room</p>
         <p class="room-beds">2 Beds | 1 King Bed</p>
         <p class="room-appliances">Room Appliances: Microwave, Minifridge</p>
-        <a class="book-room-btn" th:href="@{/Pages/Payment.html}">Book Room</a>
+        <a class="book-room-btn" th:href="@{/payment}">Book Room</a>
       </div>
       <div class="room-price">
         <span class="price-amount">$300</span><span class="price-night">/Night</span>
@@ -90,7 +78,7 @@
         <p class="room-subtitle">Standard Room</p>
         <p class="room-beds">2 Beds | 1 King Bed</p>
         <p class="room-appliances">Room Appliances: Microwave, Minifridge</p>
-        <a class="book-room-btn" th:href="@{/Pages/Payment.html}">Book Room</a>
+        <a class="book-room-btn" th:href="@{/payment}">Book Room</a>
       </div>
       <div class="room-price">
         <span class="price-amount">$380</span><span class="price-night">/Night</span>
@@ -100,28 +88,28 @@
   </section>
 
   <!-- FOOTER -->
-  <footer class="footer">
-    <div class="footer-container">
-      <!-- Left: BatesHotel logo -->
-      <div class="footer-logo-block">
-        <img src="/img/Logo.png" alt="Hotel Logo" class="footer-logo-image"/>
-      </div>
+<!--  <footer class="footer">-->
+<!--    <div class="footer-container">-->
+<!--      &lt;!&ndash; Left: BatesHotel logo &ndash;&gt;-->
+<!--      <div class="footer-logo-block">-->
+<!--        <img src="/img/Logo.png" alt="Hotel Logo" class="footer-logo-image"/>-->
+<!--      </div>-->
 
-      <!-- Center: Contact Info -->
-      <div class="footer-contact-block">
-        <p>Contact: (555) 123-4567</p>
-        <p>Email: contact@bateshotel.com</p>
-      </div>
+<!--      &lt;!&ndash; Center: Contact Info &ndash;&gt;-->
+<!--      <div class="footer-contact-block">-->
+<!--        <p>Contact: (555) 123-4567</p>-->
+<!--        <p>Email: contact@bateshotel.com</p>-->
+<!--      </div>-->
 
-      <!-- Right: Clickable links to other pages -->
-      <div class="footer-links-block">
-        <a th:href="@{/home}">Home</a>
-        <a th:href="@{/privacy}">Privacy Policy</a>
-        <a th:href="@{/faq}">FAQ</a>
-      </div>
-    </div>
-  </footer>
-
+<!--      &lt;!&ndash; Right: Clickable links to other pages &ndash;&gt;-->
+<!--      <div class="footer-links-block">-->
+<!--        <a th:href="@{/home}">Home</a>-->
+<!--        <a th:href="@{/privacy}">Privacy Policy</a>-->
+<!--        <a th:href="@{/faq}">FAQ</a>-->
+<!--      </div>-->
+<!--    </div>-->
+<!--  </footer>-->
+<div th:replace="fragments/footer"></div>
 </div>
 
 </body>
