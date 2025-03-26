@@ -20,13 +20,13 @@ public class CustomerController {
 
     //GET
     @ResponseStatus(HttpStatus.FOUND)
-    @GetMapping("/find-all")
+    @GetMapping("/customer/find-all")
     List<Customer> findAll() {
         return customerRepository.findAll();
     }
 
     @ResponseStatus(HttpStatus.OK)
-    @GetMapping("/{id}")
+    @GetMapping("/customer/{id}")
     Optional<Customer> findById(@PathVariable Integer id) {
         Optional<Customer> customer = customerRepository.findById(id);
         if (customer.isEmpty()) {
@@ -36,13 +36,13 @@ public class CustomerController {
     }
 
 //    @ResponseStatus(HttpStatus.OK)
-//    @GetMapping("/{firstName}")
+//    @GetMapping("/customer/{firstName}")
 //    Optional<Customer> findByFirstName(@PathVariable String firstName) {
 //        return Optional.of(customerRepository.findByFirstName(firstName));
 //    }
 //
 //    @ResponseStatus(HttpStatus.OK)
-//    @GetMapping("/{lastName}")
+//    @GetMapping("/customer/{lastName}")
 //    Optional<Customer> findByLastName(@PathVariable String lastName) {
 //        return Optional.of(customerRepository.findByLastName(lastName));
 //    }
@@ -52,7 +52,7 @@ public class CustomerController {
     //POST
     //Post methods might need parameters that fill in from a form
     @ResponseStatus(HttpStatus.CREATED)
-    @PostMapping("")
+    @PostMapping("/customer/")
     void create(@Valid @RequestBody Customer customer) {
         customerRepository.save(customer);
     }
@@ -64,14 +64,14 @@ public class CustomerController {
     // - address
     // - carInformation
     @ResponseStatus(HttpStatus.NO_CONTENT)
-    @PutMapping("")
+    @PutMapping("/customer/")
     void updateLastName(@Valid @RequestBody Customer customer) {
 
     }
 
     //DELETE
     @ResponseStatus(HttpStatus.NO_CONTENT)
-    @DeleteMapping("/delete/{id}")
+    @DeleteMapping("/customer/delete/{id}")
     void deleteById(@PathVariable Integer id) {
         customerRepository.deleteById(id);
     }

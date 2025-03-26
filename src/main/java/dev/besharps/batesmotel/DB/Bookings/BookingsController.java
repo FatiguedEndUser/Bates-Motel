@@ -22,7 +22,7 @@ public class BookingsController{
 
     //GET
     @ResponseStatus(HttpStatus.FOUND)
-    @GetMapping("/find-all")
+    @GetMapping("/bookings/find-all")
     List<Bookings> findAll(){
         return bookingsRepository.findAll();
     }
@@ -30,7 +30,7 @@ public class BookingsController{
     //This will find the id and assign it to bookings. if it is empty it will throw a http error
     //If not it will return our id
     @ResponseStatus(HttpStatus.OK)
-    @GetMapping("/{id}")
+    @GetMapping("/bookings/{id}")
     Optional<Bookings> findById(@PathVariable Integer id) {
         Optional<Bookings> bookings = bookingsRepository.findById(id);
         if (bookings.isEmpty()) {
@@ -51,7 +51,7 @@ public class BookingsController{
     //POST
     //Post methods might need parameters that fill in from a form
     @ResponseStatus(HttpStatus.CREATED)
-    @PostMapping("")
+    @PostMapping("/bookings/")
     void create(@Valid @RequestBody Bookings bookings) {
         bookingsRepository.save(bookings);
     }
@@ -63,7 +63,7 @@ public class BookingsController{
     // - startDate???
     // - endDate???
     @ResponseStatus(HttpStatus.NO_CONTENT)
-    @PutMapping("/{id}")
+    @PutMapping("/bookings/{id}")
     void updateServices(@Valid @RequestBody Bookings bookings, @PathVariable String id) {
         //TODO implement update method
         //bookingsRepository.updateServices(bookings);
@@ -71,7 +71,7 @@ public class BookingsController{
 
     //DELETE
     @ResponseStatus(HttpStatus.NO_CONTENT)
-    @DeleteMapping("/delete/{id}")
+    @DeleteMapping("/bookings/delete/{id}")
     void deleteById(@PathVariable Integer id) {
         bookingsRepository.deleteById(id);
     }
