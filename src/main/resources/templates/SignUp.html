@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<head>
+    <meta charset="UTF-8"/>
+    <title>BatesHotel - Rooms</title>
+    <!-- Link to CSS if using a different page, if not just ignore -->
+    <link rel="stylesheet" href="/css/StandardRoom.css"/>
+</head>
+<body>
+
+<!-- HEADER -->
+<header class="top-header">
+    <div th:replace="fragments/navbar"></div>
+</header>
+
+<!-- MIDDLE SECTION: ROOM CARDS -->
+
+<!-- MAIN CONTENT: SIGN UP SECTION -->
+<main>
+    <section class="signup-section">
+        <h1 class="signup-title">Sign Up</h1>
+        <p class="signup-subtitle">Enroll now for lower rates and other member benefits</p>
+
+        <!--
+          "th:action" sets the form submission endpoint to /signup
+          "method=post" uses POST method
+          "onsubmit" calls a small JS function to validate
+        -->
+        <form class="signup-form" th:action="@{/signup}" method="post" onsubmit="return validateForm()">
+            <!-- Row 1 -->
+            <div class="form-row">
+                <div class="form-group">
+                    <label for="firstName">First Name *</label>
+                    <input type="text" id="firstName" placeholder="First Name *" required/>
+                </div>
+                <div class="form-group">
+                    <label for="lastName">Last Name *</label>
+                    <input type="text" id="lastName" placeholder="Last Name *" required/>
+                </div>
+            </div>
+
+            <!-- Row 2 -->
+            <div class="form-row">
+                <div class="form-group">
+                    <label for="emailAddress">Email Address *</label>
+                    <input type="email" id="emailAddress" placeholder="Email Address *" required/>
+                </div>
+                <div class="form-group">
+                    <label for="verifyEmailAddress">Verify Email Address *</label>
+                    <input type="email" id="verifyEmailAddress" placeholder="Verify Email Address *" required/>
+                </div>
+            </div>
+
+            <!-- Row 3 -->
+            <div class="form-row">
+                <div class="form-group">
+                    <label for="createPassword">Create Password *</label>
+                    <input type="password" id="createPassword" placeholder="Create Password *" required/>
+                </div>
+                <div class="form-group">
+                    <label for="verifyPassword">Verify Password *</label>
+                    <input type="password" id="verifyPassword" placeholder="Verify Password *" required/>
+                </div>
+            </div>
+
+            <!-- Sign Up Button -->
+            <button class="signup-btn" type="submit">Sign Up</button>
+        </form>
+    </section>
+</main>
+</body>
+
+
+<!-- FOOTER -->
+<div th:replace="fragments/footer"></div>
