@@ -10,6 +10,16 @@ public class RoomsMapping {
     public String RoomsStandard() {
         return "StandardRoom";
     }
+    
+@GetMapping("/rooms/deluxe-rooms")
+    public String RoomsDeluxe() {
+        return "DeluxeRoom";
+    }
+
+    @GetMapping("/rooms/suite-rooms")
+    public String RoomsSuite() {
+        return "SuiteRoom";
+    }
 
 
 }
