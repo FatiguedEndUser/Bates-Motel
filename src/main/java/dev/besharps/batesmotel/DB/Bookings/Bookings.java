@@ -7,6 +7,7 @@ import jakarta.persistence.*;
 import lombok.*;
 import java.time.LocalDate;
 
+@SuppressWarnings("JpaDataSourceORMInspection")
 @Entity(name = "Bookings")
 @Table(name = "Bookings")
 @AllArgsConstructor
@@ -14,6 +15,7 @@ import java.time.LocalDate;
 @Setter
 @Getter
 @ToString
+@Builder
 public class Bookings {
     @Id
     @SequenceGenerator(

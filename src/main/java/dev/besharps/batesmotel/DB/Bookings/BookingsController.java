@@ -1,15 +1,16 @@
 package dev.besharps.batesmotel.DB.Bookings;
 
-//DEPENDENCY IMPORTS
 import dev.besharps.batesmotel.DB.Customer.Customer;
+import dev.besharps.batesmotel.DB.Customer.CustomerRepository;
 import dev.besharps.batesmotel.Exceptions.BookingNotFoundException;
+import dev.besharps.batesmotel.Exceptions.CustomerNotFoundException;
 import jakarta.validation.Valid;
-import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
-//STANDARD LIB
+import java.time.LocalDate;
+import java.util.Date;
 import java.util.List;
 import java.util.Optional;
 
@@ -20,7 +21,12 @@ public class BookingsController{
     @Autowired
     private BookingsRepository bookingsRepository;
 
-    //GET
+    @Autowired
+    private CustomerRepository customerRepository;
+
+    @Autowired
+    private BookingService bookingService;
+
     @ResponseStatus(HttpStatus.FOUND)
     @GetMapping("/find-all")
     List<Bookings> findAll(){
@@ -39,15 +45,6 @@ public class BookingsController{
         return bookings;
     }
 
-//    Optional<Customer> findByCustomerID(@PathVariable Integer id){
-//        Optional<Customer> customer = findByCustomerID(id);
-//        if (customer.isEmpty()) {
-//            throw new BookingNotFoundException();
-//        }
-//        return customer;
-//    }
-
-
     //POST
     //Post methods might need parameters that fill in from a form
     @ResponseStatus(HttpStatus.CREATED)
@@ -60,13 +57,27 @@ public class BookingsController{
     //WILL NEED UPDATE METHOD IMPLEMENTED IN REPO
     //What fields should be updatable?
     // - services
-    // - startDate???
-    // - endDate???
     @ResponseStatus(HttpStatus.NO_CONTENT)
-    @PutMapping("/{id}")
-    void updateServices(@Valid @RequestBody Bookings bookings, @PathVariable String id) {
+    @PutMapping("/update/")
+    Bookings updateStartDate(@Valid @RequestBody Bookings bookings, @PathVariable Date startDate) {
         //TODO implement update method
-        //bookingsRepository.updateServices(bookings);
+        return bookingService.updateStartDate(bookings, startDate);
+    }
+
+    @ResponseStatus(HttpStatus.NO_CONTENT)
+    @PutMapping("/update/date/{id}")
+    void updatePhoneNumber(@Valid @PathVariable Integer id, @RequestParam LocalDate startDate
+    , @RequestParam LocalDate endDate) {
+        Bookings booking = bookingsRepository.findById(id).orElse(null);
+        if (booking == null) {
+            throw new BookingNotFoundException();
+        }
+        if (startDate.isAfter(endDate)) {
+            throw new BookingNotFoundException();
+        }
+        booking.setStartDate(startDate);
+        booking.setEndDate(endDate);
+        bookingsRepository.save(booking);
     }
 
     //DELETE

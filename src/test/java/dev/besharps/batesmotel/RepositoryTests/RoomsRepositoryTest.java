@@ -7,6 +7,7 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.test.annotation.Rollback;
 
 import java.util.List;
 import java.util.logging.Logger;
@@ -22,6 +23,7 @@ class RoomsRepositoryTest {
 
     @BeforeEach
     @Transactional
+    @Rollback(false)
     void setUp() {
         Rooms room1 = new Rooms();
         room1.setRoomNumber(101L);

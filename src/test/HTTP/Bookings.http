@@ -1,0 +1,2 @@
+### Set booking dates
+PUT localhost:8080/bookings/update/date/1?startDate=2025-05-03&endDate=2025-05-19
