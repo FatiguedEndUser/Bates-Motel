@@ -49,15 +49,6 @@ public class MaintenanceController {
         return maintenanceList;
     }
 
-    @ResponseStatus(HttpStatus.OK)
-    @GetMapping("/staff/{staffId}")
-    List<Maintenance> findByStaffId(@PathVariable Integer staffId) {
-        List<Maintenance> maintenanceList = maintenanceRepository.findByStaffId(staffId);
-        if (maintenanceList.isEmpty()) {
-            throw new MaintenanceNotFoundException();
-        }
-        return maintenanceList;
-    }
 
     @ResponseStatus(HttpStatus.OK)
     @GetMapping("/pending")

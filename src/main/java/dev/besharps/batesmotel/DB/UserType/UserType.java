@@ -5,6 +5,7 @@ import dev.besharps.batesmotel.DB.User.User;
 import jakarta.persistence.*;
 import lombok.*;
 
+@SuppressWarnings("JpaDataSourceORMInspection")
 @Entity(name = "UserType")
 @Getter
 @Setter
@@ -14,24 +15,14 @@ import lombok.*;
 public class UserType {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(
-            name = "userTypeId",
-            nullable = false,
-            unique = true
-    )
+    @Column(name = "userTypeId", nullable = false, unique = true)
+    private int userTypeId;
 
-    private int id;
-
-    @OneToOne(
-            mappedBy = "userType"
-    )
+    @OneToOne(mappedBy = "userType")
     @JsonBackReference
     private User user;
 
-    @Column(
-            name="typeName",
-            nullable = false
-    )
+    @Column(name="typeName", nullable = false)
     private String typeName;
 
 }

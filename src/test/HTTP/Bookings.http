@@ -1,2 +1,8 @@
 ### Set booking dates
 PUT localhost:8080/bookings/update/date/1?startDate=2025-05-03&endDate=2025-05-19
+
+### Create service
+PUT localhost:8080/bookings/create/service/2?serviceType=2
+
+### Get services
+GET localhost:8080/bookings/find/services/2

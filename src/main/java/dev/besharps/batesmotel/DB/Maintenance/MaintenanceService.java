@@ -26,10 +26,6 @@ public class MaintenanceService {
         return maintenanceRepository.findByRoomId(roomId);
     }
 
-    public List<Maintenance> getMaintenanceByStaffId(Integer staffId) {
-        return maintenanceRepository.findByStaffId(staffId);
-    }
-
     public List<Maintenance> getPendingMaintenance() {
         return maintenanceRepository.findPendingMaintenance();
     }
@@ -55,7 +51,7 @@ public class MaintenanceService {
             // Note: In a real implementation, you would need to fetch the Staff entity
             // This is a simplified version
             Staff staff = maintenance.getStaff();
-            staff.setStaffId(staffId);
+            //staff.setStaffId(staffId);
             maintenance.setStaff(staff);
         }
 

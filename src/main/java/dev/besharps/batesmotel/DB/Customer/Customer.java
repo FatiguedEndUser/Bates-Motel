@@ -4,6 +4,7 @@ import dev.besharps.batesmotel.DB.UserType.UserType;
 import jakarta.persistence.*;
 import lombok.*;
 
+@SuppressWarnings("JpaDataSourceORMInspection")
 @Entity(name = "Customer")
 @Table(name = "Customer")
 @AllArgsConstructor
@@ -14,57 +15,26 @@ import lombok.*;
 @ToString
 public class Customer {
     @Id
-    @SequenceGenerator(
-            name = "customer_sequence",
-            sequenceName = "customer_sequence",
-            allocationSize = 1
-    )
-    @GeneratedValue(
-            strategy = GenerationType.SEQUENCE,
-            generator = "customer_sequence"
-    )
-    @Column(
-            name = "customerId",
-            nullable = false,
-            updatable = false
-    )
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "customerId", nullable = false, updatable = false)
     private int customerId;
 
-    @Column(
-            name = "firstName",
-            nullable = false,
-            columnDefinition = "TEXT"
-    )
+    @Column(name = "firstName", nullable = false)
     private String firstName;
 
-    @Column(
-            name = "lastName",
-            nullable = false,
-            columnDefinition = "TEXT"
-    )
+    @Column(name = "lastName", nullable = false)
     private String lastName;
 
-    @Column(
-            name = "phoneNumber",
-            columnDefinition = "TEXT"
-    )
+    @Column(name = "phoneNumber")
     private String phoneNumber;
 
-    @Column(
-            name = "address",
-            columnDefinition = "TEXT"
-    )
+    @Column(name = "address")
     private String address;
 
-    @Column(
-            name = "carInformation",
-            columnDefinition = "TEXT"
-    )
+    @Column(name = "carInformation")
     private String carInformation;
 
-    @OneToOne(
-            fetch = FetchType.EAGER)
-    @JoinColumn(name = "usertype_id",
-            referencedColumnName = "userTypeId")
+    @OneToOne(fetch = FetchType.EAGER)
+    @JoinColumn(name = "userTypeId")
     private UserType userType;
 }

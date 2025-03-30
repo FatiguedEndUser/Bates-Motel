@@ -69,7 +69,7 @@ class UserRepositoryTest {
 
         assertNotNull(newUser);
 
-        userService.createUser(newUser, 0);
+        userService.createUser(newUser, 1);
 
     }
 

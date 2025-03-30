@@ -1,16 +1,15 @@
 package dev.besharps.batesmotel.DB.Bookings;
 
-import dev.besharps.batesmotel.DB.Customer.Customer;
 import dev.besharps.batesmotel.DB.Customer.CustomerRepository;
+import dev.besharps.batesmotel.DB.Services.Services;
 import dev.besharps.batesmotel.Exceptions.BookingNotFoundException;
-import dev.besharps.batesmotel.Exceptions.CustomerNotFoundException;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.server.ResponseStatusException;
 
 import java.time.LocalDate;
-import java.util.Date;
 import java.util.List;
 import java.util.Optional;
 
@@ -22,9 +21,6 @@ public class BookingsController{
     private BookingsRepository bookingsRepository;
 
     @Autowired
-    private CustomerRepository customerRepository;
-
-    @Autowired
     private BookingService bookingService;
 
     @ResponseStatus(HttpStatus.FOUND)
@@ -33,8 +29,6 @@ public class BookingsController{
         return bookingsRepository.findAll();
     }
 
-    //This will find the id and assign it to bookings. if it is empty it will throw a http error
-    //If not it will return our id
     @ResponseStatus(HttpStatus.OK)
     @GetMapping("/{id}")
     Optional<Bookings> findById(@PathVariable Integer id) {
@@ -45,23 +39,27 @@ public class BookingsController{
         return bookings;
     }
 
-    //POST
-    //Post methods might need parameters that fill in from a form
+    @ResponseStatus(HttpStatus.OK)
+    @GetMapping("/find/services/{id}")
+    List<Services> findBookingsServices(@PathVariable Integer id){
+        return bookingsRepository.findServicesByBookingId(id);
+    };
+
+    // TODO Wait for front-end to implement booking creation form
     @ResponseStatus(HttpStatus.CREATED)
-    @PostMapping("")
+    @PostMapping("/create/booking/")
     void create(@Valid @RequestBody Bookings bookings) {
         bookingsRepository.save(bookings);
     }
 
-    //PUT
-    //WILL NEED UPDATE METHOD IMPLEMENTED IN REPO
-    //What fields should be updatable?
-    // - services
-    @ResponseStatus(HttpStatus.NO_CONTENT)
-    @PutMapping("/update/")
-    Bookings updateStartDate(@Valid @RequestBody Bookings bookings, @PathVariable Date startDate) {
-        //TODO implement update method
-        return bookingService.updateStartDate(bookings, startDate);
+    @ResponseStatus(HttpStatus.CREATED)
+    @PutMapping("/create/service/{id}")
+    Bookings updateService(@PathVariable Integer id, @RequestParam int serviceType) {
+        Bookings booking = bookingsRepository.findById(id).orElse(null);
+        if (booking == null) {
+            throw new BookingNotFoundException();
+        }
+        return bookingService.addService(booking, serviceType);
     }
 
     @ResponseStatus(HttpStatus.NO_CONTENT)
@@ -73,14 +71,13 @@ public class BookingsController{
             throw new BookingNotFoundException();
         }
         if (startDate.isAfter(endDate)) {
-            throw new BookingNotFoundException();
+            throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "Start date cannot be after end date");
         }
         booking.setStartDate(startDate);
         booking.setEndDate(endDate);
         bookingsRepository.save(booking);
     }
 
-    //DELETE
     @ResponseStatus(HttpStatus.NO_CONTENT)
     @DeleteMapping("/delete/{id}")
     void deleteById(@PathVariable Integer id) {
