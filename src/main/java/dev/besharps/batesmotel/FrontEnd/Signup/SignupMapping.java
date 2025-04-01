@@ -17,7 +17,7 @@ public class SignupMapping {
     }
 
     @GetMapping
-    public String signup(Model model) {
+    public String Signup(Model model) {
         model.addAttribute("newUser", new User());
         return "SignUp";
     }
