@@ -5,7 +5,6 @@ import dev.besharps.batesmotel.Exceptions.CustomerNotFoundException;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 //STANDARD LIB
@@ -18,6 +17,9 @@ public class CustomerController {
 
     @Autowired
     private CustomerRepository customerRepository;
+
+    @Autowired
+    private CustomerService customerService;
 
     @ResponseStatus(HttpStatus.FOUND)
     @GetMapping("/find-all")
@@ -69,72 +71,17 @@ public class CustomerController {
         customerRepository.save(customer);
     }
 
-    @ResponseStatus(HttpStatus.OK)
-    @PutMapping("/update/customer")
-    public Customer update(@Valid @RequestBody Customer customer) {
-        if (!customerRepository.existsById(customer.getCustomerId())) {
-            throw new CustomerNotFoundException();
-        }
-        return customerRepository.save(customer);
-    }
-
-    @ResponseStatus(HttpStatus.NO_CONTENT)
-    @PutMapping("/update/first/{id}")
-    void updateFirstName(@PathVariable Integer id, @RequestParam String firstName) {
+    @PutMapping("/update/{id}")
+    Customer updateUser(@PathVariable Integer id, @RequestBody @Valid CustomerDetails myDetails) {
         Customer customer = customerRepository.findById(id).orElse(null);
         if (customer == null) {
             throw new CustomerNotFoundException();
         }
-        customer.setFirstName(firstName);
-        customerRepository.save(customer);
+        return customerService.updateNew(customer, myDetails);
     }
 
     @ResponseStatus(HttpStatus.NO_CONTENT)
-    @PutMapping("/update/last/{id}")
-    void updateLastName(@PathVariable Integer id, @RequestParam String lastName) {
-        Customer customer = customerRepository.findById(id).orElse(null);
-        if (customer == null) {
-            throw new CustomerNotFoundException();
-        }
-        customer.setLastName(lastName);
-        customerRepository.save(customer);
-    }
-
-    @ResponseStatus(HttpStatus.NO_CONTENT)
-    @PutMapping("/update/phone/{id}")
-    void updatePhoneNumber(@PathVariable Integer id, @RequestParam String number) {
-        Customer customer = customerRepository.findById(id).orElse(null);
-        if (customer == null) {
-            throw new CustomerNotFoundException();
-        }
-        customer.setPhoneNumber(number);
-        customerRepository.save(customer);
-    }
-
-    @ResponseStatus(HttpStatus.NO_CONTENT)
-    @PutMapping("/update/address/{id}")
-    void updateAddress(@PathVariable Integer id, @RequestParam String address) {
-        Customer customer = customerRepository.findById(id).orElse(null);
-        if (customer == null) {
-            throw new CustomerNotFoundException();
-        }
-        customer.setAddress(address);
-        customerRepository.save(customer);
-    }
-
-    @ResponseStatus(HttpStatus.NO_CONTENT)
-    @PutMapping("/update/car/{id}")
-    void updateCar(@PathVariable Integer id, @RequestParam String car) {
-        Customer customer = customerRepository.findById(id).orElse(null);
-        if (customer == null) {
-            throw new CustomerNotFoundException();
-        }
-        customer.setAddress(car);
-        customerRepository.save(customer);
-    }
-
-    @ResponseStatus(HttpStatus.NO_CONTENT)
-    @GetMapping("/delete/{id}")
+    @DeleteMapping("/delete/{id}")
     void deleteById(@PathVariable Integer id) {
         customerRepository.deleteById(id);
     }

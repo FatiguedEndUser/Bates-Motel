@@ -16,18 +16,10 @@ GET localhost:8080/customer/phone-number/612
 ### Fetch by email
 GET localhost:8080/customer/email/612
 
-# SETS
-### Set first name
-PUT localhost:8080/customer/update/first/1?firstName=Lexie
+### Update customer details
+PUT localhost:8080/customer/update/1
+Content-Type: application/json
 
-### Set last name
-PUT localhost:8080/customer/update/last/1?lastName=Brown
-
-### Set phone number
-PUT localhost:8080/customer/update/phone/1?number=6123950021
-
-### Set address
-PUT localhost:8080/customer/update/address/1?address=1600 Pennsylvania Avenue NW
-
-### Set car
-PUT localhost:8080/customer/update/car/1?car=Hatchback
+{
+  "car_information": "Chevy"
+}

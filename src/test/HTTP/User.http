@@ -1,0 +1,19 @@
+### Fetch certain user
+GET localhost:8080/user/find/1
+
+### Fetch all users
+GET localhost:8080/user/find-all
+
+### Add points
+PUT localhost:8080/user/add/points/1?amount=100
+
+### Remove points
+PUT localhost:8080/user/remove/points/1?amount=100
+
+### Update user details
+PUT localhost:8080/user/update/1
+Content-Type: application/json
+
+{
+  "email": "1234@gmail.com"
+}

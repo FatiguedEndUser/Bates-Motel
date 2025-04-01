@@ -14,29 +14,22 @@ public class CustomerService {
     private CustomerRepository customerRepository;
 
     @Transactional
-    public void updateCustomer(int customerId, String firstName, String lastName, String address, String phone, String carinformation) {
-        Customer customer = customerRepository.findById(customerId).orElse(null);
-        if (customer == null) {
-            throw new IllegalArgumentException("Customer not found");
+    Customer updateNew(Customer customer, CustomerDetails myDetails) {
+        if (myDetails.car_information() != null) {
+            customer.setCarInformation(myDetails.car_information());
         }
-
-        // Maybe a better way to do this?
-        if (firstName != null) {
-            customer.setFirstName(firstName);
+        if (myDetails.address() != null) {
+            customer.setAddress(myDetails.address());
         }
-        if (lastName != null) {
-            customer.setLastName(lastName);
+        if (myDetails.firstName() != null) {
+            customer.setFirstName(myDetails.firstName());
         }
-        if (address != null) {
-            customer.setAddress(address);
+        if (myDetails.lastName() != null) {
+            customer.setLastName(myDetails.lastName());
         }
-        if (phone != null) {
-            customer.setPhoneNumber(phone);
+        if (myDetails.phoneNumber() != null) {
+            customer.setPhoneNumber(myDetails.phoneNumber().toString());
         }
-        if (carinformation != null) {
-            customer.setCarInformation(carinformation);
-        }
-
-        customerRepository.save(customer);
+        return customerRepository.save(customer);
     }
 }

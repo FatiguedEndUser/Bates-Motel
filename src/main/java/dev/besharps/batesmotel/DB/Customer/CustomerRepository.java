@@ -15,38 +15,5 @@ public interface CustomerRepository extends JpaRepository<Customer, Integer> {
 
     @Query("SELECT c FROM Customer c WHERE LOWER(c.lastName) = LOWER(:lastName)")
     List<Customer> findByLastName(@Param("lastName") String lastName);
-
     List<Customer> findByPhoneNumberContaining(String number);
-
-    @Transactional
-    @Modifying
-    @Query("UPDATE Customer c SET c.firstName = :firstName WHERE c.customerId = :id")
-    void updateFirstName(
-            @Param("firstName") String firstName,
-            @Param("id") Integer id
-    );
-
-    @Transactional
-    @Modifying
-    @Query("UPDATE Customer c SET c.lastName = :lastName WHERE c.customerId = :id")
-    void updateLastName(
-            @Param("lastName") String lastName,
-            @Param("id") Integer id
-    );
-
-    @Transactional
-    @Modifying
-    @Query("UPDATE Customer c SET c.phoneNumber = :number WHERE c.customerId = :id")
-    void updatePhoneNumber(
-            @Param("phoneNumber") String phoneNumber,
-            @Param("id") Integer id
-    );
-
-    @Transactional
-    @Modifying
-    @Query("UPDATE Customer c SET c.address = :address WHERE c.customerId = :id")
-    void updateAddress(
-            @Param("address") String address,
-            @Param("id") Integer id
-    );
 }
