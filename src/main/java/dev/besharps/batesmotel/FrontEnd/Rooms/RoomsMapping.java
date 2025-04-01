@@ -11,7 +11,7 @@ public class RoomsMapping {
         return "StandardRoom";
     }
     
-@GetMapping("/rooms/deluxe-rooms")
+    @GetMapping("/rooms/deluxe-rooms")
     public String RoomsDeluxe() {
         return "DeluxeRoom";
     }
@@ -20,7 +20,5 @@ public class RoomsMapping {
     public String RoomsSuite() {
         return "SuiteRoom";
     }
-
-
 }
 

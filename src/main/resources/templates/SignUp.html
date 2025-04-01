@@ -26,24 +26,30 @@
           "method=post" uses POST method
           "onsubmit" calls a small JS function to validate
         -->
-        <form class="signup-form" th:action="@{/signup}" method="post" onsubmit="return validateForm()">
+        <form class="signup-form" th:action="@{/signup/createUser}" th:object="${newUser}" method="post" onsubmit="return validateForm()">
             <!-- Row 1 -->
             <div class="form-row">
                 <div class="form-group">
-                    <label for="firstName">First Name *</label>
-                    <input type="text" id="firstName" placeholder="First Name *" required/>
+                    <label for="username">UserName *</label>
+                    <input name="username" type="text" id="username" placeholder="username" required/>
                 </div>
-                <div class="form-group">
-                    <label for="lastName">Last Name *</label>
-                    <input type="text" id="lastName" placeholder="Last Name *" required/>
-                </div>
+
+<!--    COMMENTED THE FIRST AND LAST NAME OUT BECAUSE WHEN ATTEMPTING TO SAVE TO DATABASE THE FIELDS DO NOT MATCH THE DATA MODEL            -->
+<!--                <div class="form-group">-->
+<!--                    <label for="firstName">First Name *</label>-->
+<!--                    <input name="firstName" type="text" id="firstName" placeholder="First Name *" required/>-->
+<!--                </div>-->
+<!--                <div class="form-group">-->
+<!--                    <label for="lastName">Last Name *</label>-->
+<!--                    <input name="lastName" type="text" id="lastName" placeholder="Last Name *" required/>-->
+<!--                </div>-->
             </div>
 
             <!-- Row 2 -->
             <div class="form-row">
                 <div class="form-group">
                     <label for="emailAddress">Email Address *</label>
-                    <input type="email" id="emailAddress" placeholder="Email Address *" required/>
+                    <input name="email" type="email" id="emailAddress" placeholder="Email Address *" required/>
                 </div>
                 <div class="form-group">
                     <label for="verifyEmailAddress">Verify Email Address *</label>
@@ -55,7 +61,7 @@
             <div class="form-row">
                 <div class="form-group">
                     <label for="createPassword">Create Password *</label>
-                    <input type="password" id="createPassword" placeholder="Create Password *" required/>
+                    <input name="password" type="password" id="createPassword" placeholder="Create Password *" required/>
                 </div>
                 <div class="form-group">
                     <label for="verifyPassword">Verify Password *</label>
@@ -64,7 +70,7 @@
             </div>
 
             <!-- Sign Up Button -->
-            <button class="signup-btn" type="submit">Sign Up</button>
+            <button class="signup-btn" type="submit" th:action="${createUser}">Sign Up</button>
         </form>
     </section>
 </main>
