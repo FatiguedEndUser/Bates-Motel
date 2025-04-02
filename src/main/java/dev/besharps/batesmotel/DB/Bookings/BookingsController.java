@@ -1,6 +1,5 @@
 package dev.besharps.batesmotel.DB.Bookings;
 
-import dev.besharps.batesmotel.DB.Customer.CustomerRepository;
 import dev.besharps.batesmotel.DB.Services.Services;
 import dev.besharps.batesmotel.Exceptions.BookingNotFoundException;
 import jakarta.validation.Valid;

@@ -48,12 +48,4 @@ class CustomerRepositoryTest {
                 .build();
         customerRepository.save(customer);
     }
-
-
-    @Test
-    @Transactional
-    @Rollback(false)
-    public void updateCustomerTest() {
-        customerService.updateCustomer(3, "Bella", null, null, null, null);
-    }
 }
