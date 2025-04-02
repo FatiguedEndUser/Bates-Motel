@@ -22,13 +22,13 @@ public class CustomerController {
     private CustomerService customerService;
 
     @ResponseStatus(HttpStatus.FOUND)
-    @GetMapping("/find-all")
+    @GetMapping("/customer/find-all")
     List<Customer> findAll() {
         return customerRepository.findAll();
     }
 
     @ResponseStatus(HttpStatus.OK)
-    @GetMapping("/{id}")
+    @GetMapping("/customer/{id}")
     Optional<Customer> findById(@PathVariable Integer id) {
         Optional<Customer> customer = customerRepository.findById(id);
         if (customer.isEmpty()) {
@@ -66,7 +66,7 @@ public class CustomerController {
 
     // TODO Wait for front end to create a customer form to implement creation of a customer
     @ResponseStatus(HttpStatus.CREATED)
-    @PostMapping("")
+    @PostMapping("/customer/")
     void create(@Valid @RequestBody Customer customer) {
         customerRepository.save(customer);
     }

@@ -7,17 +7,9 @@
     <link rel="stylesheet" href="/css/home.css"/>
 </head>
 <body>
-    <header>
-        <div class="logo">Bates<span>Hotel</span></div>
-        <nav>
-            <ul>
-                <li><a href="#">Home</a></li>
-                <li><a href="#">Rooms</a></li>
-                <li><a href="#">Offers</a></li>
-                <li><a href="#">About</a></li>
-                <li><a href="#">Login/Register</a></li>
-            </ul>
-        </nav>
+<div class="page-wrapper">
+    <header class="top-header">
+        <div th:replace="fragments/navbar"></div>
     </header>
     
     <section class="hero">
@@ -68,13 +60,15 @@
         </ul>
     </section>
     
-    <footer>
-        <p>Contact: (555) 123-4567 | Email: contact@bateshotel.com</p>
-        <ul>
-            <li><a href="#">Home</a></li>
-            <li><a href="#">Privacy Policy</a></li>
-            <li><a href="#">FAQ</a></li>
-        </ul>
-    </footer>
+<!--    <footer>-->
+<!--        <p>Contact: (555) 123-4567 | Email: contact@bateshotel.com</p>-->
+<!--        <ul>-->
+<!--            <li><a href="#">Home</a></li>-->
+<!--            <li><a href="#">Privacy Policy</a></li>-->
+<!--            <li><a href="#">FAQ</a></li>-->
+<!--        </ul>-->
+<!--    </footer>-->
+    <div th:replace="fragments/footer"></div>
+</div>
 </body>
 </html>

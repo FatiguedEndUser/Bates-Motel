@@ -1,0 +1,63 @@
+.footer {
+    border-top: 0.0625rem solid #fff;
+    border-bottom: 0.0625rem solid #fff;
+    background-color: #000;
+    padding: 1.25vw 0;
+}
+
+.footer-container {
+    width: 80%;
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+/* Left: Logo Block */
+.footer-logo-block {
+    flex: 1;
+}
+.footer-logo-image {
+    height: 5.5vw;
+    width: auto;
+}
+
+/* Center: Contact Info */
+.footer-contact-block {
+    flex: 1;
+    text-align: center;
+    color: #fff;
+    font-size: 0.9vw;
+}
+
+/* Right: Links */
+.footer-links-block {
+    flex: 1;
+    text-align: right;
+}
+.footer-links-block a {
+    color: #fff;
+    text-decoration: none;
+    margin-left: 1.25vw;
+    font-weight: 500;
+    position: relative;
+    padding-bottom: 0.125rem;
+}
+.footer-links-block a:hover {
+    text-decoration: underline;
+}
+
+/* Optional: highlight an active link in orange with an underline */
+.footer-links-block a.active {
+    color: #FFA500;
+}
+.footer-links-block a.active::after {
+    content: "";
+    display: block;
+    width: 100%;
+    height: 0.125rem;
+    background-color: #FFA500;
+    position: absolute;
+    left: 0;
+    bottom: 0;
+}

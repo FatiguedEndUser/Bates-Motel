@@ -24,20 +24,6 @@ header {
     color: #2a9df4;
 }
 
-nav ul {
-    list-style: none;
-    display: flex;
-    gap: 15px;
-}
-
-nav ul li a {
-    text-decoration: none;
-    color: #fff;
-    padding: 8px 15px;
-    background-color: #F2AF6C;
-    border-radius: 5px;
-}
-
 .hero {
     background: url('hero.jpg') no-repeat center center/cover;
     height: 400px;

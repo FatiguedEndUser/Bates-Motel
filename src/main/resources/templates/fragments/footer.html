@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<head>
+    <meta charset="UTF-8"/>
+    <link rel="stylesheet" href="/css/footer.css"/>
+</head>
+
+<footer class="footer">
+    <div class="footer-container">
+        <!-- Left: BatesHotel logo -->
+        <div class="footer-logo-block">
+            <img src="/img/Logo.png" alt="Hotel Logo" class="footer-logo-image"/>
+        </div>
+
+        <!-- Center: Contact Info -->
+        <div class="footer-contact-block">
+            <p>Contact: (555) 123-4567</p>
+            <p>Email: contact@bateshotel.com</p>
+        </div>
+
+        <!-- Right: Clickable links to other pages -->
+        <div class="footer-links-block">
+            <a th:href="@{/home}">Home</a>
+            <a th:href="@{/privacy}">Privacy Policy</a>
+            <a th:href="@{/faq}">FAQ</a>
+        </div>
+    </div>
+</footer>

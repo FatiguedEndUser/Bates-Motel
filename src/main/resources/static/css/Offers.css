@@ -1,0 +1,118 @@
+body {
+    font-family: Arial, sans-serif;
+    background-color: black;
+    color: white;
+    margin: 0;
+    padding: 0;
+    text-align: center;
+}
+header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: black;
+    padding: 10px 20px;
+}
+.logo h1 {
+    color: white;
+    font-size: 24px;
+}
+.highlight {
+    color: lightblue;
+}
+nav {
+    display: flex;
+    align-items: center;
+}
+nav a, .dropdown {
+    background-color: orange;
+    padding: 8px 12px;
+    text-decoration: none;
+    color: black;
+    margin: 0 5px;
+    border-radius: 5px;
+}
+.login {
+    background-color: lightblue;
+}
+h2 {
+    color: lightblue;
+    font-size: 28px;
+    margin-top: 20px;
+}
+.offers {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    margin: 20px;
+}
+.offer-card {
+    background-color: orange;
+    padding: 20px;
+    border-radius: 5px;
+    width: 250px;
+    text-align: left;
+}
+.offer-card h3 {
+    margin: 0;
+    font-size: 18px;
+}
+.offer-card p {
+    font-size: 14px;
+}
+button {
+    background-color: lightblue;
+    color: black;
+    border: none;
+    padding: 10px;
+    cursor: pointer;
+    margin-top: 10px;
+}
+.load-more {
+    background-color: lightblue;
+    padding: 10px 20px;
+    border: none;
+    cursor: pointer;
+    margin-top: 20px;
+}
+footer {
+    background-color: black;
+    padding: 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.footer-logo h1 {
+    font-size: 24px;
+}
+.contact p {
+    margin: 5px 0;
+}
+.footer-nav a {
+    color: orange;
+    text-decoration: none;
+    margin: 0 10px;
+}
+.room-availability {
+    text-align: center;
+    margin: 40px auto;
+    width: 80%;
+}
+.room-availability h2 {
+    font-size: 24px;
+    margin-bottom: 20px;
+}
+.room-availability table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 0 auto; /* Center the table */
+}
+.room-availability th, .room-availability td {
+    padding: 10px;
+    border: 1px solid #ddd;
+    text-align: center;
+}
+.room-availability th {
+    background-color: #333;
+    color: white;
+}
