@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Bates Hotel Offers</title>
+    <link rel="stylesheet" href="Offers.css">
+</head>
+<body>
+    <header>
+        <h1>BATES HOTEL OFFERS</h1>
+    </header>
+    <div th:replace="fragments/navbar"></div>
+    <section class="offers">
+        <div class="offer-card">
+            <h2>Stay 3 Nights, Pay for 2</h2>
+            <p>Book a 3-night stay and enjoy the third night free.</p>
+            <button>Book Now</button>
+        </div>
+        <div class="offer-card">
+            <h2>Midnight Madness Discount</h2>
+            <p>Check in after midnight and get 15% off your first night.</p>
+            <button>Book Now</button>
+        </div>
+        <div class="offer-card">
+            <h2>Room 1 Special Experience</h2>
+            <p>Experience the infamous Room 1, complete with a horror movie rental.</p>
+            <button>Book Now</button>
+        </div>
+    </section>
+    <section class="room-availability">
+        <h2>Room Availability</h2>
+        <table border="1">
+            <thead>
+                <tr>
+                    <th>Room ID</th>
+                    <th>Room Type</th>
+                    <th>Floor</th>
+                    <th>Room Number</th>
+                    <th>Availability</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr th:each="room : ${rooms}">
+                    <td th:text="${room.roomId}"></td>
+                    <td th:text="${room.roomType}"></td>
+                    <td th:text="${room.floor}"></td>
+                    <td th:text="${room.roomNumber}"></td>
+                    <td>
+                        <span th:if="${room.available}" style="color: green;">Available</span>
+                        <span th:unless="${room.available}" style="color: red;">Booked</span>
+                    </td>
+                </tr>                
+            </tbody>
+        </table>
+    </section>
+    <div th:replace="fragments/footer"></div>
+</body>
+</html>

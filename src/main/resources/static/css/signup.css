@@ -1,0 +1,82 @@
+/* Reset */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* Body */
+body {
+    font-family: Steelfish, serif;
+    background-color: #000;
+    color: #fff;
+}
+
+/*************************************
+   SIGN UP MIDDLE SECTION
+*************************************/
+.signup-section {
+    text-align: center;
+    padding: 4rem 0;
+}
+
+.signup-title {
+    color: #008FD5;
+    font-size: 3rem;
+    margin-bottom: 1rem;
+}
+
+.signup-subtitle {
+    font-size: 1.2rem;
+    margin-bottom: 3rem;
+}
+
+.signup-form {
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+.form-row {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 2rem;
+}
+
+.form-group {
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+    margin: 0 1rem;
+}
+
+.form-group label {
+    margin-bottom: 0.5rem;
+    color: #fff; /* White label text on black background */
+}
+
+.form-group input {
+    padding: 0.75rem;
+    border: none;
+    border-radius: 0.25rem;
+    font-size: 1rem;
+    background-color: #fff;
+    color: #000;           /* Black text inside the input */
+}
+
+/* Sign Up Button */
+.signup-btn {
+    display: inline-block;
+    margin-top: 2rem;       /* Extra space above the button */
+    padding: 12px 24px;
+    background-color: #008fd5;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.signup-btn:hover {
+    background-color: #008fd5;
+}
