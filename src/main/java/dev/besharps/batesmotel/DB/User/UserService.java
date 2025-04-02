@@ -4,8 +4,10 @@ import dev.besharps.batesmotel.DB.UserType.UserType;
 import dev.besharps.batesmotel.DB.UserType.UserTypeRepository;
 import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
+import java.util.Optional;
 import java.util.logging.Logger;
 
 @Service
@@ -18,6 +20,25 @@ public class UserService {
 
     @Autowired
     private UserTypeRepository userTypeRepository;
+
+    @Autowired
+    private PasswordEncoder passwordEncoder;
+
+    @Transactional
+    public User updateUser(User user, UserDetails myDetails) {
+
+        if (myDetails.email() != null) {
+            user.setEmail(myDetails.email());
+        }
+        if (myDetails.password() != null) {
+            user.setPassword(myDetails.password());
+        }
+        if (myDetails.username() != null) {
+            user.setUsername(myDetails.username());
+        }
+
+        return userRepository.save(user);
+    }
 
     @Transactional
     public void createUser(User user, int typeNumber) {
@@ -33,6 +54,7 @@ public class UserService {
                 .typeName(userRole)
                 .build();
         userTypeRepository.save(userType);
+        user.setPassword(passwordEncoder.encode(user.getPassword()));
         user.setUserType(userType);
         userRepository.save(user);
 

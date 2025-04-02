@@ -6,7 +6,10 @@ import dev.besharps.batesmotel.DB.Services.Services;
 import jakarta.persistence.*;
 import lombok.*;
 import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.List;
 
+@SuppressWarnings("JpaDataSourceORMInspection")
 @Entity(name = "Bookings")
 @Table(name = "Bookings")
 @AllArgsConstructor
@@ -14,59 +17,36 @@ import java.time.LocalDate;
 @Setter
 @Getter
 @ToString
+@Builder
 public class Bookings {
     @Id
-    @SequenceGenerator(
-            name = "booking_sequence",
-            sequenceName = "booking_sequence",
-            allocationSize = 1
-    )
-    @GeneratedValue(
-            strategy = GenerationType.SEQUENCE,
-            generator = "booking_sequence"
-    )
-    @Column(
-            name = "bookingId",
-            nullable = false,
-            updatable = false
-    )
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "bookingId", nullable = false, updatable = false)
     private int bookingId;
 
-    @ManyToOne
-    @JoinColumn(
-            name = "customerId",
-            referencedColumnName = "customerId",
-            foreignKey = @ForeignKey(name = "booking_customer_fk"),
-            nullable = false
+    @ManyToOne(optional = false)
+    @JoinColumn(name = "customerId",
+            foreignKey = @ForeignKey(name = "booking_customer_fk")
     )
     private Customer customer;
 
-    @ManyToOne
-    @JoinColumn(
-            name = "roomNumber",
-            referencedColumnName = "roomNumber",
-            foreignKey = @ForeignKey(name = "booking_room_fk"),
-            nullable = false
+    @ManyToOne(optional = false)
+    @JoinColumn(name = "roomNumber",
+            foreignKey = @ForeignKey(name = "booking_room_fk")
     )
     private Rooms room;
 
-    @ManyToOne
-    @JoinColumn(
-            name = "serviceId",
-            referencedColumnName = "serviceId",
-            foreignKey = @ForeignKey(name = "booking_service_fk")
+    @ManyToMany
+    @JoinTable(
+            name = "booking_services",
+            joinColumns = @JoinColumn(name = "booking_id"),
+            inverseJoinColumns = @JoinColumn(name = "service_id")
     )
-    private Services service;
+    private List<Services> services;
 
-    @Column(
-            name = "startDate",
-            nullable = false
-    )
+    @Column(name = "startDate", nullable = false)
     private LocalDate startDate;
 
-    @Column(
-            name = "endDate",
-            nullable = false
-    )
+    @Column(name = "endDate", nullable = false)
     private LocalDate endDate;
 }

@@ -3,7 +3,6 @@ package dev.besharps.batesmotel.DB.Customer;
 //DEPENDENCY IMPORTS
 import dev.besharps.batesmotel.Exceptions.CustomerNotFoundException;
 import jakarta.validation.Valid;
-import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
@@ -15,10 +14,13 @@ import java.util.Optional;
 @RestController
 @RequestMapping("/customer")
 public class CustomerController {
+
     @Autowired
     private CustomerRepository customerRepository;
 
-    //GET
+    @Autowired
+    private CustomerService customerService;
+
     @ResponseStatus(HttpStatus.FOUND)
     @GetMapping("/customer/find-all")
     List<Customer> findAll() {
@@ -35,43 +37,51 @@ public class CustomerController {
         return customer;
     }
 
-//    @ResponseStatus(HttpStatus.OK)
-//    @GetMapping("/customer/{firstName}")
-//    Optional<Customer> findByFirstName(@PathVariable String firstName) {
-//        return Optional.of(customerRepository.findByFirstName(firstName));
-//    }
-//
-//    @ResponseStatus(HttpStatus.OK)
-//    @GetMapping("/customer/{lastName}")
-//    Optional<Customer> findByLastName(@PathVariable String lastName) {
-//        return Optional.of(customerRepository.findByLastName(lastName));
-//    }
+    @ResponseStatus(HttpStatus.OK)
+    @GetMapping("/first-name/{firstName}")
+    List<Customer> findByFirstName(@PathVariable String firstName) {
+        if (customerRepository.findByFirstName(firstName).isEmpty()) {
+            throw new CustomerNotFoundException();
+        }
+        return customerRepository.findByFirstName(firstName);
+    }
 
-    //TODO: Implement findByPhoneNumber, findByEmail
+    @ResponseStatus(HttpStatus.OK)
+    @GetMapping("/last-name/{lastName}")
+        List<Customer> findByLastName(@PathVariable String lastName) {
+        if (customerRepository.findByLastName(lastName).isEmpty()) {
+            throw new CustomerNotFoundException();
+        }
+        return customerRepository.findByLastName(lastName);
+    }
 
-    //POST
-    //Post methods might need parameters that fill in from a form
+    @ResponseStatus(HttpStatus.OK)
+    @GetMapping("/phone-number/{number}")
+    List<Customer> findByPhoneNumberContaining(@PathVariable String number) {
+        if (customerRepository.findByPhoneNumberContaining(number).isEmpty()) {
+            throw new CustomerNotFoundException();
+        }
+        return customerRepository.findByPhoneNumberContaining(number);
+    }
+
+    // TODO Wait for front end to create a customer form to implement creation of a customer
     @ResponseStatus(HttpStatus.CREATED)
     @PostMapping("/customer/")
     void create(@Valid @RequestBody Customer customer) {
         customerRepository.save(customer);
     }
 
-    //PUT
-    //What fields should be updatable?
-    // - lastName
-    // - phoneNumber
-    // - address
-    // - carInformation
-    @ResponseStatus(HttpStatus.NO_CONTENT)
-    @PutMapping("/customer/")
-    void updateLastName(@Valid @RequestBody Customer customer) {
-
+    @PutMapping("/update/{id}")
+    Customer updateUser(@PathVariable Integer id, @RequestBody @Valid CustomerDetails myDetails) {
+        Customer customer = customerRepository.findById(id).orElse(null);
+        if (customer == null) {
+            throw new CustomerNotFoundException();
+        }
+        return customerService.updateNew(customer, myDetails);
     }
 
-    //DELETE
     @ResponseStatus(HttpStatus.NO_CONTENT)
-    @DeleteMapping("/customer/delete/{id}")
+    @DeleteMapping("/delete/{id}")
     void deleteById(@PathVariable Integer id) {
         customerRepository.deleteById(id);
     }

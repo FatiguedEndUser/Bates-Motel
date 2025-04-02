@@ -4,6 +4,7 @@ import dev.besharps.batesmotel.DB.UserType.UserType;
 import jakarta.persistence.*;
 import lombok.*;
 
+@SuppressWarnings("JpaDataSourceORMInspection")
 @Entity(name = "User") // Logical name of the entity
 @Table(name = "Users") // Physical table name in the database
 @AllArgsConstructor
@@ -19,12 +20,7 @@ public class User {
     @Column(name = "id", nullable = false, updatable = false)
     private int id;
 
-    @Column(
-            name = "username",
-            nullable = false,
-            unique = true,
-            columnDefinition = "TEXT"
-    )
+    @Column(name = "username", nullable = false, unique = true)
     private String username;
 
     @Column(
