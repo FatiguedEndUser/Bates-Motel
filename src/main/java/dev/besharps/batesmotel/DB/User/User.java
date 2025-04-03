@@ -43,7 +43,6 @@ public class User {
             nullable = true,
             columnDefinition = "INTEGER"
     )
-
     private int loyaltyPoints;
 
     @OneToOne(

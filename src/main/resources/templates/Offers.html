@@ -40,11 +40,11 @@
                 </tr>
             </thead>
             <tbody>
-                <tr th:each="room : ${rooms}">
-                    <td th:text="${room.roomId}"></td>
-                    <td th:text="${room.roomType}"></td>
-                    <td th:text="${room.floor}"></td>
-                    <td th:text="${room.roomNumber}"></td>
+                <tr th:each="room: ${rooms}">
+                    <td th:text="${rooms.roomId}"/>
+                    <td th:text="${rooms.roomType}"/>
+                    <td th:text="${rooms.floor}"/>
+                    <td th:text="${rooms.roomNumber}"/>
                     <td>
                         <span th:if="${room.available}" style="color: green;">Available</span>
                         <span th:unless="${room.available}" style="color: red;">Booked</span>
