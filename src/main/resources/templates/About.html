@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<head>
+    <meta charset="UTF-8"/>
+    <title>About Bates Hotel</title>
+    <link rel="stylesheet" href="/css/about.css"/>
+</head>
+<body>
+<!-- Navbar Fragment -->
+<header class="top-header">
+    <div th:replace="fragments/navbar"></div>
+</header>
+
+<!-- About Section Wrapper -->
+<div class="about-section">
+    <h1 class="about-title">About Us</h1>
+
+    <!-- Speech Bubble Container -->
+    <div class="about-bubble">
+        <p class="intro-quote">
+            "Some places have history. Others have secrets. Here at Bates Hotel, we linger in both."
+        </p>
+
+        <p>
+            Welcome to Bates Hotel, a family-owned establishment where hospitality runs in the blood.
+            Every guest deserves a personal touch because at Bates Motel, you’re not just checking in,
+            you’re becoming part of something… <em>special</em>.
+        </p>
+
+        <p>
+            Whether you’re passing through or looking for a quiet escape, we ensure a comfortable,
+            unforgettable stay—the kind that lingers in your mind long after you’ve left.
+        </p>
+
+        <p>
+            But don’t worry… <strong>Mother takes care of everything.</strong>
+        </p>
+
+        <!-- Star in the bottom-right corner -->
+        <div class="star"></div>
+    </div>
+</div>
+
+<!-- Footer Fragment -->
+<div th:replace="fragments/footer"></div>
+</body>
+</html>
