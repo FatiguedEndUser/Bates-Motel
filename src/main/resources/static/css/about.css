@@ -1,0 +1,54 @@
+/***** ABOUT SECTION WRAPPER *****/
+.about-section {
+    background-color: #050505;
+    text-align: center;
+    padding: 60px 0;
+}
+
+/***** ABOUT US HEADING *****/
+.about-title {
+    color: #FFFFFF;
+    font-size: 3rem;
+    margin-bottom: 40px;
+}
+
+/***** WHITE BUBBLE CONTAINER *****/
+.about-bubble {
+    position: relative;
+    display: inline-block;
+    background-color: #FFFFFF;
+    color: #000000;
+    width: 60%;
+    border-radius: 10px;
+    padding: 40px 60px;
+    text-align: center;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+    font-family: "Times New Roman", Times, serif;
+    line-height: 1.6;
+}
+
+.about-bubble p {
+    margin: 30px;
+}
+
+/***** ORANGE STAR IN CORNER *****/
+.star {
+    position: absolute;
+    bottom: -30px;
+    right: -32px;
+    width: 100px;
+    height: 100px;
+    background-color: #f7941d;
+    clip-path: polygon(
+            50% 0%,
+            61% 35%,
+            98% 35%,
+            68% 57%,
+            79% 91%,
+            50% 70%,
+            21% 91%,
+            32% 57%,
+            2% 35%,
+            39% 35%
+    );
+}
