@@ -33,6 +33,16 @@ public class UserController {
     }
 
     @ResponseStatus(HttpStatus.OK)
+    @GetMapping("/find-by-email")
+    public User getUserByEmail(@RequestParam String email) {
+        User userEmail = getAllUsers().stream().filter(user -> user.getEmail().equals(email)).findFirst().orElse(null);
+        if (userEmail == null) {
+            throw new ResponseStatusException(HttpStatus.NOT_FOUND ,"User not found");
+        }
+        return userEmail;
+    }
+
+    @ResponseStatus(HttpStatus.OK)
     @GetMapping("/find-all")
     public List<User> getAllUsers() {
         return userRepository.findAll();

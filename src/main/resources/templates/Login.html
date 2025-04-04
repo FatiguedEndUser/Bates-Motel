@@ -21,7 +21,7 @@
     <section class="auth-container">
         <h1>Login</h1>
         <p>Welcome back! Please enter your details to continue.</p>
-        <form class="auth-form" th:action="@{/user/login}" method="post">
+        <form class="auth-form" th:action="@{/login}" method="post">
             <div class="input-group">
                 <label>Email Address *</label>
                 <input type="email" name="email" required>
@@ -30,7 +30,7 @@
                 <label>Password *</label>
                 <input type="password" name="password" required>
             </div>
-            <button type="submit" class="auth-btn">Login</button>
+            <button name="submitBTN" type="submit" class="auth-btn">Login</button>
             <p class="switch-auth">Don't have an account? <a href="SignUp.html">Sign up here</a></p>
         </form>              
     </section>
