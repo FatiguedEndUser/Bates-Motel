@@ -1,0 +1,7 @@
+### Update payment
+PUT localhost:8080/payment/update/1
+Content-Type: application/json
+
+{
+  "cardholder": "Mastercard"
+}

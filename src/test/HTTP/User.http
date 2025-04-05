@@ -5,15 +5,15 @@ GET localhost:8080/user/find/1
 GET localhost:8080/user/find-all
 
 ### Add points
-PUT localhost:8080/user/add/points/1?amount=100
+PUT localhost:8080/user/add/points/8?amount=100
 
 ### Remove points
-PUT localhost:8080/user/remove/points/1?amount=100
+PUT localhost:8080/user/remove/points/8?amount=50
 
 ### Update user details
-PUT localhost:8080/user/update/1
+PUT localhost:8080/user/update/8
 Content-Type: application/json
 
 {
-  "email": "1234@gmail.com"
+  "username": "1234@gmail.com"
 }
