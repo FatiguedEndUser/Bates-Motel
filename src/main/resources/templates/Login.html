@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<head>
+    <meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bates Hotel - Login</title>
+    <link rel="stylesheet" href="Login.css">
+</head>
+<body>
+    <header>
+        <div class="logo">Bates<span class="highlight">Hotel</span></div>
+        <nav>
+            <button class="nav-button">Dashboard ⌄</button>
+            <a href="Home.html">Home</a>
+            <a href="Rooms.html">Rooms</a>
+            <a href="Offers.html">Offers</a>
+            <a href="About.html">About</a>
+            <a href="SignUp.html" class="login-btn">Sign Up</a>
+        </nav>
+    </header>
+    <section class="auth-container">
+        <h1>Login</h1>
+        <p>Welcome back! Please enter your details to continue.</p>
+        <form class="auth-form" th:action="@{/login}" method="post">
+            <div class="input-group">
+                <label>Email Address *</label>
+                <input type="email" name="email" required>
+            </div>
+            <div class="input-group">
+                <label>Password *</label>
+                <input type="password" name="password" required>
+            </div>
+            <button name="submitBTN" type="submit" class="auth-btn">Login</button>
+            <p class="switch-auth">Don't have an account? <a href="SignUp.html">Sign up here</a></p>
+        </form>              
+    </section>
+    <footer>
+        <div class="footer-content">
+            <div class="footer-logo">Bates<span class="highlight">Hotel</span></div>
+            <div class="contact-info">
+                <p>📞 Contact: (555) 123-4561</p>
+                <p>✉ Email: contact@bateshotel.com</p>
+            </div>
+            <nav class="footer-nav">
+                <a href="Home.html">Home</a>
+                <a href="Privacy Policy.html">Privacy Policy</a>
+                <a href="About.html">FAQ</a>
+            </nav>
+        </div>
+    </footer>
+</body>
+</html>

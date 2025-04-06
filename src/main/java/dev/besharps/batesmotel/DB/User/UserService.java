@@ -21,8 +21,8 @@ public class UserService {
     @Autowired
     private UserTypeRepository userTypeRepository;
 
-    @Autowired
-    private PasswordEncoder passwordEncoder;
+    //@Autowired
+    //private PasswordEncoder passwordEncoder;
 
     @Transactional
     public User updateUser(User user, UserDetails myDetails) {
@@ -54,7 +54,7 @@ public class UserService {
                 .typeName(userRole)
                 .build();
         userTypeRepository.save(userType);
-        user.setPassword(passwordEncoder.encode(user.getPassword()));
+        //user.setPassword(passwordEncoder.encode(user.getPassword()));
         user.setUserType(userType);
         userRepository.save(user);
 
