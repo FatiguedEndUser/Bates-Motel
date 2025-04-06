@@ -4,7 +4,6 @@ import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
-import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.server.ResponseStatusException;
 
@@ -20,8 +19,8 @@ public class UserController {
     @Autowired
     private UserService userService;
 
-    @Autowired
-    private PasswordEncoder passwordEncoder;
+    //@Autowired
+    //private PasswordEncoder passwordEncoder;
 
     @ResponseStatus(HttpStatus.OK)
     @GetMapping("/find/{id}")
@@ -31,6 +30,16 @@ public class UserController {
             throw new ResponseStatusException(HttpStatus.NOT_FOUND ,"User not found");
         }
         return user;
+    }
+
+    @ResponseStatus(HttpStatus.OK)
+    @GetMapping("/find-by-email")
+    public User getUserByEmail(@RequestParam String email) {
+        User userEmail = getAllUsers().stream().filter(user -> user.getEmail().equals(email)).findFirst().orElse(null);
+        if (userEmail == null) {
+            throw new ResponseStatusException(HttpStatus.NOT_FOUND ,"User not found");
+        }
+        return userEmail;
     }
 
     @ResponseStatus(HttpStatus.OK)
@@ -86,7 +95,7 @@ public class UserController {
     @ResponseStatus(HttpStatus.CREATED)
     @PostMapping("/create/user")
     void createUser(@Valid @RequestBody User user) {
-        user.setPassword(passwordEncoder.encode(user.getPassword()));
+        //user.setPassword(passwordEncoder.encode(user.getPassword()));
         userRepository.save(user);
     }
 

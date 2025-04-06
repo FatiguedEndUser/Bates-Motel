@@ -2,7 +2,6 @@ package dev.besharps.batesmotel.FrontEnd.Signup;
 
 import dev.besharps.batesmotel.DB.User.User;
 import dev.besharps.batesmotel.DB.User.UserRepository;
-import dev.besharps.batesmotel.DB.User.UserService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
