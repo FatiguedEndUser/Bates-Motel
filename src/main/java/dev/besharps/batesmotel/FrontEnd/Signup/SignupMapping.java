@@ -22,9 +22,14 @@ public class SignupMapping {
     }
 
     @PostMapping("/createUser")
-    public String createUser(@ModelAttribute User user, Model model) {
-        //SAVE TOO DB
-        userRepository.save(user);
+    public String createUser(@ModelAttribute User user,
+                             @RequestParam(name = "username") String username,
+                             @RequestParam(name = "password") String password,
+                             @RequestParam(name = "email") String email,
+                             Model model) {
+
+        //SAVE TO DB
+        userRepository.save(new User(username, password, email));
         //RETURNS USER TO THE HOME PAGE
         return "redirect:/";
     }

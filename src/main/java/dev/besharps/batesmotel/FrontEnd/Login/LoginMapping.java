@@ -1,19 +1,13 @@
 package dev.besharps.batesmotel.FrontEnd.Login;
 
-import dev.besharps.batesmotel.DB.User.User;
 import dev.besharps.batesmotel.DB.User.UserController;
-import dev.besharps.batesmotel.DB.User.UserRepository;
-import dev.besharps.batesmotel.DB.User.UserService;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpSession;
+import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-
-import java.util.List;
+import org.springframework.web.bind.annotation.*;
 
 @Controller
 @RequestMapping("/login")
@@ -31,14 +25,6 @@ public class LoginMapping {
 
         //PERSISTENT SESSION
         HttpSession session = request.getSession();
-        //CALLING SIGN IN
-        if(SignIn(email, password)){
-            session.setAttribute("loggedIn", loggedIn);
-        }
-
-        //ADDING SESSION TO MODEL
-        model.addAttribute("loggedIn", loggedIn);
-
 
         //ADDING EMAIL AND PASSWORD ATTRIBUTES ATTRIBUTES
         model.addAttribute("email", email);
@@ -47,6 +33,7 @@ public class LoginMapping {
        return "Login";
     }
 
+    @PostMapping("/login/{username}")
     public Boolean SignIn(
                         @RequestParam(name = "email") String email,
                         @RequestParam(name = "password") String password) {
@@ -60,4 +47,6 @@ public class LoginMapping {
         //BASIC VALIDATION THAT USER EXIST
         return userEmail.equals(email) && userPassword.equals(password);
     }
+
+
 }

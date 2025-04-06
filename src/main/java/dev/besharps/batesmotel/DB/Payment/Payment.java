@@ -15,11 +15,21 @@ import java.time.LocalDate;
 @Builder
 @ToString
 public class Payment {
+    public Payment(String name, int cardNumber, int exp, int cvv, int zip) {
+        this.name = name;
+        this.cardNumber = cardNumber;
+        this.date = LocalDate.ofEpochDay(exp);
+        this.cvv = cvv;
+        this.zip = zip;
+    }
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "payment_id", nullable = false, updatable = false)
     private int id;
+
+    @Column(name = "cardnumber", nullable = false, updatable =true)
+    private int cardNumber;
 
     @Column(name = "cardholder", nullable = false)
     private String name;
@@ -32,5 +42,6 @@ public class Payment {
 
     @Column(name = "zip", nullable = false)
     private int zip;
+
 
 }
