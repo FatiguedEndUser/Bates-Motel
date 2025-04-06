@@ -15,11 +15,11 @@ public class PaymentMapping {
 
     @GetMapping
     public String payment(Model model) {
-        //model.addAttribute(newPayment, new Payment());
+        model.addAttribute("Payment", new Payment());
         return "payment";
     }
 
-    @PostMapping("")
+    @PostMapping("/processPayment")
     public String ProcessPayment(@ModelAttribute Payment payment,
                                  Model model,
                                  @RequestParam(name = "name") String name,
