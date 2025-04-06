@@ -23,13 +23,13 @@ public class BookingsController{
     private BookingService bookingService;
 
     @ResponseStatus(HttpStatus.FOUND)
-    @GetMapping("/bookings/find-all")
+    @GetMapping("/find-all")
     List<Bookings> findAll(){
         return bookingsRepository.findAll();
     }
 
     @ResponseStatus(HttpStatus.OK)
-    @GetMapping("/bookings/{id}")
+    @GetMapping("/{id}")
     Optional<Bookings> findById(@PathVariable Integer id) {
         Optional<Bookings> bookings = bookingsRepository.findById(id);
         if (bookings.isEmpty()) {
@@ -78,7 +78,7 @@ public class BookingsController{
     }
 
     @ResponseStatus(HttpStatus.NO_CONTENT)
-    @DeleteMapping("/bookings/delete/{id}")
+    @DeleteMapping("/delete/{id}")
     void deleteById(@PathVariable Integer id) {
         bookingsRepository.deleteById(id);
     }

@@ -23,32 +23,17 @@ public class User {
     @Column(name = "username", nullable = false, unique = true)
     private String username;
 
-    @Column(
-            name = "email",
-            nullable = false,
-            unique = true,
-            columnDefinition = "TEXT"
-    )
-    private String email;
-
-    @Column(
-            name = "password",
-            nullable = false,
-            columnDefinition = "TEXT"
-    )
+    @Column(name = "password", nullable = false)
     private String password;
 
-    @Column(
-            name = "loyalty_points",
-            nullable = true,
-            columnDefinition = "INTEGER"
-    )
+    @Column(name = "email", nullable = false, unique = true)
+    private String email;
+
+    @Column(name = "loyalty_points", nullable = false)
+
     private int loyaltyPoints;
 
-    @OneToOne(
-            fetch = FetchType.EAGER)
-    @JoinColumn(name = "usertype_id",
-            referencedColumnName = "userTypeId"
-    )
+    @OneToOne(fetch = FetchType.EAGER)
+    @JoinColumn(name = "usertype_id", referencedColumnName = "userTypeId")
     private UserType userType;
 }
