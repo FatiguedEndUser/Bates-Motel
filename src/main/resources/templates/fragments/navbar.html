@@ -5,12 +5,11 @@
     <link rel="stylesheet" href="/css/navbar.css"/>
 </head>
 
-<div th:fragment="navbar">
-    <!-- Left side: blue block behind logo -->
-    <div class="logo-block"></div>
-    <img src="/img/Logo.png" alt="Hotel Logo" class="logo-image"/>
-
-<!-- Right side: Navigation Menu (orange pills) -->
+<div th:fragment="navbar" class="top-header">
+    <div class="logo-container">
+        <img src="/img/Logo.png" alt="Hotel Logo" class="logo-image"/>
+    </div>
+    <!-- Right side: Navigation Menu (orange pills) -->
     <nav class="main-nav">
         <a th:href="@{/dashboard}" class="nav-link">Dashboard</a>
         <a th:href="@{/}" class="nav-link">Home</a>
