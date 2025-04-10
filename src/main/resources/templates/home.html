@@ -7,7 +7,7 @@
     <link rel="stylesheet" href="/css/home.css"/>
 </head>
 <body>
-<div class="page-wrapper">
+<div>
     <header class="top-header">
         <div th:replace="fragments/navbar"></div>
     </header>
@@ -25,15 +25,15 @@
         <h2>ROOMS</h2>
         <div class="room-list">
             <div class="room">
-                <img src="room1.jpg" alt="Room Image">
+                <img src="/img/Room1.jpg" alt="Room Image">
                 <p>The Pinewood Retreat - $400</p>
             </div>
             <div class="room">
-                <img src="room2.jpg" alt="Room Image">
+                <img src="/img/Room2.jpg" alt="Room Image">
                 <p>The Blue View Suite - $600</p>
             </div>
             <div class="room">
-                <img src="room3.jpg" alt="Room Image">
+                <img src="/img/Room3.jpg" alt="Room Image">
                 <p>The Hickstead Special - $1000</p>
             </div>
         </div>
@@ -59,15 +59,7 @@
             <li>Amenities: Wi-Fi, Pool, Fitness Center, Business Center</li>
         </ul>
     </section>
-    
-<!--    <footer>-->
-<!--        <p>Contact: (555) 123-4567 | Email: contact@bateshotel.com</p>-->
-<!--        <ul>-->
-<!--            <li><a href="#">Home</a></li>-->
-<!--            <li><a href="#">Privacy Policy</a></li>-->
-<!--            <li><a href="#">FAQ</a></li>-->
-<!--        </ul>-->
-<!--    </footer>-->
+
     <div th:replace="fragments/footer"></div>
 </div>
 </body>

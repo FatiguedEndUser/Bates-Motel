@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<head>
+    <meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bates Hotel - About Us</title>
+    <link rel="stylesheet" href="/css/about.css">
+</head>
+<body>
+
+    <header>
+<!--        <div class="logo">Bates<span>H</span>otel</div>-->
+        <div th:replace="fragments/navbar"></div>
+    </header>
+
+    <main>
+        <h1>About Us</h1>
+        <div class="about-box">
+            <p><i>“Some places have history. Others have secrets. Here at Bates Hotel, we have both.”</i></p>
+            <p>Welcome to Bates Hotel, a family-owned establishment where hospitality runs in the blood. Every guest deserves a personal touch because at Bates Motel, you’re not just checking in, you’re becoming part of something... special.</p>
+            <p>Whether you’re passing through or looking for a quiet escape, we ensure a comfortable, unforgettable stay—the kind that lingers in your mind long after you’ve left.</p>
+            <p>But don’t worry… <b>Mother takes care of everything.</b></p>
+        </div>
+        <div class="star"></div>
+    </main>
+    <section class="faq">
+        <h1>BATES HOTEL FAQ</h1>
+
+        <div class="faq-box">
+            <h2>General Questions</h2>
+            <p><b>Q: Where is Bates Motel located?</b><br>
+               A: We are nestled in the quiet town of White Pine Bay, offering a peaceful and private escape.</p>
+
+            <p><b>Q: What are your check-in and check-out times?</b><br>
+               A: Check-in is from 3:00 PM, and check-out is by 11:00 AM.</p>
+
+            <p><b>Q: Do I need to book in advance?</b><br>
+               A: While walk-ins are welcome, we recommend booking in advance—some guests decide to stay longer than expected.</p>
+
+            <h2>Rooms & Amenities</h2>
+            <p><b>Q: What types of rooms do you offer?</b><br>
+               A: We offer Standard, Deluxe, and Suite accommodations, each designed for comfort... and quiet.</p>
+
+            <p><b>Q: Do the rooms have Wi-Fi and TV?</b><br>
+               A: Yes, all rooms include free Wi-Fi and a TV for your entertainment. Just don’t stay up too late...</p>
+
+            <p><b>Q: Are pets allowed?</b><br>
+               A: Unfortunately, we do not allow pets. Some things are better left unseen at night.</p>
+        </div>
+    </section>
+
+    <div th:replace="fragments/footer"></div>
+</body>
+</html>

@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<head>
+    <meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bates Hotel - User Dashboard</title>
+    <link rel="stylesheet" href="Dashboard.css"/>
+</head>
+<body>
+    <div class="page-wrapper">
+        <div class="logo">Bates<span>H</span>otel</div>
+        <header class="top-header">
+            <div th:replace="fragments/navbar">
+                <nav>
+                    <a href="HomePage.html">Home</a>
+                    <a href="Rooms.html">Rooms</a>
+                    <a href="Offers.html">Offers</a>
+                    <a href="About.html">About</a>
+                    <a href="Login.html">Login</a>
+                </nav>
+            </div>
+        </header>
+    <section class="container">
+        <h1>User Dashboard</h1>
+        <div class="user-section">
+            <h2>Your Information</h2>
+            <div class="info-box">
+                <p><strong>Full Name:</strong> <span th:text="${user.firstName} + ' ' + ${user.lastName}"></span></p>
+                <p><strong>Email:</strong> <span th:text="${user.email}"></span></p>
+                <p><strong>Loyalty Points:</strong> <span th:text="${user.loyaltyPoints}"></span></p>
+            </div>
+            <form th:action="@{/user/update/{id}(id=${user.id})}" method="post" class="edit-form">
+                <h3>Edit Info</h3>
+                <input type="text" name="username" placeholder="New Username" required>
+                <input type="password" name="password" placeholder="New Password" required>
+                <button type="submit">Update</button>
+            </form>
+        </div>
+        <div class="booking-section">
+            <h2>Your Bookings</h2>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Booking ID</th>
+                        <th>Start Date</th>
+                        <th>End Date</th>
+                        <th>Room</th>
+                        <th>Services</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr th:each="booking : ${bookings}">
+                        <td th:text="${booking.id}"></td>
+                        <td th:text="${booking.startDate}"></td>
+                        <td th:text="${booking.endDate}"></td>
+                        <td th:text="${booking.room}"></td>
+                        <td>
+                            <ul>
+                                <li th:each="service : ${booking.services}" th:text="${service.name}"></li>
+                            </ul>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </section>
+<!--    <footer>-->
+<!--        <p>Contact: (555) 123-4567 | Email: contact@bateshotel.com</p>-->
+<!--        <ul>-->
+<!--            <li><a href="Home.html">Home</a></li>-->
+<!--            <li><a href="PrivacyPolicy.html">Privacy Policy</a></li>-->
+<!--            <li><a href="About.html">FAQ</a></li>-->
+<!--        </ul>-->
+<!--    </footer>-->
+<div th:replace="fragments/footer"></div>
+</body>
+</html>

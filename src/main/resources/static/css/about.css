@@ -1,54 +1,102 @@
-/***** ABOUT SECTION WRAPPER *****/
-.about-section {
-    background-color: #050505;
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: black;
+    color: white;
     text-align: center;
-    padding: 60px 0;
 }
-
-/***** ABOUT US HEADING *****/
-.about-title {
-    color: #008fd5;
-    font-size: 3rem;
-    margin-bottom: 40px;
+header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px;
+    background-color: black;
 }
-
-/***** WHITE BUBBLE CONTAINER *****/
-.about-bubble {
-    position: relative;
-    display: inline-block;
-    background-color: #FFFFFF;
-    color: #000000;
+.logo {
+    font-size: 28px;
+    font-weight: bold;
+}
+.logo span {
+    color: #2095F3;
+}
+nav ul {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    gap: 15px;
+}
+nav ul li {
+    display: inline;
+}
+nav ul li a {
+    text-decoration: none;
+    background-color: #D98D46;
+    padding: 8px 15px;
+    border-radius: 5px;
+    color: black;
+    font-weight: bold;
+}
+nav ul li a.login {
+    background-color: #2095F3;
+    color: white;
+}
+main {
+    margin: 50px auto;
     width: 60%;
-    border-radius: 10px;
-    padding: 40px 60px;
-    text-align: center;
-    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
-    font-family: "Times New Roman", Times, serif;
-    line-height: 1.6;
 }
-
-.about-bubble p {
-    margin: 30px;
+h1 {
+    color: #2095F3;
+    font-size: 36px;
 }
-
-/***** ORANGE STAR IN CORNER *****/
+.about-box {
+    background-color: white;
+    color: black;
+    padding: 25px;
+    border-radius: 15px;
+    font-size: 18px;
+    text-align: left;
+    box-shadow: 0 0 15px rgba(255, 255, 255, 0.2);
+    position: relative;
+}
 .star {
+    width: 50px;
+    height: 50px;
+    background-color: #D98D46;
+    clip-path: polygon(50% 0%, 61% 35%, 98% 35%, 68% 57%, 79% 91%, 50% 70%, 21% 91%, 32% 57%, 2% 35%, 39% 35%);
     position: absolute;
     bottom: -30px;
-    right: -32px;
-    width: 100px;
-    height: 100px;
-    background-color: #f7941d;
-    clip-path: polygon(
-            50% 0%,
-            61% 35%,
-            98% 35%,
-            68% 57%,
-            79% 91%,
-            50% 70%,
-            21% 91%,
-            32% 57%,
-            2% 35%,
-            39% 35%
-    );
+    right: -30px;
+}
+
+/* FAQ Section */
+.faq {
+    margin: 50px auto;
+    width: 65%;
+}
+.faq h1 {
+    color: #2095F3;
+    font-size: 36px;
+    text-align: center;
+}
+.faq-box {
+    background-color: black;
+    color: white;
+    padding: 25px;
+    text-align: left;
+    font-size: 18px;
+    border-left: 5px solid #2095F3;
+}
+.faq h2 {
+    color: #2095F3;
+    font-size: 24px;
+    margin-top: 20px;
+}
+.faq p {
+    margin-bottom: 15px;
+    line-height: 1.6;
+}
+.faq p b {
+    color: #D98D46;
 }
