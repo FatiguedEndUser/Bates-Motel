@@ -38,8 +38,12 @@
             <p class="room-subtitle">Suite Room</p>
             <p class="room-beds">2 Guests  | 1 King Bed</p>
             <p class="room-appliances">Room Appliances: Microwave, Minifridge, Coffee Maker, <br> Premium Mini Bar, Jacuzzi, Smart TV, Rainfall Shower</p>
-            <!-- Book Room button goes to /payment -->
-            <a class="book-room-btn" th:href="@{/payment}">Book Room</a>
+            <!-- Availability Circle -->
+            <div class="availability-circle positioned">Available</div>
+            <a class="book-room-btn"
+               th:href="@{/form(type='Suite', title='The Hitchcock Suite')}">
+                Book Room
+            </a>
         </div>
 
         <!-- White strip at bottom with price -->
@@ -59,7 +63,12 @@
             <p class="room-subtitle">Suite Room</p>
             <p class="room-beds">2 Guests  | 1 King Bed</p>
             <p class="room-appliances">Room Appliances: Microwave, Minifridge, Coffee Maker, <br> Premium Mini Bar, Jacuzzi, Smart TV, Rainfall Shower</p>
-            <a class="book-room-btn" th:href="@{/payment}">Book Room</a>
+            <!-- Availability Circle -->
+            <div class="availability-circle positioned">Available</div>
+            <a class="book-room-btn"
+               th:href="@{/form(type='Suite', title='The Mother’s Suite')}">
+                Book Room
+            </a>
         </div>
         <div class="room-price">
             <span class="price-amount">$1,500</span><span class="price-night">/Night</span>
@@ -76,13 +85,20 @@
             <p class="room-subtitle">Suite Room</p>
             <p class="room-beds">2 Guests  | 1 King Bed</p>
             <p class="room-appliances">Room Appliances: Microwave, Minifridge, Coffee Maker, <br> Premium Mini Bar, Jacuzzi, Smart TV, Rainfall Shower</p>
-            <a class="book-room-btn" th:href="@{/payment}">Book Room</a>
-        </div>
+            <!-- Availability Circle -->
+            <div class="availability-circle positioned">Available</div>
+            <a class="book-room-btn"
+               th:href="@{/form(type='Suite', title='Room 1-The Unforgettable Stay')}">
+                Book Room
+            </a>
         <div class="room-price">
             <span class="price-amount">$2,500</span><span class="price-night">/Night</span>
+        </div>
         </div>
     </div>
 </section>
 
 <!-- FOOTER -->
 <div th:replace="fragments/footer"></div>
+</body>
+</html>
