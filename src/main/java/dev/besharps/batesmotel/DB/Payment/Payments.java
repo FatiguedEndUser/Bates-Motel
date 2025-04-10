@@ -14,8 +14,8 @@ import java.time.LocalDate;
 @Getter
 @Builder
 @ToString
-public class Payment {
-    public Payment(String name, int cardNumber, int exp, int cvv, int zip) {
+public class Payments {
+    public Payments(String name, int cardNumber, int exp, int cvv, int zip) {
         this.name = name;
         this.cardNumber = cardNumber;
         this.date = LocalDate.ofEpochDay(exp);

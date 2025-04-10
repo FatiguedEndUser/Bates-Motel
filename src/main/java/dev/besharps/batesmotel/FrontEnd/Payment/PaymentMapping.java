@@ -1,7 +1,7 @@
 package dev.besharps.batesmotel.FrontEnd.Payment;
 
-import dev.besharps.batesmotel.DB.Payment.Payment;
 import dev.besharps.batesmotel.DB.Payment.PaymentRepository;
+import dev.besharps.batesmotel.DB.Payment.Payments;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -15,19 +15,19 @@ public class PaymentMapping {
 
     @GetMapping
     public String payment(Model model) {
-        model.addAttribute("Payment", new Payment());
+        model.addAttribute("Payment", new Payments());
         return "payment";
     }
 
     @PostMapping("/processPayment")
-    public String ProcessPayment(@ModelAttribute Payment payment,
+    public String ProcessPayment(@ModelAttribute Payments payment,
                                  @RequestParam(name = "name") String name,
                                  @RequestParam(name = "cardNumber") int cardNumber,
                                  @RequestParam(name = "expiryDate") int expireDate,
                                  @RequestParam(name = "cvv") int cvv,
                                  @RequestParam(name = "billingZip") int zip) {
 
-        paymentRepository.save(new Payment(name, cardNumber, expireDate, cvv, zip));
+        paymentRepository.save(new Payments(name, cardNumber, expireDate, cvv, zip));
 
         //RETURN TO HOME
         //SHOULD RETURN TO USER PAGE OR SOMEWHERE ELSE
