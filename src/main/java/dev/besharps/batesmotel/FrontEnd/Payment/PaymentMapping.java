@@ -21,14 +21,13 @@ public class PaymentMapping {
 
     @PostMapping("/processPayment")
     public String ProcessPayment(@ModelAttribute Payment payment,
-                                 Model model,
                                  @RequestParam(name = "name") String name,
                                  @RequestParam(name = "cardNumber") int cardNumber,
                                  @RequestParam(name = "expiryDate") int expireDate,
                                  @RequestParam(name = "cvv") int cvv,
                                  @RequestParam(name = "billingZip") int zip) {
 
-        payment = paymentRepository.save(new Payment(name, cardNumber, expireDate, cvv, zip));
+        paymentRepository.save(new Payment(name, cardNumber, expireDate, cvv, zip));
 
         //RETURN TO HOME
         //SHOULD RETURN TO USER PAGE OR SOMEWHERE ELSE

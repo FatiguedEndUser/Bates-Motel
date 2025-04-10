@@ -25,8 +25,7 @@ public class SignupMapping {
     public String createUser(@ModelAttribute User user,
                              @RequestParam(name = "username") String username,
                              @RequestParam(name = "password") String password,
-                             @RequestParam(name = "email") String email,
-                             Model model) {
+                             @RequestParam(name = "email") String email) {
 
         //SAVE TO DB
         userRepository.save(new User(username, password, email));
