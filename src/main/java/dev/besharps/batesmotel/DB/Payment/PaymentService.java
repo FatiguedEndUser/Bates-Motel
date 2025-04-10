@@ -1,7 +1,7 @@
 package dev.besharps.batesmotel.DB.Payment;
 
-import dev.besharps.batesmotel.DB.User.User;
-import dev.besharps.batesmotel.DB.User.UserDetails;
+import dev.besharps.batesmotel.DB.Customer.Customer;
+import dev.besharps.batesmotel.DB.Customer.CustomerRepository;
 import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -12,9 +12,22 @@ public class PaymentService {
     @Autowired
     private PaymentRepository paymentRepository;
 
-    @Transactional
-    public void updatePayment(Payment payment, PaymentDetails myPayment) {
+    @Autowired
+    private CustomerRepository customerRepository;
 
+    @Transactional
+    public Payments createPayment(Payments payment, Integer customerId) {
+        Customer customer = customerRepository.findById(customerId).orElse(null);
+        if (customer == null) {
+            throw new IllegalArgumentException("Customer not found");
+        }
+        customer.addPayment(payment);
+        paymentRepository.save(payment);
+        return payment;
+    }
+
+    @Transactional
+    public void updatePayment(Payments payment, PaymentDetails myPayment) {
         if (myPayment.cardholder() != null) {
             payment.setName(myPayment.cardholder());
         }
@@ -27,8 +40,6 @@ public class PaymentService {
         if (myPayment.zip() != null) {
             payment.setZip(myPayment.zip());
         }
-
         paymentRepository.save(payment);
-
     }
 }

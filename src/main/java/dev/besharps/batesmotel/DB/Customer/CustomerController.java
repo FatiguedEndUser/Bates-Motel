@@ -1,6 +1,7 @@
 package dev.besharps.batesmotel.DB.Customer;
 
 //DEPENDENCY IMPORTS
+import dev.besharps.batesmotel.DB.Payment.Payments;
 import dev.besharps.batesmotel.Exceptions.CustomerNotFoundException;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -35,6 +36,12 @@ public class CustomerController {
             throw new CustomerNotFoundException();
         }
         return customer;
+    }
+
+    @ResponseStatus(HttpStatus.OK)
+    @GetMapping("/find/payment/{id}")
+    List<Payments> findPayment(@PathVariable Integer id) {
+        return customerRepository.findPaymentsByCustomerId(id);
     }
 
     @ResponseStatus(HttpStatus.OK)

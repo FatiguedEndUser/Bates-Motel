@@ -2,9 +2,11 @@ package dev.besharps.batesmotel.DB.Services;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import dev.besharps.batesmotel.DB.Bookings.Bookings;
+import dev.besharps.batesmotel.DB.Customer.Customer;
 import jakarta.persistence.*;
 import lombok.*;
 
+import java.awt.print.Book;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -32,4 +34,11 @@ public class Services {
 
     @Column(name = "serviceCharge", nullable = false)
     private double serviceCharge;
+
+    public void detachFromBooking() {
+        for (Bookings booking : new ArrayList<>(bookings)) {
+            booking.getServices().remove(this);
+            this.bookings.remove(booking);
+        }
+    }
 }

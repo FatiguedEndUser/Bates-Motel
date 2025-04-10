@@ -1,8 +1,12 @@
 package dev.besharps.batesmotel.DB.Customer;
 
+import dev.besharps.batesmotel.DB.Payment.Payments;
+import dev.besharps.batesmotel.DB.Services.Services;
 import dev.besharps.batesmotel.DB.UserType.UserType;
 import jakarta.persistence.*;
 import lombok.*;
+
+import java.util.List;
 
 @SuppressWarnings("JpaDataSourceORMInspection")
 @Entity(name = "Customer")
@@ -16,7 +20,7 @@ import lombok.*;
 public class Customer {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "customerId", nullable = false, updatable = false)
+    @Column(name = "customer_id", nullable = false, updatable = false)
     private int customerId;
 
     @Column(name = "firstName", nullable = false)
@@ -37,4 +41,19 @@ public class Customer {
     @OneToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "userTypeId")
     private UserType userType;
+
+    @ManyToMany
+    @JoinTable(
+            name = "customer_payments",
+            joinColumns = @JoinColumn(name = "customer_id"),
+            inverseJoinColumns = @JoinColumn(name = "payment_id")
+    )
+    private List<Payments> payments;
+
+    public void addPayment(Payments payment) {
+        if (this.payments.contains(payment)) {
+            throw new IllegalArgumentException("Duplicate payment detected");
+        }
+        this.payments.add(payment);
+    }
 }

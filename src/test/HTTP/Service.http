@@ -1,0 +1,2 @@
+### Delete service
+DELETE localhost:8080/services/delete/1

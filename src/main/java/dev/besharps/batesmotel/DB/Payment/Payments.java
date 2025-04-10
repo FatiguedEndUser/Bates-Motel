@@ -1,9 +1,14 @@
 package dev.besharps.batesmotel.DB.Payment;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import dev.besharps.batesmotel.DB.Bookings.Bookings;
+import dev.besharps.batesmotel.DB.Customer.Customer;
 import jakarta.persistence.*;
 import lombok.*;
 
 import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.List;
 
 @SuppressWarnings("JpaDataSourceORMInspection")
 @Entity(name = "Payments")
@@ -14,7 +19,7 @@ import java.time.LocalDate;
 @Getter
 @Builder
 @ToString
-public class Payment {
+public class Payments {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -32,5 +37,16 @@ public class Payment {
 
     @Column(name = "zip", nullable = false)
     private int zip;
+
+    @JsonIgnore
+    @ManyToMany(mappedBy = "payments")
+    List<Customer> customers = new ArrayList<>();
+
+    public void detachFromCustomer() {
+        for (Customer customer : new ArrayList<>(customers)) {
+            customer.getPayments().remove(this);
+            this.customers.remove(customer);
+        }
+    }
 
 }

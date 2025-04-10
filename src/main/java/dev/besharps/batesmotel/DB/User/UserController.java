@@ -4,6 +4,7 @@ import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.server.ResponseStatusException;
 
@@ -15,12 +16,15 @@ import java.util.List;
 public class UserController {
 
     @Autowired
+
     private final UserRepository userRepository;
     @Autowired
+
     private UserService userService;
 
-    //@Autowired
-    //private PasswordEncoder passwordEncoder;
+    @Autowired
+    private PasswordEncoder passwordEncoder;
+
 
     @ResponseStatus(HttpStatus.OK)
     @GetMapping("/find/{id}")
@@ -83,6 +87,21 @@ public class UserController {
         return newAmount;
     }
 
+    @ResponseStatus(HttpStatus.OK)
+    @PostMapping("/auth")
+    int auth(@Valid @RequestBody User user) {
+        User existingUser = userRepository.findByUsername(user.getUsername());
+        if (existingUser == null) {
+            throw new ResponseStatusException(HttpStatus.NOT_FOUND ,"User not found");
+        }
+        if (!passwordEncoder.matches(user.getPassword(), existingUser.getPassword())) {
+            throw new ResponseStatusException(HttpStatus.FORBIDDEN ,"Password does not match");
+        }
+
+        return existingUser.getId();
+    }
+
+    @ResponseStatus(HttpStatus.OK)
     @PutMapping("/update/{id}")
     User updateUser(@PathVariable Integer id, @RequestBody @Valid UserDetails myDetails) {
         User user = userRepository.findById(id).orElse(null);
@@ -95,7 +114,7 @@ public class UserController {
     @ResponseStatus(HttpStatus.CREATED)
     @PostMapping("/create/user")
     void createUser(@Valid @RequestBody User user) {
-        //user.setPassword(passwordEncoder.encode(user.getPassword()));
+        user.setPassword(passwordEncoder.encode(user.getPassword()));
         userRepository.save(user);
     }
 
