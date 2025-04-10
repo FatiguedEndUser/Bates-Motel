@@ -17,3 +17,12 @@ Content-Type: application/json
 {
   "username": "1234@gmail.com"
 }
+
+### Auth
+POST localhost:8080/user/auth
+Content-Type: application/json
+
+{
+    "username": "maxwell",
+    "password": "max1234"
+}

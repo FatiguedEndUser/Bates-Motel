@@ -46,10 +46,10 @@ class UserRepositoryTest {
     @Test
     public void createUserTest() {
         User newUser = User.builder()
-                .username("Sam")
-                .password("john12")
-                .email("sam@gmail.com")
-                .loyaltyPoints(20)
+                .username("Maxwell")
+                .password("max1234")
+                .email("maxwell@gmail.com")
+                .loyaltyPoints(5)
                 .build();
 
         assertNotNull(newUser);

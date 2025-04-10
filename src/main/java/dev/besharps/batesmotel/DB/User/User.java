@@ -36,7 +36,6 @@ public class User {
     private String email;
 
     @Column(name = "loyalty_points", nullable = false)
-
     private int loyaltyPoints;
 
     @OneToOne(fetch = FetchType.EAGER)

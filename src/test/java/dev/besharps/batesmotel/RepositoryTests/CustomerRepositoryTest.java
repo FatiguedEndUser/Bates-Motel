@@ -4,9 +4,12 @@ import dev.besharps.batesmotel.BatesMotelApplication;
 import dev.besharps.batesmotel.DB.Customer.Customer;
 import dev.besharps.batesmotel.DB.Customer.CustomerRepository;
 import dev.besharps.batesmotel.DB.Customer.CustomerService;
+import dev.besharps.batesmotel.DB.Payment.PaymentRepository;
+import dev.besharps.batesmotel.DB.Payment.Payments;
 import dev.besharps.batesmotel.DB.User.UserRepository;
 import dev.besharps.batesmotel.DB.UserType.UserType;
 import dev.besharps.batesmotel.DB.UserType.UserTypeRepository;
+import dev.besharps.batesmotel.Exceptions.CustomerNotFoundException;
 import jakarta.transaction.Transactional;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
@@ -28,6 +31,9 @@ class CustomerRepositoryTest {
     private UserTypeRepository userTypeRepository;
 
     @Autowired
+    private PaymentRepository paymentRepository;
+
+    @Autowired
     private CustomerService customerService;
 
     @Test
@@ -47,5 +53,14 @@ class CustomerRepositoryTest {
                 .userType(userType)
                 .build();
         customerRepository.save(customer);
+    }
+
+    @Test
+    @Transactional
+    @Rollback(false)
+    public void createPaymentWithCustomer() {
+        Customer customer = customerRepository.findById(1).orElseThrow(CustomerNotFoundException::new);
+        Payments payment = paymentRepository.findById(1).orElseThrow(CustomerNotFoundException::new);
+        //customer.addPayment(payment);
     }
 }
