@@ -7,7 +7,6 @@ import org.springframework.web.bind.annotation.RequestParam;
 @Controller
 public class BookingFormMapping {
 
-    // GET: Show the booking form with optional room type and title
     @GetMapping("/form")
     public String FormBooking(@RequestParam(required = false) String type,
                               @RequestParam(required = false) String title,
