@@ -39,7 +39,7 @@
             <p class="room-beds">2 Guests  | 1 King Bed</p>
             <p class="room-appliances">Room Appliances: Microwave, Minifridge, Coffee Maker, <br> Premium Mini Bar, Jacuzzi, Smart TV, Rainfall Shower</p>
             <!-- Availability Circle -->
-            <div class="availability-circle" th:text="${room.available} ? 'Available' : 'Not Available'">Available</div>
+            <div class="availability-circle positioned" th:text="${room.available} ? 'Available' : 'Not Available'">Available</div>
             <a class="book-room-btn"
                th:href="@{/form(type='Suite', title='The Hitchcock Suite')}">
                 Book Room
@@ -64,7 +64,7 @@
             <p class="room-beds">2 Guests  | 1 King Bed</p>
             <p class="room-appliances">Room Appliances: Microwave, Minifridge, Coffee Maker, <br> Premium Mini Bar, Jacuzzi, Smart TV, Rainfall Shower</p>
             <!-- Availability Circle -->
-            <div class="availability-circle" th:text="${room.available} ? 'Available' : 'Not Available'">Available</div>
+            <div class="availability-circle positioned" th:text="${room.available} ? 'Available' : 'Not Available'">Available</div>
             <a class="book-room-btn"
                th:href="@{/form(type='Suite', title='The Mother’s Suite')}">
                 Book Room
@@ -86,7 +86,7 @@
             <p class="room-beds">2 Guests  | 1 King Bed</p>
             <p class="room-appliances">Room Appliances: Microwave, Minifridge, Coffee Maker, <br> Premium Mini Bar, Jacuzzi, Smart TV, Rainfall Shower</p>
             <!-- Availability Circle -->
-            <div class="availability-circle" th:text="${room.available} ? 'Available' : 'Not Available'">Available</div>
+            <div class="availability-circle positioned" th:text="${room.available} ? 'Available' : 'Not Available'">Available</div>
             <a class="book-room-btn"
                th:href="@{/form(type='Suite', title='Room 1-The Unforgettable Stay')}">
                 Book Room

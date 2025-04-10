@@ -1,0 +1,26 @@
+/* Booking Form Style Page */
+* {
+    font-family: Steelfish, serif;
+}
+body {
+    background-color: #000000;
+    color: #333333;
+    margin: 0;
+    padding: 0;
+}
+.page-wrapper {
+    padding: 1rem;
+}
+
+/* Header & Title */
+.rooms-header {
+    text-align: center;
+    padding: 1rem 0;
+    background-color: #050505;
+    color: #008fd5;
+}
+.rooms-header h1 {
+    margin: 0;
+    font-size: 2rem;
+    font-weight: bold;
+}

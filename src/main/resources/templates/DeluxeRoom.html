@@ -39,7 +39,7 @@
             <p class="room-beds">2 Guests  | 1 King Bed</p>
             <p class="room-appliances">Room Appliances: Microwave, Minifridge, Coffee Maker, <br> Flat-Screen TV</p>
             <!-- Availability Circle -->
-            <div class="availability-circle" th:text="${room.available} ? 'Available' : 'Not Available'">Available</div>
+            <div class="availability-circle positioned" th:text="${room.available} ? 'Available' : 'Not Available'">Available</div>
             <a class="book-room-btn"
                th:href="@{/form(type='Deluxe', title='The Stillwater Room')}">
                 Book Room
@@ -62,7 +62,7 @@
             <p class="room-beds">2 Guests | 1 King Bed</p>
             <p class="room-appliances">Room Appliances: Microwave, Minifridge, Coffee Maker, <br>Flat-Screen TV</p>
             <!-- Availability Circle -->
-            <div class="availability-circle" th:text="${room.available} ? 'Available' : 'Not Available'">Available</div>
+            <div class="availability-circle positioned" th:text="${room.available} ? 'Available' : 'Not Available'">Available</div>
             <a class="book-room-btn"
                th:href="@{/form(type='Deluxe', title='The Shadow Room')}">Book Room</a>
         </div>
@@ -82,7 +82,7 @@
             <p class="room-beds">2 Guests  | 1 King Bed</p>
             <p class="room-appliances">Room Appliances: Microwave, Minifridge, Coffee Maker, <br> Flat-Screen TV</p>
             <!-- Availability Circle -->
-            <div class="availability-circle" th:text="${room.available} ? 'Available' : 'Not Available'">Available</div>
+            <div class="availability-circle positioned" th:text="${room.available} ? 'Available' : 'Not Available'">Available</div>
             <a class="book-room-btn"
                th:href="@{/form(type='Deluxe', title='The Norman’s Hideaway')}">
                 Book Room
