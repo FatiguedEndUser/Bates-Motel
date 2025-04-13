@@ -18,7 +18,7 @@ import java.util.List;
 @Getter
 @ToString
 @Builder
-public class lBookings {
+public class Bookings {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "bookingId", nullable = false, updatable = false)
