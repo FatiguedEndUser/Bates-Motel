@@ -3,6 +3,7 @@ package dev.besharps.batesmotel.DB.Bookings;
 import dev.besharps.batesmotel.DB.Services.Services;
 import dev.besharps.batesmotel.Exceptions.BookingNotFoundException;
 import jakarta.validation.Valid;
+import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
@@ -15,6 +16,7 @@ import java.util.Optional;
 //Mapping needs to be changed and access limited too admins or clerks
 @RestController
 @RequestMapping("/bookings")
+
 public class BookingsController{
     @Autowired
     private BookingsRepository bookingsRepository;

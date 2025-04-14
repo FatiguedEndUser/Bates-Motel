@@ -19,6 +19,11 @@ import java.util.List;
 @ToString
 @Builder
 public class Bookings {
+
+    //Created for bookings page
+    public Bookings(Customer customer, LocalDate startDate, LocalDate endDate) {
+    }
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "bookingId", nullable = false, updatable = false)
@@ -49,4 +54,6 @@ public class Bookings {
 
     @Column(name = "endDate", nullable = false)
     private LocalDate endDate;
+
+
 }
