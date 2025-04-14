@@ -20,7 +20,7 @@
 
     <!-- Booking Form Section -->
     <!-- Note: The form action now points to /payment -->
-    <form class="booking-form" method="get">
+    <form class="booking-form" th:action="@{/payment}" method="get">
         <!-- Show selected room info -->
         <div class="room-details">
             <h2>Your Room</h2>
@@ -63,7 +63,7 @@
 
         <div class="form-buttons">
             <!-- The Book Now button submits the form to /payment -->
-            <button type="submit" th:action="@{createBooking}" th:object="${newBooking}">Book Now</button>
+            <button type="submit" th:action="@{createBooking}" th:object="${newBooking}" th:method="POST">Book Now</button>
             <!-- Cancel button navigates back to the Standard Rooms page -->
             <button type="button" onclick="window.location.href='/rooms/standard-rooms';">Cancel</button>
         </div>
