@@ -3,10 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <title>Booking Form - Bates Hotel</title>
-    <link rel="stylesheet" href="/css/booking.css"/>
+    <link rel="stylesheet" href="/css/bookingform.css"/>
 </head>
 <body>
-
 <div class="page-wrapper">
     <!-- Header -->
     <header class="top-header">
@@ -19,8 +18,7 @@
     </section>
 
     <!-- Booking Form Section -->
-    <!-- Note: The form action now points to /payment -->
-    <form class="booking-form" th:action="@{/payment}" method="get">
+    <form class="booking-form" th:action="@{/booking/review}" method="post">
         <!-- Show selected room info -->
         <div class="room-details">
             <h2>Your Room</h2>
@@ -42,9 +40,9 @@
         <label for="guests">Number of Guests</label>
         <input type="number" id="guests" name="guests" min="1" value="1" required>
 
-        <!-- New Dropdown for Room Preference -->
+        <!-- Dropdown for Room Preference -->
         <label for="roomPreference">Room Preference</label>
-        <select id="roomPreference" name="roomPreference" required>
+        <select id="roomPreference" name="roomPreference">
             <option value="">Select your preference</option>
             <option value="quiet">Quiet Corner</option>
             <option value="view">Window with a View</option>
@@ -52,9 +50,9 @@
             <option value="accessible">Accessible Room</option>
         </select>
 
-        <!-- New Dropdown for Preferred Floor -->
+        <!-- Dropdown for Preferred Floor -->
         <label for="floorPreference">Preferred Floor</label>
-        <select id="floorPreference" name="floorPreference" required>
+        <select id="floorPreference" name="floorPreference">
             <option value="">Select preferred floor</option>
             <option value="low">Lower Floor</option>
             <option value="middle">Middle Floor</option>
@@ -62,9 +60,7 @@
         </select>
 
         <div class="form-buttons">
-            <!-- The Book Now button submits the form to /payment -->
-            <button type="submit" th:action="@{createBooking}" th:object="${newBooking}" th:method="POST">Book Now</button>
-            <!-- Cancel button navigates back to the Standard Rooms page -->
+            <button type="submit">Book Now</button>
             <button type="button" onclick="window.location.href='/rooms/standard-rooms';">Cancel</button>
         </div>
     </form>
@@ -72,6 +68,6 @@
     <!-- Footer -->
     <div th:replace="fragments/footer"></div>
 </div>
-
 </body>
 </html>
+

@@ -1,0 +1,71 @@
+/* Booking Review Style Page */
+* {
+    font-family: Steelfish, serif;
+}
+body{
+    background-color: #000000;
+}
+/* Review Page Container */
+ .review-container {
+     max-width: 800px;
+     margin: 2rem auto;
+     padding: 2rem;
+     background-color: #ffa500;
+     border-radius: 8px;
+     box-shadow: 0 2px 6px rgb(0, 0, 0);
+ }
+.rooms-header {
+    color: #008FD5;
+    text-align: center;
+    margin-top: 2rem;
+    margin-bottom: 2rem;
+    font-size: larger;
+}
+.review-title {
+    text-align: center;
+    color: #000000;
+    margin-bottom: 2rem;
+}
+/* Each Review Item (Label and Value) */
+.review-item {
+    display: flex;
+    justify-content: space-between;
+    padding: 0.75rem 0;
+    border-bottom: 3px solid #eeeeee;
+}
+.review-item:last-child {
+    border-bottom: none;
+}
+.review-label {
+    font-weight: bold;
+    font-size: large;
+    color: #000000;
+
+}
+.review-value {
+    color: #000000;
+    font-size: large;
+}
+/* Buttons Section */
+.review-buttons {
+    display: flex;
+    justify-content: space-around;
+    margin: 3rem 2rem 0.5rem 2rem;
+
+}
+.review-buttons button {
+    background-color: #000000;
+    color: #FFFFFF;
+    padding: 0.75rem 1.5rem;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-weight: bold;
+    transition: background-color 0.3s ease;
+    font-size: 1rem;
+
+}
+.review-buttons button:hover {
+    background-color: #008FD5;
+}
+
