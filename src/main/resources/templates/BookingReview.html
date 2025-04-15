@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Review Booking - Bates Hotel</title>
+    <link rel="stylesheet" href="/css/bookingreview.css"/>
+</head>
+<body>
+<div class="page-wrapper">
+    <!-- Header -->
+    <header class="top-header">
+        <div th:replace="fragments/navbar"></div>
+    </header>
+    <!-- Title Section -->
+    <section class="rooms-header">
+        <h1 class="rooms-title">Review Your Booking</h1>
+    </section>
+
+    <!-- Review Booking Details -->
+    <div class="review-container">
+        <h2 class="review-title">Please Verify Your Booking Details</h2>
+        <div class="review-item">
+            <div class="review-label">Room Type:</div>
+            <div class="review-value" th:text="${roomType}">Standard</div>
+        </div>
+        <div class="review-item">
+            <div class="review-label">Room Title:</div>
+            <div class="review-value" th:text="${roomTitle}">Room Name</div>
+        </div>
+        <div class="review-item">
+            <div class="review-label">Check-in Date:</div>
+            <div class="review-value" th:text="${checkin}">MM-DD-YYYY</div>
+        </div>
+        <div class="review-item">
+            <div class="review-label">Check-out Date:</div>
+            <div class="review-value" th:text="${checkout}">MM-DD-YYYY</div>
+        </div>
+        <div class="review-item">
+            <div class="review-label">Number of Guests:</div>
+            <div class="review-value" th:text="${guests}">1</div>
+        </div>
+        <div class="review-item">
+            <div class="review-label">Room Preference:</div>
+            <div class="review-value" th:text="${roomPreference}">Quiet Corner</div>
+        </div>
+        <div class="review-item">
+            <div class="review-label">Preferred Floor:</div>
+            <div class="review-value" th:text="${floorPreference}">Middle Floor</div>
+        </div>
+
+        <!-- Buttons: Confirm Booking and Edit Booking -->
+        <div class="review-buttons">
+            <!-- Form to submit the confirmed booking -->
+            <form th:action="@{/booking/confirm}" method="post" style="display:inline-block;">
+                <!-- Pass along booking info as hidden fields -->
+                <input type="hidden" name="roomType" th:value="${roomType}">
+                <input type="hidden" name="roomTitle" th:value="${roomTitle}">
+                <input type="hidden" name="checkin" th:value="${checkin}">
+                <input type="hidden" name="checkout" th:value="${checkout}">
+                <input type="hidden" name="guests" th:value="${guests}">
+                <input type="hidden" name="roomPreference" th:value="${roomPreference}">
+                <input type="hidden" name="floorPreference" th:value="${floorPreference}">
+                <button type="submit">Confirm Booking</button>
+            </form>
+            <!-- Button to allow the user to go back and edit -->
+            <button type="button" onclick="window.history.back();">Edit Booking</button>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <div th:replace="fragments/footer"></div>
+</div>
+
+</body>
+</html>
