@@ -4,13 +4,15 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 @Controller
+@RequestMapping("/booking-form")
 public class BookingMapping {
 
     // Mapping for the booking form page
-    @GetMapping("/form")
+    @GetMapping
     public String formBooking(@RequestParam(required = false) String type,
                               @RequestParam(required = false) String title,
                               Model model) {
@@ -20,7 +22,7 @@ public class BookingMapping {
     }
 
     // Mapping for the booking review page
-    @PostMapping("/booking/review")
+    @PostMapping("review")
     public String reviewBooking(@RequestParam("roomType") String roomType,
                                 @RequestParam("roomTitle") String roomTitle,
                                 @RequestParam("checkin") String checkin,
