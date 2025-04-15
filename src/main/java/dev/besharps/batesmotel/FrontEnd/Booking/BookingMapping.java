@@ -2,17 +2,13 @@ package dev.besharps.batesmotel.FrontEnd.Booking;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
 
 @Controller
-@RequestMapping("/booking-form")
 public class BookingMapping {
 
     // Mapping for the booking form page
-    @GetMapping
+    @GetMapping("/booking-form")
     public String formBooking(@RequestParam(required = false) String type,
                               @RequestParam(required = false) String title,
                               Model model) {
@@ -22,7 +18,9 @@ public class BookingMapping {
     }
 
     // Mapping for the booking review page
-    @PostMapping("review")
+    //I like it i was working on adding this to the database but lost in in a merge. Will work on getting
+    // added
+    @PostMapping("/booking-form/review")
     public String reviewBooking(@RequestParam("roomType") String roomType,
                                 @RequestParam("roomTitle") String roomTitle,
                                 @RequestParam("checkin") String checkin,
@@ -39,6 +37,21 @@ public class BookingMapping {
         model.addAttribute("roomPreference", roomPreference);
         model.addAttribute("floorPreference", floorPreference);
         return "BookingReview";
+    }
+
+    //This will be the action for confirming review
+    //which will then redirect to the payment page
+    @PostMapping("/createBooking")
+    public String createBooking(@ModelAttribute Model model,
+                                @RequestParam String roomType,
+                                @RequestParam String checkin
+
+
+                                ){
+        //Notice a discrepancy we have a customer in as a field for the DB but we dont have a customer name or other
+        //required info. This will not post to the database, otherwise i can take the customer name from the payment info
+        //but that is the next step so i would have to some how save that data from the payment page.
+        return "redirect:/payment";
     }
 }
 

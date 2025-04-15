@@ -51,7 +51,7 @@
         <!-- Buttons: Confirm Booking and Edit Booking -->
         <div class="review-buttons">
             <!-- Form to submit the confirmed booking -->
-            <form th:action="@{/booking-form/confirm}" method="post" style="display:inline-block;">
+            <form th:action="@{/booking/confirm}" method="post" style="display:inline-block;">
                 <!-- Pass along booking info as hidden fields -->
                 <input type="hidden" name="roomType" th:value="${roomType}">
                 <input type="hidden" name="roomTitle" th:value="${roomTitle}">
