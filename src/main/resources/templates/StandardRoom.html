@@ -23,6 +23,10 @@
   </section>
 
   <!-- MIDDLE SECTION: ROOM CARDS -->
+  <!-- Removed too keep working:
+       th:text="${room.available} ? 'Available' : 'Not Available'"
+  -->
+
   <section class="rooms-container">
     <!-- CARD 1 -->
     <div class="room-card">
@@ -37,7 +41,7 @@
         <p class="room-beds">2 Beds | 1 King Bed</p>
         <p class="room-appliances">Room Appliances: Microwave, Minifridge</p>
         <!-- Availability Circle -->
-        <div class="availability-circle positioned" th:text="${room.available} ? 'Available' : 'Not Available'">Available</div>
+        <div class="availability-circle positioned">Available</div>
         <!-- Book Room Button -->
         <a class="book-room-btn" th:href="@{/form(type='Standard', title='The Pinewood Retreat')}">Book Room</a>
       </div>
@@ -58,7 +62,7 @@
         <p class="room-beds">2 Beds | 1 King Bed</p>
         <p class="room-appliances">Room Appliances: Microwave, Minifridge</p>
         <!-- Availability Circle -->
-        <div class="availability-circle positioned" th:text="${room.available} ? 'Available' : 'Not Available'">Available</div>
+        <div class="availability-circle positioned">Available</div>
         <a class="book-room-btn" th:href="@{/form(type='Standard', title='The Traveler’s Rest')}">Book Room</a>
       </div>
       <div class="room-price">
@@ -77,7 +81,7 @@
         <p class="room-beds">2 Beds | 1 King Bed</p>
         <p class="room-appliances">Room Appliances: Microwave, Minifridge</p>
         <!-- Availability Circle -->
-        <div class="availability-circle positioned" th:text="${room.available} ? 'Available' : 'Not Available'">Available</div>
+        <div class="availability-circle positioned">Available</div>
         <a class="book-room-btn" th:href="@{/form(type='Standard', title='The Meadow View')}">Book Room</a>
       </div>
       <div class="room-price">
