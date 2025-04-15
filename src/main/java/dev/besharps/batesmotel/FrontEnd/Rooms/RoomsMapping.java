@@ -10,30 +10,27 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import java.util.List;
 
 @Controller
+@RequestMapping("/rooms")
 public class RoomsMapping {
     private RoomsController rooms;
 
-    @GetMapping("/rooms/standard-rooms")
+    @GetMapping("/standard-rooms")
     public String RoomsStandard() {
         return "StandardRoom";
     }
 
-    @GetMapping("/rooms/deluxe-rooms")
+    @GetMapping("/deluxe-rooms")
     public String RoomsDeluxe() {
         return "DeluxeRoom";
     }
 
-    @GetMapping("/rooms/suite-rooms")
+    @GetMapping("/suite-rooms")
     public String RoomsSuite() {
         return "SuiteRoom";
     }
 
     public Boolean checkAvaliability(Rooms room){
-        List<Rooms> allRooms = rooms.findAll();
-        if(room.isAvailable()){
-            return true;
-        }
-        return false;
+        return true;
     }
 
 }

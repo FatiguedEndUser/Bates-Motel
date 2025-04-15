@@ -10,13 +10,13 @@ import org.springframework.web.bind.annotation.*;
 import java.time.LocalDate;
 
 @Controller
-@RequestMapping("/booking")
+@RequestMapping("/booking-form")
 public class BookingMapping {
 
-    private final BookingsRepository bookings;
+    private final BookingsRepository bookingsRepository;
 
     public BookingMapping(BookingsRepository bookings) {
-        this.bookings = bookings;
+        this.bookingsRepository = bookings;
     }
 
     @GetMapping
@@ -33,7 +33,7 @@ public class BookingMapping {
                             @RequestParam Customer customer
                             ){
         //SAVE TO DB
-        bookings.save(new Bookings(customer, startDate, endDate));
+        bookingsRepository.save(new Bookings(customer, startDate, endDate));
         //PUSHES USER TOO PAYMENT
         return "redirect:/payment";
     }

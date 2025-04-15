@@ -2,12 +2,14 @@ package dev.besharps.batesmotel.DB.Bookings;
 
 import dev.besharps.batesmotel.DB.Customer.Customer;
 import dev.besharps.batesmotel.DB.Rooms.Rooms;
+import dev.besharps.batesmotel.DB.Rooms.RoomsController;
 import dev.besharps.batesmotel.DB.Services.Services;
 import jakarta.persistence.*;
 import lombok.*;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Random;
 
 @SuppressWarnings("JpaDataSourceORMInspection")
 @Entity(name = "Bookings")
@@ -19,9 +21,9 @@ import java.util.List;
 @ToString
 @Builder
 public class Bookings {
-
     //Created for bookings page
     public Bookings(Customer customer, LocalDate startDate, LocalDate endDate) {
+
     }
 
     @Id
