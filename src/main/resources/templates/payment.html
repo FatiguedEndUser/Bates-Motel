@@ -21,7 +21,7 @@
   <section class="payment-section">
     <h2 class="payment-title">Payment Details</h2>
 
-    <form class="payment-form" th:action="@{/ProcessPayment}" method="post" th:object="${Payment}">
+    <form class="payment-form" method="POST" th:object="${newPayment}">
       <div class="form-group">
         <label for="cardName">Name on Card</label>
         <input type="text" name="name" id="cardName" required placeholder="John Doe"/>
@@ -39,11 +39,11 @@
         <input type="text" name="cvv" id="cvv" required placeholder="123"/>
       </div>
       <div class="form-group">
-        <label for="billingAddress">Billing Address</label>
-        <input type="text" name="billingZip" id="billingAddress" required placeholder="Your billing address"/>
+        <label for="billingAddress">Billing ZIP</label>
+        <input type="text" name="billingZip" id="billingAddress" required placeholder="Your billing ZIP"/>
       </div>
       <div class="form-group">
-        <button type="submit" class="payment-button">Confirm Payment</button>
+        <button th:action="processPayment" type="submit" class="payment-button">Confirm Payment</button>
       </div>
     </form>
   </section>

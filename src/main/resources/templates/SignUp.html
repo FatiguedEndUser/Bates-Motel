@@ -26,7 +26,7 @@
           "method=post" uses POST method
           "onsubmit" calls a small JS function to validate
         -->
-        <form class="signup-form" th:action="@{/signup/createUser}" th:object="${newUser}" method="post" onsubmit="return validateForm()">
+        <form class="signup-form" th:action="@{/signup/createUser}" th:object="${newUser}" method="post">
             <!-- Row 1 -->
             <div class="form-row">
                 <div class="form-group">

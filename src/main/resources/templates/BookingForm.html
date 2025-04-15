@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Booking Form - Bates Hotel</title>
+    <link rel="stylesheet" href="/css/booking.css"/>
+</head>
+<body>
+
+<div class="page-wrapper">
+    <!-- Header -->
+    <header class="top-header">
+        <div th:replace="fragments/navbar"></div>
+    </header>
+
+    <!-- Title -->
+    <section class="rooms-header">
+        <h1 class="rooms-title">BOOK A ROOM</h1>
+    </section>
+
+    <!-- Booking Form Section -->
+    <!-- Note: The form action now points to /payment -->
+    <form class="booking-form" th:action="@{/payment}" method="get">
+        <!-- Show selected room info -->
+        <div class="room-details">
+            <h2>Your Room</h2>
+            <p><strong>Type:</strong> <span th:text="${roomType}">Standard</span></p>
+            <p><strong>Title:</strong> <span th:text="${roomTitle}">Room Name</span></p>
+        </div>
+
+        <!-- Hidden fields to preserve values on submit -->
+        <input type="hidden" name="roomType" th:value="${roomType}">
+        <input type="hidden" name="roomTitle" th:value="${roomTitle}">
+
+        <!-- Booking Information Fields -->
+        <label for="checkin">Check-in Date</label>
+        <input type="date" id="checkin" name="checkin" required>
+
+        <label for="checkout">Check-out Date</label>
+        <input type="date" id="checkout" name="checkout" required>
+
+        <label for="guests">Number of Guests</label>
+        <input type="number" id="guests" name="guests" min="1" value="1" required>
+
+        <!-- New Dropdown for Room Preference -->
+        <label for="roomPreference">Room Preference</label>
+        <select id="roomPreference" name="roomPreference" required>
+            <option value="">Select your preference</option>
+            <option value="quiet">Quiet Corner</option>
+            <option value="view">Window with a View</option>
+            <option value="spacious">Spacious Room</option>
+            <option value="accessible">Accessible Room</option>
+        </select>
+
+        <!-- New Dropdown for Preferred Floor -->
+        <label for="floorPreference">Preferred Floor</label>
+        <select id="floorPreference" name="floorPreference" required>
+            <option value="">Select preferred floor</option>
+            <option value="low">Lower Floor</option>
+            <option value="middle">Middle Floor</option>
+            <option value="high">Upper Floor</option>
+        </select>
+
+        <div class="form-buttons">
+            <!-- The Book Now button submits the form to /payment -->
+            <button type="submit">Book Now</button>
+            <!-- Cancel button navigates back to the Standard Rooms page -->
+            <button type="button" onclick="window.location.href='/rooms/standard-rooms';">Cancel</button>
+        </div>
+    </form>
+
+    <!-- Footer -->
+    <div th:replace="fragments/footer"></div>
+</div>
+
+</body>
+</html>

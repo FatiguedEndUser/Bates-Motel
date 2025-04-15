@@ -1,97 +1,112 @@
-body {
+
+     body {
     font-family: Steelfish, serif;
     margin: 0;
     padding: 0;
     background-color: #000;
     color: #fff;
-}
+    }
 
-/*header {*/
-/*    display: flex;*/
-/*    justify-content: space-between;*/
-/*    align-items: center;*/
-/*    padding: 20px;*/
-/*    background-color: #111;*/
-/*}*/
+    /*header {*/
+    /*display: flex;*/
+    /*justify-content: space-between;*/
+    /*align-items: center;*/
+    /*padding: 20px;*/
+    /*background-color: #111;*/
+    /*}*/
 
-.logo {
+    .logo {
     font-size: 24px;
     font-weight: bold;
     color: #fff;
-}
+    }
 
-.logo span {
+    .logo span {
     color: #2a9df4;
-}
+    }   
 
-.hero {
-    background: url('../img/Hero.jpg') no-repeat center center/cover;
+    nav ul {
+    list-style: none;
+    display: flex;
+    gap: 15px;
+    }
+
+    nav ul li a {
+    text-decoration: none;
+    color: #fff;
+    padding: 8px 15px;
+    background-color: #F2AF6C;
+    border-radius: 5px;
+    }
+
+    .hero {
+    background: url('hero.jpg') no-repeat center center/cover;
     height: 400px;
     display: flex;
     justify-content: center;
     align-items: center;
-}
+    }
 
-.search-bar {
+    .search-bar {
     background: rgba(0, 0, 0, 0.8);
     padding: 15px;
     border-radius: 10px;
     display: flex;
     gap: 10px;
-}
+    }
 
-.search-bar input, .search-bar button {
+    .search-bar input, .search-bar button {
     padding: 10px;
     border: none;
     border-radius: 5px;
-}
+    }
 
-.rooms, .services {
+    .rooms, .services {
     text-align: center;
     padding: 50px 20px;
-}
+    }
 
-.room-list {
+    .room-list {
     display: flex;
     justify-content: center;
     gap: 20px;
-}
+    }
 
-.room {
+    .room {
     background: #F2AF6C;
     padding: 15px;
     border-radius: 10px;
-}
+    }
 
-.room img {
+    .room img {
     width: 200px;
     height: 150px;
     border-radius: 5px;
-}
+    }
 
-.services ul {
+    .services ul {
     list-style: none;
     padding: 0;
-}
+    }
 
-.services ul li {
+    .services ul li {
     margin: 10px 0;
-}
+    }
 
-footer {
+    footer {
     background-color: #111;
     text-align: center;
     padding: 20px;
-}
+    }
 
-footer ul {
+    footer ul {
     list-style: none;
     display: flex;
     justify-content: center;
     gap: 20px;
-}
+    }
 
-footer ul li a {
+    footer ul li a {
     text-decoration: none;
     color: #2a9df4;
-}
+    }
