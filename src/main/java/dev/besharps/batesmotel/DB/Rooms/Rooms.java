@@ -34,6 +34,7 @@ public class Rooms {
 
     @Column(
             name = "roomType",
+            updatable = true,
             nullable = false,
             columnDefinition = "TEXT"
     )
@@ -58,6 +59,7 @@ public class Rooms {
 
     @Column(
             name = "Available",
+            updatable = true,
             nullable = false
     )
     private boolean available;

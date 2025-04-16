@@ -24,13 +24,13 @@ public class MaintenanceController {
 
     //GET
     @ResponseStatus(HttpStatus.FOUND)
-    @GetMapping("/maintenance/find-all")
+    @GetMapping("/find-all")
     List<Maintenance> findAll() {
         return maintenanceRepository.findAll();
     }
 
     @ResponseStatus(HttpStatus.OK)
-    @GetMapping("/maintenance/{id}")
+    @GetMapping("/{id}")
     Optional<Maintenance> findById(@PathVariable Integer id) {
         Optional<Maintenance> maintenance = maintenanceRepository.findById(id);
         if (maintenance.isEmpty()) {
@@ -49,6 +49,15 @@ public class MaintenanceController {
         return maintenanceList;
     }
 
+    @ResponseStatus(HttpStatus.OK)
+    @GetMapping("/staff/{staffId}")
+    List<Maintenance> findByStaffId(@PathVariable Integer staffId) {
+        List<Maintenance> maintenanceList = maintenanceRepository.findByStaffId(staffId);
+        if (maintenanceList.isEmpty()) {
+            throw new MaintenanceNotFoundException();
+        }
+        return maintenanceList;
+    }
 
     @ResponseStatus(HttpStatus.OK)
     @GetMapping("/pending")
@@ -74,7 +83,7 @@ public class MaintenanceController {
 
     //POST
     @ResponseStatus(HttpStatus.CREATED)
-    @PostMapping("/maintenance/")
+    @PostMapping("")
     void create(@Valid @RequestBody Maintenance maintenance) {
         maintenanceRepository.save(maintenance);
     }
@@ -122,7 +131,7 @@ public class MaintenanceController {
 
     //DELETE
     @ResponseStatus(HttpStatus.NO_CONTENT)
-    @DeleteMapping("/maintenance/delete/{id}")
+    @DeleteMapping("/delete/{id}")
     void deleteById(@PathVariable Integer id) {
         maintenanceRepository.deleteById(id);
     }
