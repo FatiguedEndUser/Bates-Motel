@@ -1,11 +1,28 @@
 package dev.besharps.batesmotel.FrontEnd.Booking;
 
+import dev.besharps.batesmotel.DB.Bookings.Bookings;
+import dev.besharps.batesmotel.DB.Bookings.BookingsRepository;
+import dev.besharps.batesmotel.DB.Customer.Customer;
+import dev.besharps.batesmotel.DB.Customer.CustomerRepository;
+import dev.besharps.batesmotel.DB.Rooms.Rooms;
+import dev.besharps.batesmotel.DB.Rooms.RoomsRepository;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
+import java.time.LocalDate;
+
 @Controller
 public class BookingMapping {
+
+    private final BookingsRepository bookingsRepository;
+    private final CustomerRepository customerRepository;
+    private final RoomsRepository roomsRepository;
+    public BookingMapping(BookingsRepository bookingsRepository, CustomerRepository customerRepository, RoomsRepository roomsRepository) {
+        this.bookingsRepository = bookingsRepository;
+        this.customerRepository = customerRepository;
+        this.roomsRepository = roomsRepository;
+    }
 
     // Mapping for the booking form page
     @GetMapping("/booking-form")
@@ -36,6 +53,9 @@ public class BookingMapping {
         model.addAttribute("guests", guests);
         model.addAttribute("roomPreference", roomPreference);
         model.addAttribute("floorPreference", floorPreference);
+
+        model.addAttribute("Booking", new Bookings());
+
         return "BookingReview";
     }
 
@@ -43,14 +63,17 @@ public class BookingMapping {
     //which will then redirect to the payment page
     @PostMapping("/createBooking")
     public String createBooking(@ModelAttribute Model model,
+                                @RequestParam Customer customer,
                                 @RequestParam String roomType,
-                                @RequestParam String checkin
-
-
-                                ){
+                                @RequestParam LocalDate checkin,
+                                @RequestParam LocalDate checkout,
+                                @RequestParam Rooms room){
         //Notice a discrepancy we have a customer in as a field for the DB but we dont have a customer name or other
         //required info. This will not post to the database, otherwise i can take the customer name from the payment info
         //but that is the next step so i would have to some how save that data from the payment page.
+
+        bookingsRepository.save(new Bookings(customer, roomType, checkin, checkout, room));
+
         return "redirect:/payment";
     }
 }

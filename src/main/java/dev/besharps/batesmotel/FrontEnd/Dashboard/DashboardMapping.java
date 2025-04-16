@@ -1,6 +1,11 @@
 package dev.besharps.batesmotel.FrontEnd.Dashboard;
 
 import dev.besharps.batesmotel.DB.Bookings.Bookings;
+import dev.besharps.batesmotel.DB.Bookings.BookingsRepository;
+import dev.besharps.batesmotel.DB.Customer.Customer;
+import dev.besharps.batesmotel.DB.Customer.CustomerRepository;
+import dev.besharps.batesmotel.DB.User.User;
+import dev.besharps.batesmotel.DB.User.UserRepository;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -12,6 +17,18 @@ import java.time.LocalDate;
 @Controller
 @RequestMapping("/dashboard")
 public class DashboardMapping {
+
+    private final BookingsRepository bookingsRepository;
+    private final CustomerRepository customerRepository;
+    private final UserRepository userRepository;
+
+    //Get all the required DB access classes their instance so we can pull
+    public DashboardMapping(BookingsRepository bookingsRepository, CustomerRepository customerRepository, UserRepository userRepository) {
+        this.bookingsRepository = bookingsRepository;
+        this.customerRepository = customerRepository;
+        this.userRepository = userRepository;
+    }
+
 
     @GetMapping
     public String Dashboard(Model model,
@@ -41,6 +58,7 @@ public class DashboardMapping {
         model.addAttribute("email", email);
         model.addAttribute("loyaltyPoints", loyaltyPoints);
         model.addAttribute("id", id);
+
 
 
     }
