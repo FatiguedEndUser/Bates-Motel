@@ -15,6 +15,9 @@ public interface MaintenanceRepository extends JpaRepository<Maintenance, Intege
     @Query("SELECT m FROM Maintenance m WHERE m.room.roomId = :roomId")
     List<Maintenance> findByRoomId(@Param("roomId") Integer roomId);
 
+    @Query("SELECT m FROM Maintenance m WHERE m.staff.staffId = :staffId")
+    List<Maintenance> findByStaffId(@Param("staffId") Integer staffId);
+
     @Query("SELECT m FROM Maintenance m WHERE m.finishedDate IS NULL")
     List<Maintenance> findPendingMaintenance();
 
@@ -36,6 +39,14 @@ public interface MaintenanceRepository extends JpaRepository<Maintenance, Intege
     @Query("UPDATE Maintenance m SET m.finishedDate = :finishedDate WHERE m.maintenanceId = :id")
     void updateFinishedDate(
             @Param("finishedDate") LocalDate finishedDate,
+            @Param("id") Integer id
+    );
+
+    @Transactional
+    @Modifying
+    @Query("UPDATE Maintenance m SET m.staff.staffId = :staffId WHERE m.maintenanceId = :id")
+    void updateStaffAssignment(
+            @Param("staffId") Integer staffId,
             @Param("id") Integer id
     );
 }

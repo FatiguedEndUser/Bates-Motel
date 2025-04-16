@@ -22,13 +22,13 @@ public class RoomsController {
 
     //GET
     @ResponseStatus(HttpStatus.FOUND)
-    @GetMapping("/rooms/find-all")
-    public List<Rooms> findAll() {
+    @GetMapping("/find-all")
+    List<Rooms> findAll() {
         return roomsRepository.findAll();
     }
 
     @ResponseStatus(HttpStatus.OK)
-    @GetMapping("/rooms/{id}")
+    @GetMapping("/{id}")
     Optional<Rooms> findById(@PathVariable Integer id) {
         Optional<Rooms> rooms = roomsRepository.findById(id);
         if (rooms.isEmpty()) {
@@ -69,7 +69,7 @@ public class RoomsController {
 
     //POST
     @ResponseStatus(HttpStatus.CREATED)
-    @PostMapping("/rooms/")
+    @PostMapping("")
     void create(@Valid @RequestBody Rooms room) {
         roomsRepository.save(room);
     }
@@ -108,7 +108,7 @@ public class RoomsController {
 
     //DELETE
     @ResponseStatus(HttpStatus.NO_CONTENT)
-    @DeleteMapping("/rooms/delete/{id}")
+    @DeleteMapping("/delete/{id}")
     void deleteById(@PathVariable Integer id) {
         roomsRepository.deleteById(id);
     }

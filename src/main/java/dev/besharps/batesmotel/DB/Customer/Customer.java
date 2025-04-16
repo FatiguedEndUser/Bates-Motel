@@ -1,14 +1,9 @@
 package dev.besharps.batesmotel.DB.Customer;
 
-import dev.besharps.batesmotel.DB.Payment.Payments;
-import dev.besharps.batesmotel.DB.Services.Services;
 import dev.besharps.batesmotel.DB.UserType.UserType;
 import jakarta.persistence.*;
 import lombok.*;
 
-import java.util.List;
-
-@SuppressWarnings("JpaDataSourceORMInspection")
 @Entity(name = "Customer")
 @Table(name = "Customer")
 @AllArgsConstructor
@@ -19,41 +14,59 @@ import java.util.List;
 @ToString
 public class Customer {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "customer_id", nullable = false, updatable = false)
+    @SequenceGenerator(
+            name = "customer_sequence",
+            sequenceName = "customer_sequence",
+            allocationSize = 1
+    )
+    @GeneratedValue(
+            strategy = GenerationType.SEQUENCE,
+            generator = "customer_sequence"
+    )
+    @Column(
+            name = "customerId",
+            updatable = false
+    )
     private int customerId;
 
-    @Column(name = "firstName", nullable = false)
-    private String firstName;
+    @Column(
+            name = "name",
+            updatable = true,
+            nullable = false,
+            columnDefinition = "TEXT"
+    )
+    private String name;
 
-    @Column(name = "lastName", nullable = false)
-    private String lastName;
+    @Column(
+            name = "number",
+            updatable = true,
+            nullable = true,
+            columnDefinition = "TEXT"
+    )
+    private String number;
 
-    @Column(name = "phoneNumber")
-    private String phoneNumber;
-
-    @Column(name = "address")
+    @Column(
+            name = "address",
+            updatable = true,
+            nullable = true,
+            columnDefinition = "TEXT"
+    )
     private String address;
 
-    @Column(name = "carInformation")
+    @Column(
+            name = "carInformation",
+            updatable = true,
+            nullable = true,
+            columnDefinition = "TEXT"
+    )
     private String carInformation;
 
-    @OneToOne(fetch = FetchType.EAGER)
-    @JoinColumn(name = "userTypeId")
-    private UserType userType;
-
-    @ManyToMany
-    @JoinTable(
-            name = "customer_payments",
-            joinColumns = @JoinColumn(name = "customer_id"),
-            inverseJoinColumns = @JoinColumn(name = "payment_id")
+    @ManyToOne
+    @JoinColumn(
+            name = "typeId",
+            referencedColumnName = "userTypeId",
+            foreignKey = @ForeignKey(name = "customer_usertype_fk"),
+            nullable = false
     )
-    private List<Payments> payments;
-
-    public void addPayment(Payments payment) {
-        if (this.payments.contains(payment)) {
-            throw new IllegalArgumentException("Duplicate payment detected");
-        }
-        this.payments.add(payment);
-    }
+    private UserType userType;
 }
