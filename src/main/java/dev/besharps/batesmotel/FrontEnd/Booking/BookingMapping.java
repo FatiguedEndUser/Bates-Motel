@@ -76,5 +76,25 @@ public class BookingMapping {
 
         return "redirect:/payment";
     }
-}
 
+    // Mapping for the booking confirmation page
+    @PostMapping("/booking/confirm")
+    public String confirmBooking(@RequestParam("roomType") String roomType,
+                                 @RequestParam("roomTitle") String roomTitle,
+                                 @RequestParam("checkin") String checkin,
+                                 @RequestParam("checkout") String checkout,
+                                 @RequestParam("guests") int guests,
+                                 @RequestParam("roomPreference") String roomPreference,
+                                 @RequestParam("floorPreference") String floorPreference,
+                                 Model model) {
+        // Add all booking details to the model so that the confirmation page can display them
+        model.addAttribute("roomType", roomType);
+        model.addAttribute("roomTitle", roomTitle);
+        model.addAttribute("checkin", checkin);
+        model.addAttribute("checkout", checkout);
+        model.addAttribute("guests", guests);
+        model.addAttribute("roomPreference", roomPreference);
+        model.addAttribute("floorPreference", floorPreference);
+        return "BookingConfirmation";  // This loads BookingConfirmation.html
+    }
+}
