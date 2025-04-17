@@ -1,38 +1,56 @@
-
 /* Reset */
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
+  font-family: Steelfish, serif;
 }
 
 /* Body */
 body {
-  font-family: Steelfish, serif;
   background-color: #000;
   color: #fff;
 }
 
-/* =========================================
-   (MIDDLE SECTION)
-   ========================================= */
-/* Payment Section Styles */
+/* PAYMENT SECTION STYLES */
 .payment-section {
   margin: 2rem auto;
   width: 80%;
+  max-width: 800px;
   padding: 2rem;
-  background-color: #111;
-  border: 1px solid #fff;
+  background-color: #1a1a1a;
+  border: 1px solid #333;
   border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.2);
 }
 
-.payment-title {
-  font-size: 2rem;
-  margin-bottom: 1.5rem;
+/* Section Headings */
+.checkin-title,
+.payment-title,
+.contact-title {
+  font-size: 1.75rem;
+  margin-bottom: 1rem;
+  border-bottom: 2px solid #FFA500;
+  padding-bottom: 0.5rem;
   text-align: center;
-  color: #fff;
 }
 
+/* Styling for the sign in link */
+.sign-in-link {
+  color: #FFA500;
+  text-decoration: none;
+  font-weight: bold;
+  border-bottom: 1px dashed #FFA500;
+  padding-bottom: 2px;
+  transition: color 0.3s ease, border-bottom 0.3s ease;
+
+}
+.sign-in-link:hover {
+  color: #e69500;
+  border-bottom: 1px solid #e69500;
+}
+
+/* Form Groups */
 .payment-form .form-group {
   margin-bottom: 1.5rem;
 }
@@ -44,7 +62,8 @@ body {
   color: #fff;
 }
 
-.payment-form input {
+.payment-form input,
+.payment-form select {
   width: 100%;
   padding: 0.5rem;
   border: 1px solid #fff;
@@ -53,6 +72,7 @@ body {
   color: #fff;
 }
 
+/* Button Style */
 .payment-button {
   display: block;
   width: 100%;
@@ -68,4 +88,10 @@ body {
 
 .payment-button:hover {
   background-color: #e69500;
+}
+
+/* Additional Spacing for Sections */
+.checkin-section,
+.payment-details-section {
+  margin-bottom: 2rem;
 }
