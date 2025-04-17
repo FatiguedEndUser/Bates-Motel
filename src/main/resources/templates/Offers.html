@@ -3,13 +3,25 @@
 <head>
     <meta charset="UTF-8">
     <title>Bates Hotel Offers</title>
-    <link rel="stylesheet" href="/css/Offers.css">
+    <link rel="stylesheet" href="Offers.css">
 </head>
 <body>
     <header>
         <h1>BATES HOTEL OFFERS</h1>
     </header>
-    <div th:replace="fragments/navbar"></div>
+    <div th:replace="fragments/navbar">
+        <nav>
+            <a href="HomePage.html">Home</a>
+            <a href="Rooms.html">Rooms</a>
+            <a href="Offers.html">Offers</a>
+            <a href="About.html">About</a>
+            <a href="SignUp.html">Sign Up</a>
+        </nav>
+        <section class="loyalty-points">
+            <p><strong>Loyalty Points:</strong> <span th:text="${user.loyaltyPoints}"></span></p>
+        </section>
+    </div>
+
     <section class="offers">
         <div class="offer-card">
             <h2>Stay 3 Nights, Pay for 2</h2>
@@ -40,11 +52,11 @@
                 </tr>
             </thead>
             <tbody>
-                <tr th:each="room: ${rooms}">
-                    <td th:text="${rooms.roomId}"/>
-                    <td th:text="${rooms.roomType}"/>
-                    <td th:text="${rooms.floor}"/>
-                    <td th:text="${rooms.roomNumber}"/>
+                <tr th:each="room : ${rooms}">
+                    <td th:text="${room.roomId}"></td>
+                    <td th:text="${room.roomType}"></td>
+                    <td th:text="${room.floor}"></td>
+                    <td th:text="${room.roomNumber}"></td>
                     <td>
                         <span th:if="${room.available}" style="color: green;">Available</span>
                         <span th:unless="${room.available}" style="color: red;">Booked</span>
