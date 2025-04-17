@@ -3,7 +3,6 @@ package dev.besharps.batesmotel.DB.Rooms;
 import jakarta.persistence.*;
 import lombok.*;
 
-
 @Entity(name = "Rooms")
 @Table(name = "Rooms")
 @AllArgsConstructor
@@ -13,9 +12,6 @@ import lombok.*;
 @Builder
 @ToString
 public class Rooms {
-    //---------------------------------GETTERS/SETTERS---------------------------------------------//
-    //Getters and setters for each respective field
-    //This (roomId) is our primary key (PK)
     @Id
     @SequenceGenerator(
             name = "room_sequence",
@@ -33,8 +29,14 @@ public class Rooms {
     private Long roomId;
 
     @Column(
+            name = "roomName",
+            nullable = false,
+            columnDefinition = "TEXT"
+    )
+    private String roomName;
+
+    @Column(
             name = "roomType",
-            updatable = true,
             nullable = false,
             columnDefinition = "TEXT"
     )
@@ -42,7 +44,6 @@ public class Rooms {
 
     @Column(
             name = "floor",
-            updatable = false,
             nullable = false,
             columnDefinition = "INTEGER"
     )
@@ -50,7 +51,6 @@ public class Rooms {
 
     @Column(
             name = "roomNumber",
-            updatable = false,
             nullable = false,
             unique = true,
             columnDefinition = "INTEGER"
@@ -58,10 +58,38 @@ public class Rooms {
     private Long roomNumber;
 
     @Column(
-            name = "Available",
-            updatable = true,
+            name = "available",
             nullable = false
     )
     private boolean available;
 
+    @Column(
+            name = "pricePerNight",
+            nullable = false
+    )
+    private Double pricePerNight;
+
+    @Column(
+            name = "bedConfiguration",
+            columnDefinition = "TEXT"
+    )
+    private String bedConfiguration;
+
+    @Column(
+            name = "appliances",
+            columnDefinition = "TEXT"
+    )
+    private String appliances;
+
+    @Column(
+            name = "imageUrl",
+            columnDefinition = "TEXT"
+    )
+    private String imageUrl;
+
+    @Column(
+            name = "description",
+            columnDefinition = "TEXT"
+    )
+    private String description;
 }

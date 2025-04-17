@@ -14,7 +14,7 @@ import java.util.Optional;
 import dev.besharps.batesmotel.Exceptions.MaintenanceNotFoundException;
 
 @RestController
-@RequestMapping("/maintenance")
+@RequestMapping("/api/maintenance") // Changed to avoid conflict with MaintenanceMapping
 public class MaintenanceController {
     @Autowired
     private MaintenanceRepository maintenanceRepository;
@@ -24,13 +24,13 @@ public class MaintenanceController {
 
     //GET
     @ResponseStatus(HttpStatus.FOUND)
-    @GetMapping("/find-all")
+    @GetMapping("/find-all")  // Fixed duplicate path
     List<Maintenance> findAll() {
         return maintenanceRepository.findAll();
     }
 
     @ResponseStatus(HttpStatus.OK)
-    @GetMapping("/{id}")
+    @GetMapping("/{id}")  // Fixed duplicate path
     Optional<Maintenance> findById(@PathVariable Integer id) {
         Optional<Maintenance> maintenance = maintenanceRepository.findById(id);
         if (maintenance.isEmpty()) {
@@ -49,15 +49,6 @@ public class MaintenanceController {
         return maintenanceList;
     }
 
-    @ResponseStatus(HttpStatus.OK)
-    @GetMapping("/staff/{staffId}")
-    List<Maintenance> findByStaffId(@PathVariable Integer staffId) {
-        List<Maintenance> maintenanceList = maintenanceRepository.findByStaffId(staffId);
-        if (maintenanceList.isEmpty()) {
-            throw new MaintenanceNotFoundException();
-        }
-        return maintenanceList;
-    }
 
     @ResponseStatus(HttpStatus.OK)
     @GetMapping("/pending")
@@ -83,7 +74,7 @@ public class MaintenanceController {
 
     //POST
     @ResponseStatus(HttpStatus.CREATED)
-    @PostMapping("")
+    @PostMapping("/create")  // Fixed path
     void create(@Valid @RequestBody Maintenance maintenance) {
         maintenanceRepository.save(maintenance);
     }
@@ -131,7 +122,7 @@ public class MaintenanceController {
 
     //DELETE
     @ResponseStatus(HttpStatus.NO_CONTENT)
-    @DeleteMapping("/delete/{id}")
+    @DeleteMapping("/delete/{id}")  // Fixed path
     void deleteById(@PathVariable Integer id) {
         maintenanceRepository.deleteById(id);
     }
