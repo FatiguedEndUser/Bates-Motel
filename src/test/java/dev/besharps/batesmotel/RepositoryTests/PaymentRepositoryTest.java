@@ -45,7 +45,7 @@ public class PaymentRepositoryTest {
     public void createPaymentWithExistingCustomer() {
         LocalDate expDate = LocalDate.of(2028, 4, 21);
         Payments payment = Payments.builder()
-                .name("Discover")
+                .name("Mastercard")
                 .date(expDate)
                 .cvv(322)
                 .zip(55023)

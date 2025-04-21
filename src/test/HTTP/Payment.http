@@ -6,4 +6,4 @@ Content-Type: application/json
   "cardholder": "Mastercard"
 }
 ### Delete payment
-DELETE localhost:8080/payment/delete/5
+DELETE localhost:8080/payment/delete/2

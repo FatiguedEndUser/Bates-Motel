@@ -3,6 +3,7 @@ package dev.besharps.batesmotel.DB.Bookings;
 import dev.besharps.batesmotel.DB.Customer.Customer;
 import dev.besharps.batesmotel.DB.Rooms.Rooms;
 import dev.besharps.batesmotel.DB.Services.Services;
+import dev.besharps.batesmotel.DB.User.User;
 import jakarta.persistence.*;
 import lombok.*;
 import java.time.LocalDate;
@@ -29,6 +30,9 @@ public class Bookings {
             foreignKey = @ForeignKey(name = "booking_customer_fk")
     )
     private Customer customer;
+
+    @ManyToOne
+    private User user;
 
     @ManyToOne(optional = false)
     @JoinColumn(name = "roomNumber",

@@ -47,7 +47,6 @@ class CustomerRepositoryTest {
         Customer customer = Customer.builder()
                 .firstName("Lexie")
                 .lastName("Brown")
-                .address("1600 Pennsylvania Avenue NW")
                 .carInformation("Hatchback")
                 .phoneNumber("6120392232")
                 .userType(userType)

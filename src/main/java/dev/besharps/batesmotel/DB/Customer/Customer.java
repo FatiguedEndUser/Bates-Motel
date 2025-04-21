@@ -32,9 +32,6 @@ public class Customer {
     @Column(name = "phoneNumber")
     private String phoneNumber;
 
-    @Column(name = "address")
-    private String address;
-
     @Column(name = "carInformation")
     private String carInformation;
 
