@@ -1,9 +1,10 @@
 package dev.besharps.batesmotel.DB.Staff;
 
-import dev.besharps.batesmotel.DB.Rooms.Rooms;
+import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.stereotype.Repository;
 
-import java.util.List;
-
-public interface StaffRepository {
-
+@Repository
+public interface StaffRepository extends JpaRepository<Staff, String> {
+    // Basic CRUD operations are inherited from JpaRepository
+    // You can add custom query methods here if needed
 }
