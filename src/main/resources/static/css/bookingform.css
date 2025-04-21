@@ -15,10 +15,9 @@ body {
 /* Header & Title */
 .rooms-header {
     text-align: center;
-    padding: 1rem 0;
     background-color: #050505;
     color: #008fd5;
-    margin-top: 2rem;
+
 }
 .rooms-header h1 {
     margin: 0;
@@ -45,7 +44,7 @@ body {
 
 /* Room Details inside Form */
 .room-details {
-    background-color: #ffffff;
+    background-color: #008fd5;
     border: 1px solid #4c4b4b;
     padding: 1.5rem;
     border-radius: 4px;
@@ -111,7 +110,7 @@ body {
 }
 
 .form-group {
-    margin-bottom: 1.5rem;
+    margin-bottom: 0.5rem;
 }
 
 .form-group label {
@@ -181,4 +180,25 @@ body {
 
 .cancel-btn:hover {
     background-color: #e5e5e5;
+}
+
+/* Styling for the sign in link */
+.checkin-title,
+.payment-title,
+.contact-title {
+    font-size: 1.75rem;
+
+}
+.sign-in-link {
+    color: #000000;
+    text-decoration: none;
+    font-weight: bold;
+    font-size: 15px;
+    border-bottom: 1.5px dashed #000000;
+    transition: color 0.3s ease, border-bottom 0.3s ease;
+
+}
+.sign-in-link:hover {
+    color: #008fd5;
+    border-bottom: 1px solid #ffffff;
 }

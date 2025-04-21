@@ -19,41 +19,6 @@
   <section class="payment-section">
     <form class="payment-form" th:action="@{/booking-form/review}" method="post" th:object="${newPayment}">
 
-      <!-- Check-in Section -->
-      <section class="checkin-section">
-        <h2 class="checkin-title">Who's checking in?</h2> </br>
-        <p class="checkin-subtitle">
-         <a class="sign-in-link" th:href="@{/login}">Sign in for faster checkout</a>
-        </p></br> </br>
-
-        <div class="form-group">
-          <label for="firstName">First name *</label>
-          <input type="text" name="firstName" id="firstName" required placeholder="First name"/>
-        </div>
-        <div class="form-group">
-          <label for="lastName">Last name *</label>
-          <input type="text" name="lastName" id="lastName" required placeholder="Last name"/>
-        </div>
-
-        <h3 class="contact-title">Contact Information</h3>
-        <p>We'll send your confirmation to this email address.</p>
-        <div class="form-group">
-          <label for="email">Email address *</label>
-          <input type="email" name="email" id="email" required placeholder="Email address"/>
-        </div>
-        <div class="form-group">
-          <label for="country">Country/region *</label>
-          <select name="country" id="country" required>
-            <option value="US" selected>United States of America +1</option>
-            <!-- Add additional countries as needed -->
-          </select>
-        </div>
-        <div class="form-group">
-          <label for="phone">Phone number *</label>
-          <input type="tel" name="phone" id="phone" required placeholder="Phone number"/>
-        </div>
-      </section>
-
       <!-- Payment Details Section -->
       <section class="payment-details-section">
         <h2 class="payment-title">Payment Details</h2>

@@ -19,12 +19,36 @@
 
     <!-- Booking Form Section -->
     <form class="booking-form" th:action="@{/payment}" method="get">
+
+        <!-- Check-in Section -->
+        <section class="checkin-section">
+            <h2 class="checkin-title">Who's checking in?</h2>
+            <p class="checkin-subtitle">
+                <a class="sign-in-link" th:href="@{/login}">Sign in for faster checkout</a>
+            </p></br> </br>
+
+        <!-- Customer Information -->
+        <div class="form-group">
+            <label for="firstName">First Name</label>
+            <input type="text" id="firstName" name="firstName" required placeholder="Enter your first name">
+        </div>
+
+        <div class="form-group">
+            <label for="lastName">Last Name</label>
+            <input type="text" id="lastName" name="lastName" required placeholder="Enter your last name">
+        </div>
+
+        <div class="form-group">
+            <label for="email">Email</label>
+            <input type="email" id="email" name="email" required placeholder="Enter your email">
+        </div>
+        </section>
+
         <!-- Show selected room info -->
-        <div class="room-details">
+        <section class="room-details">
             <h2>Your Room</h2>
             <p><strong>Type:</strong> <span th:text="${roomType}">Standard</span></p>
             <p><strong>Title:</strong> <span th:text="${roomTitle}">Room Name</span></p>
-        </div>
 
         <!-- Hidden fields to preserve values on submit -->
         <input type="hidden" name="roomType" th:value="${roomType}">
@@ -63,6 +87,7 @@
             <button type="submit">Book Now</button>
             <button type="button" onclick="window.location.href='/rooms/standard-rooms';">Cancel</button>
         </div>
+        </section>
     </form>
 
     <!-- Footer -->

@@ -24,32 +24,6 @@ body {
   box-shadow: 0 4px 8px rgba(0,0,0,0.2);
 }
 
-/* Section Headings */
-.checkin-title,
-.payment-title,
-.contact-title {
-  font-size: 1.75rem;
-  margin-bottom: 1rem;
-  border-bottom: 2px solid #FFA500;
-  padding-bottom: 0.5rem;
-  text-align: center;
-}
-
-/* Styling for the sign in link */
-.sign-in-link {
-  color: #FFA500;
-  text-decoration: none;
-  font-weight: bold;
-  border-bottom: 1px dashed #FFA500;
-  padding-bottom: 2px;
-  transition: color 0.3s ease, border-bottom 0.3s ease;
-
-}
-.sign-in-link:hover {
-  color: #e69500;
-  border-bottom: 1px solid #e69500;
-}
-
 /* Form Groups */
 .payment-form .form-group {
   margin-bottom: 1.5rem;
@@ -90,8 +64,4 @@ body {
   background-color: #e69500;
 }
 
-/* Additional Spacing for Sections */
-.checkin-section,
-.payment-details-section {
-  margin-bottom: 2rem;
-}
+
