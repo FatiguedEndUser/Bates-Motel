@@ -21,7 +21,7 @@ public class UserService {
     @Autowired
     private UserTypeRepository userTypeRepository;
 
-    @Autowired
+    //@Autowired
     private PasswordEncoder passwordEncoder;
 
     @Transactional

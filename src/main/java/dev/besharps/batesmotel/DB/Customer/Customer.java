@@ -18,6 +18,13 @@ import java.util.List;
 @Builder
 @ToString
 public class Customer {
+
+    public Customer(String firstName, String lastName, String email) {
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.email = email;
+    }
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "customer_id", nullable = false, updatable = false)
@@ -31,6 +38,9 @@ public class Customer {
 
     @Column(name = "phoneNumber")
     private String phoneNumber;
+
+    @Column(name = "email")
+    private String email;
 
     @Column(name = "carInformation")
     private String carInformation;

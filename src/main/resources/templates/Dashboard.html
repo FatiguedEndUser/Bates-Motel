@@ -4,21 +4,13 @@
     <meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Bates Hotel - User Dashboard</title>
-    <link rel="stylesheet" href="Dashboard.css"/>
+    <link rel="stylesheet" href="/css/Dashboard.css"/>
 </head>
 <body>
     <div class="page-wrapper">
         <div class="logo">Bates<span>H</span>otel</div>
         <header class="top-header">
-            <div th:replace="fragments/navbar">
-                <nav>
-                    <a href="HomePage.html">Home</a>
-                    <a href="Rooms.html">Rooms</a>
-                    <a href="Offers.html">Offers</a>
-                    <a href="About.html">About</a>
-                    <a href="Login.html">Login</a>
-                </nav>
-            </div>
+            <div th:replace="fragments/navbar"></div>
         </header>
     <section class="container">
         <h1>User Dashboard</h1>
@@ -64,14 +56,7 @@
             </table>
         </div>
     </section>
-<!--    <footer>-->
-<!--        <p>Contact: (555) 123-4567 | Email: contact@bateshotel.com</p>-->
-<!--        <ul>-->
-<!--            <li><a href="Home.html">Home</a></li>-->
-<!--            <li><a href="PrivacyPolicy.html">Privacy Policy</a></li>-->
-<!--            <li><a href="About.html">FAQ</a></li>-->
-<!--        </ul>-->
-<!--    </footer>-->
-<div th:replace="fragments/footer"></div>
+        <div th:replace="fragments/footer"></div>
+    </div>
 </body>
 </html>

@@ -18,10 +18,16 @@ public interface MaintenanceRepository extends JpaRepository<Maintenance, Intege
     @Query("SELECT m FROM Maintenance m WHERE m.finishedDate IS NULL")
     List<Maintenance> findPendingMaintenance();
 
+    @Query("SELECT m FROM Maintenance m WHERE m.finishedDate IS NOT NULL")
+    List<Maintenance> findByFinishedDateNotNull();
+
     @Query("SELECT m FROM Maintenance m WHERE m.requestDate BETWEEN :startDate AND :endDate")
     List<Maintenance> findByRequestDateBetween(
             @Param("startDate") LocalDate startDate,
             @Param("endDate") LocalDate endDate);
+
+    @Query("SELECT m FROM Maintenance m WHERE LOWER(m.description) LIKE LOWER(CONCAT('%', :keyword, '%'))")
+    List<Maintenance> findByDescriptionContaining(@Param("keyword") String keyword);
 
     @Transactional
     @Modifying

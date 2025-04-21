@@ -44,7 +44,8 @@ public class PaymentController {
         if (payment == null) {
             throw new ResponseStatusException(HttpStatus.NOT_FOUND ,"Payment ID not found");
         }
-        payment.detachFromCustomer();
+        //BREAKS THE PROGRAM
+        //payment.detachFromCustomer();
         paymentRepository.delete(payment);
     }
 }

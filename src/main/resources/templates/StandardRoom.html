@@ -2,8 +2,7 @@
 <html xmlns:th="http://www.thymeleaf.org" lang="en">
 <head>
   <meta charset="UTF-8"/>
-  <title>BatesHotel - Rooms</title>
-  <!-- Link to CSS if using a different page, if not just ignore -->
+  <title>BatesHotel - Standard Rooms</title>
   <link rel="stylesheet" href="/css/StandardRoom.css"/>
 </head>
 <body>
@@ -21,52 +20,93 @@
     <h1 class="rooms-title">ROOMS</h1>
     <div class="room-types">
       <!-- Clickable links to other room pages -->
-      <a th:href="@{/rooms/standard-rooms}">Standard</a>
+      <a th:href="@{/rooms/standard-rooms}" class="active">Standard</a>
       <a th:href="@{/rooms/deluxe-rooms}">Deluxe</a>
-      <a th:href="@{/rooms/suite-rooms}">Suite</a>48
+      <a th:href="@{/rooms/suite-rooms}">Suite</a>
     </div>
+  </section>
+
+  <!-- SEARCH SECTION -->
+  <section class="search-container">
+    <form th:action="@{/rooms/search}" method="get" class="search-form">
+      <div class="form-group">
+        <label for="roomType">Room Type</label>
+        <select id="roomType" name="roomType">
+          <option value="">All Types</option>
+          <option value="Standard" selected>Standard</option>
+          <option value="Deluxe">Deluxe</option>
+          <option value="Suite">Suite</option>
+        </select>
+      </div>
+<!--
+      <div class="form-group">
+        <label for="maxPrice">Max Price</label>
+        <input type="number" id="maxPrice" name="maxPrice" placeholder="Max Price" min="0">
+-->
+      <!-- Room Info Area -->
+      <div class="room-info">
+        <h2 class="room-title">The Pinewood Retreat</h2>
+        <p class="room-subtitle">Standard Room</p>
+        <p class="room-beds">2 Guests | 1 King Bed</p>
+        <p class="room-appliances">Room Appliances: Microwave, Minifridge</p>
+        <!-- Availability Circle -->
+        <div class="availability-circle positioned">Available</div>
+        <!-- Book Room Button -->
+        <a class="book-room-btn" th:href="@{/booking-form(type='Standard', title='The Pinewood Retreat')}">Book Room</a>
+
+      </div>
+      <div class="form-group">
+        <label for="bedType">Bed Type</label>
+        <select id="bedType" name="bedType">
+          <option value="">Any</option>
+          <option value="King">King</option>
+          <option value="Queen">Queen</option>
+          <option value="Twin">Twin</option>
+        </select>
+      </div>
+      <button type="submit" class="search-btn">Search</button>
+    </form>
   </section>
 
   <!-- MIDDLE SECTION: ROOM CARDS -->
   <section class="rooms-container">
-
-    <!-- CARD 1 -->
-    <div class="room-card">
+    <!-- Dynamic Room Cards - Loop through rooms from backend -->
+    <div th:each="room : ${rooms}" class="room-card">
       <!-- Room Image -->
       <div class="room-image">
-        <img src="/img/Standard1.jpg" alt="The Pinewood Retreat">
+        <img th:src="${room.imageUrl}" th:alt="${room.roomName}">
       </div>
       <!-- Orange info area -->
       <div class="room-info">
-        <h2 class="room-title">The Pinewood Retreat</h2>
-        <p class="room-subtitle">Standard Room</p>
-        <p class="room-beds">2 Beds | 1 King Bed</p>
-        <p class="room-appliances">Room Appliances: Microwave, Minifridge</p>
+
+        <h2 class="room-title" th:text="${room.roomName}">Room Name</h2>
+        <p class="room-subtitle" th:text="${room.roomType} + ' Room'">Room Type</p>
+        <p class="room-beds" th:text="${room.bedConfiguration}">Bed Configuration</p>
+        <p class="room-appliances" th:text="'Room Appliances: ' + ${room.appliances}">Room Appliances</p>
         <!-- Book Room button goes to /payment -->
         <a class="book-room-btn" th:href="@{/payment}">Book Room</a>
+
+        <h2 class="room-title">The Traveler’s Rest</h2>
+        <p class="room-subtitle">Standard Room</p>
+        <p class="room-beds">2 Guests | 1 King Bed</p>
+        <p class="room-appliances">Room Appliances: Microwave, Minifridge</p>
+        <!-- Availability Circle -->
+        <div class="availability-circle positioned">Available</div>
+        <a class="book-room-btn" th:href="@{/booking-form(type='Standard', title='The Traveler’s Rest')}">Book Room</a>
+
       </div>
       <!-- White strip at bottom with price -->
       <div class="room-price">
-        <span class="price-amount">$250</span><span class="price-night">/Night</span>
+        <span class="price-amount" th:text="'$' + ${room.pricePerNight}">$250</span>
+        <span class="price-night">/Night</span>
       </div>
     </div>
 
-    <!-- CARD 2 -->
-    <div class="room-card">
-      <div class="room-image">
-        <img src="/img/Standard2.jpg" alt="The Traveler’s Rest">
-      </div>
-      <div class="room-info">
-        <h2 class="room-title">The Traveler’s Rest</h2>
-        <p class="room-subtitle">Standard Room</p>
-        <p class="room-beds">2 Beds | 1 King Bed</p>
-        <p class="room-appliances">Room Appliances: Microwave, Minifridge</p>
-        <a class="book-room-btn" th:href="@{/payment}">Book Room</a>
-      </div>
-      <div class="room-price">
-        <span class="price-amount">$300</span><span class="price-night">/Night</span>
-      </div>
-    </div>
+
+    <!-- If no rooms are found
+    <div th:if="${#lists.isEmpty(rooms)}" class="no-rooms-message">
+      <p>No standard rooms are available at this time.</p>
+    -->
 
     <!-- CARD 3 -->
     <div class="room-card">
@@ -76,17 +116,21 @@
       <div class="room-info">
         <h2 class="room-title">The Meadow View</h2>
         <p class="room-subtitle">Standard Room</p>
-        <p class="room-beds">2 Beds | 1 King Bed</p>
+        <p class="room-beds">2 Guests | 1 King Bed</p>
         <p class="room-appliances">Room Appliances: Microwave, Minifridge</p>
-        <a class="book-room-btn" th:href="@{/payment}">Book Room</a>
+        <!-- Availability Circle -->
+        <div class="availability-circle positioned">Available</div>
+        <a class="book-room-btn" th:href="@{/booking-form(type='Standard', title='The Meadow View')}">Book Room</a>
       </div>
       <div class="room-price">
-        <span class="price-amount">$380</span><span class="price-night">/Night</span>
+        <span class="price-amount">$400</span><span class="price-night">/Night</span>
       </div>
-    </div>
 
+    </div>
   </section>
-<div th:replace="fragments/footer"></div>
+
+  <!-- FOOTER -->
+  <div th:replace="fragments/footer"></div>
 </div>
 
 </body>
