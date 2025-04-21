@@ -22,7 +22,7 @@ import java.util.Random;
 @Builder
 public class Bookings {
     //Created for bookings page
-    public Bookings(Customer customer, LocalDate startDate, LocalDate endDate) {
+    public Bookings(Customer customer, String roomType, LocalDate checkin, LocalDate checkout, Rooms room) {
 
     }
 
@@ -33,7 +33,8 @@ public class Bookings {
 
     @ManyToOne(optional = false)
     @JoinColumn(name = "customerId",
-            foreignKey = @ForeignKey(name = "booking_customer_fk")
+            foreignKey = @ForeignKey(name = "booking_customer_fk"),
+            nullable = false
     )
     private Customer customer;
 
@@ -56,6 +57,7 @@ public class Bookings {
 
     @Column(name = "endDate", nullable = false)
     private LocalDate endDate;
+
 
 
 }

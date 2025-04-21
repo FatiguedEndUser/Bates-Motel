@@ -24,6 +24,18 @@ nav {
     display: flex;
     align-items: center;
 }
+.loyalty-points {
+    background-color: #222;
+    color: lightblue;
+    padding: 15px;
+    font-size: 18px;
+    margin: 20px auto;
+    width: fit-content;
+    border: 2px solid lightblue;
+    border-radius: 10px;
+}
+
+
 nav a, .dropdown {
     background-color: orange;
     padding: 8px 12px;
