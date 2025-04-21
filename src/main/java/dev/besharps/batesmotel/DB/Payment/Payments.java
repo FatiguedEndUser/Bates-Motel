@@ -52,7 +52,7 @@ public class Payments {
 
     public Payments(String name, int cardNumber, int exp, int cvv, int zip) {
         this.name = name;
-        //this.cardNumber = cardNumber;
+        this.cardNumber = cardNumber;
         this.date = LocalDate.ofEpochDay(exp);
         this.cvv = cvv;
         this.zip = zip;

@@ -17,11 +17,11 @@
         <div class="user-section">
             <h2>Your Information</h2>
             <div class="info-box">
-                <p><strong>Full Name:</strong> <span th:text="${user.firstName} + ' ' + ${user.lastName}"></span></p>
+                <!--<p><strong>Full Name:</strong> <span th:text="${user.firstName} + ' ' + ${user.lastName}"></span></p>-->
                 <p><strong>Email:</strong> <span th:text="${user.email}"></span></p>
                 <p><strong>Loyalty Points:</strong> <span th:text="${user.loyaltyPoints}"></span></p>
             </div>
-            <form th:action="@{/user/update/{id}(id=${user.id})}" method="post" class="edit-form">
+            <form th:action="@{/user/update/{username}(id=${user.username})}" method="post" class="edit-form">
                 <h3>Edit Info</h3>
                 <input type="text" name="username" placeholder="New Username" required>
                 <input type="password" name="password" placeholder="New Password" required>

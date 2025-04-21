@@ -18,6 +18,9 @@ public class CustomerService {
         if (myDetails.car_information() != null) {
             customer.setCarInformation(myDetails.car_information());
         }
+        if (myDetails.address() != null) {
+            customer.setAddress(myDetails.address());
+        }
         if (myDetails.firstName() != null) {
             customer.setFirstName(myDetails.firstName());
         }

@@ -5,17 +5,15 @@ import dev.besharps.batesmotel.DB.Bookings.BookingsRepository;
 import dev.besharps.batesmotel.DB.Customer.Customer;
 import dev.besharps.batesmotel.DB.Customer.CustomerRepository;
 import dev.besharps.batesmotel.DB.User.User;
+import dev.besharps.batesmotel.DB.User.UserController;
 import dev.besharps.batesmotel.DB.User.UserRepository;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
 
 import java.time.LocalDate;
 
 @Controller
-@RequestMapping("/dashboard")
 public class DashboardMapping {
 
     private final BookingsRepository bookingsRepository;
@@ -30,7 +28,7 @@ public class DashboardMapping {
     }
 
 
-    @GetMapping
+    @GetMapping("/Dashboard")
     public String Dashboard(Model model,
                             @RequestParam Bookings bookings,
                             @RequestParam(name = "id") String bookingId,
@@ -47,19 +45,25 @@ public class DashboardMapping {
         return "Dashboard";
     }
 
+    @GetMapping
     public void populateDashboard(Model model,
-                                  @RequestParam String firstName,
-                                  @RequestParam String lastName,
                                   @RequestParam String email,
                                   @RequestParam int loyaltyPoints,
                                   @RequestParam int id){
-        model.addAttribute("firstName", firstName);
-        model.addAttribute("lastName", lastName);
         model.addAttribute("email", email);
         model.addAttribute("loyaltyPoints", loyaltyPoints);
         model.addAttribute("id", id);
-
-
-
     }
+
+    //Update username
+    @PostMapping("/user/update/{username}")
+    public void UpdateUsername(@RequestParam int id,
+                               @RequestParam(name="username") String userName,
+                               @PathVariable String username){
+        //Set userName from the username from the user field
+        userRepository.findById(id).ifPresent(user ->
+                user.setUsername(userName)
+        );
+    }
+
 }

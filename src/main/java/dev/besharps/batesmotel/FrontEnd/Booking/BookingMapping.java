@@ -40,15 +40,13 @@ public class BookingMapping {
     //I like it i was working on adding this to the database but lost in in a merge. Will work on getting
     // added
     @PostMapping("/booking-form/review")
-    public String reviewBooking(@RequestParam("roomType") String roomType,
-                                @RequestParam("roomTitle") String roomTitle,
+    public String reviewBooking(@RequestParam("roomTitle") String roomTitle,
                                 @RequestParam("checkin") String checkin,
                                 @RequestParam("checkout") String checkout,
                                 @RequestParam("guests") int guests,
                                 @RequestParam("roomPreference") String roomPreference,
                                 @RequestParam("floorPreference") String floorPreference,
                                 Model model) {
-        model.addAttribute("roomType", roomType);
         model.addAttribute("roomTitle", roomTitle);
         model.addAttribute("checkin", checkin);
         model.addAttribute("checkout", checkout);
@@ -82,8 +80,6 @@ public class BookingMapping {
         return "BookingConfirmation";  // This loads BookingConfirmation.html
     }
 
-    //This will be the action for confirming review
-    //which will then redirect to the payment page
     @PostMapping("/createBooking")
     public String createBooking(@ModelAttribute Model model,
                                 @RequestParam String firstName,
@@ -94,7 +90,6 @@ public class BookingMapping {
                                 @RequestParam LocalDate checkout,
                                 @RequestParam Rooms room){
         //LOGIC FOR CHOOSING ROOM
-
         bookingsRepository.save(new Bookings(new Customer(firstName, lastName, email), roomType, checkin, checkout, room));
 
         return "redirect:/payment";
