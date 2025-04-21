@@ -59,6 +59,11 @@ class UserRepositoryTest {
     }
 
     @Test
+    public void findUserEmailTest() {
+        logger.info("Got user email {}", userRepository.findByEmail(1));
+    }
+
+    @Test
     public void loyaltyPointsTest() {
         User user = userRepository.findById(1).orElse(null);
         assertNotNull(user);
