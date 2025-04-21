@@ -18,7 +18,9 @@ public class BookingMapping {
     private final BookingsRepository bookingsRepository;
     private final CustomerRepository customerRepository;
     private final RoomsRepository roomsRepository;
-    public BookingMapping(BookingsRepository bookingsRepository, CustomerRepository customerRepository, RoomsRepository roomsRepository) {
+    public BookingMapping(BookingsRepository bookingsRepository,
+                          CustomerRepository customerRepository,
+                          RoomsRepository roomsRepository) {
         this.bookingsRepository = bookingsRepository;
         this.customerRepository = customerRepository;
         this.roomsRepository = roomsRepository;
@@ -59,24 +61,6 @@ public class BookingMapping {
         return "BookingReview";
     }
 
-    //This will be the action for confirming review
-    //which will then redirect to the payment page
-    @PostMapping("/createBooking")
-    public String createBooking(@ModelAttribute Model model,
-                                @RequestParam Customer customer,
-                                @RequestParam String roomType,
-                                @RequestParam LocalDate checkin,
-                                @RequestParam LocalDate checkout,
-                                @RequestParam Rooms room){
-        //Notice a discrepancy we have a customer in as a field for the DB but we dont have a customer name or other
-        //required info. This will not post to the database, otherwise i can take the customer name from the payment info
-        //but that is the next step so i would have to some how save that data from the payment page.
-
-        bookingsRepository.save(new Bookings(customer, roomType, checkin, checkout, room));
-
-        return "redirect:/payment";
-    }
-
     // Mapping for the booking confirmation page
     @PostMapping("/booking/confirm")
     public String confirmBooking(@RequestParam("roomType") String roomType,
@@ -96,5 +80,23 @@ public class BookingMapping {
         model.addAttribute("roomPreference", roomPreference);
         model.addAttribute("floorPreference", floorPreference);
         return "BookingConfirmation";  // This loads BookingConfirmation.html
+    }
+
+    //This will be the action for confirming review
+    //which will then redirect to the payment page
+    @PostMapping("/createBooking")
+    public String createBooking(@ModelAttribute Model model,
+                                @RequestParam String firstName,
+                                @RequestParam String lastName,
+                                @RequestParam String email,
+                                @RequestParam String roomType,
+                                @RequestParam LocalDate checkin,
+                                @RequestParam LocalDate checkout,
+                                @RequestParam Rooms room){
+        //LOGIC FOR CHOOSING ROOM
+
+        bookingsRepository.save(new Bookings(new Customer(firstName, lastName, email), roomType, checkin, checkout, room));
+
+        return "redirect:/payment";
     }
 }

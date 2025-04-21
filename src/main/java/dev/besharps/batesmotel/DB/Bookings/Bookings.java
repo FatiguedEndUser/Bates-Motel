@@ -33,7 +33,8 @@ public class Bookings {
 
     @ManyToOne(optional = false)
     @JoinColumn(name = "customerId",
-            foreignKey = @ForeignKey(name = "booking_customer_fk")
+            foreignKey = @ForeignKey(name = "booking_customer_fk"),
+            nullable = false
     )
     private Customer customer;
 
