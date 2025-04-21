@@ -23,7 +23,7 @@ public class RoomsController {
     //GET
     @ResponseStatus(HttpStatus.FOUND)
     @GetMapping("/rooms/find-all")
-    public List<Rooms> findAll() {
+    List<Rooms> findAll() {
         return roomsRepository.findAll();
     }
 

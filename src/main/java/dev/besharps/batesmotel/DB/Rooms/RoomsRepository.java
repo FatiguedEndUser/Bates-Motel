@@ -16,6 +16,19 @@ public interface RoomsRepository extends JpaRepository<Rooms, Integer> {
     List<Rooms> findByAvailableTrue();
     List<Rooms> findByAvailableFalse();
     List<Rooms> findByFloor(int floor);
+    List<Rooms> findByRoomName(String roomName);
+
+    // Added new search methods
+    List<Rooms> findByRoomTypeAndAvailableTrue(String roomType);
+    List<Rooms> findByPricePerNightLessThanEqual(Double maxPrice);
+    List<Rooms> findByPricePerNightBetween(Double minPrice, Double maxPrice);
+    List<Rooms> findByBedConfigurationContaining(String bedType);
+
+    @Query("SELECT r FROM Rooms r WHERE r.roomType = :roomType AND r.pricePerNight <= :maxPrice AND r.available = true")
+    List<Rooms> findAvailableRoomsByTypeAndMaxPrice(
+            @Param("roomType") String roomType,
+            @Param("maxPrice") Double maxPrice
+    );
 
     @Transactional
     @Modifying

@@ -178,7 +178,7 @@ body {
     .main-nav {
         flex-wrap: wrap;
         justify-content: center;
-        padding: 1rem;
+        padding: 1rem; /* let the nav breathe on smaller screens */
     }
     .rooms-header {
         flex-direction: column;
@@ -206,31 +206,107 @@ body {
     }
 }
 
-/* Availability Circle Styling */
-.availability-circle {
-    width: 50px;
-    height: 50px;
-    border-radius: 50%;
-    background-color: #27781b;
-    color: #FFFFFF;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 0.8rem;
+.room-types a.active {
+    color: #FFA500;
     font-weight: bold;
-    margin-top: 0.5rem;
+    border-bottom: 2px solid #FFA500;
+    padding-bottom: 3px;
 }
 
-.room-info {
-    position: relative;
+/* Search container styling */
+.search-container {
+    width: 80%;
+    margin: 0 auto;
+    background-color: #1a1a1a;
+    padding: 20px;
+    border-radius: 8px;
+    margin-bottom: 20px;
 }
 
-/* This moves the availability circle to the upper-right corner if desired */
-.availability-circle.positioned {
-    position: absolute;
-    top: -5px;
-    right: 3px;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+.search-form {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    justify-content: space-between;
 }
 
+.form-group {
+    flex: 1;
+    min-width: 200px;
+    display: flex;
+    flex-direction: column;
+}
 
+.form-group label {
+    margin-bottom: 8px;
+    color: #008fd5;
+    font-weight: bold;
+}
+
+.form-group input,
+.form-group select {
+    padding: 10px;
+    border: 1px solid #333;
+    border-radius: 4px;
+    background-color: #2a2a2a;
+    color: #fff;
+}
+
+.search-btn {
+    padding: 10px 20px;
+    background-color: #FFA500;
+    color: #000;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-weight: bold;
+    transition: background-color 0.3s;
+    align-self: flex-end;
+}
+
+.search-btn:hover {
+    background-color: #FF8C00;
+}
+
+.no-rooms-message {
+    width: 100%;
+    text-align: center;
+    padding: 40px 0;
+    color: #FFA500;
+    font-size: 1.2rem;
+}
+
+/* Enhanced Room Card Styling */
+.room-card {
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.room-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+}
+
+.room-title {
+    transition: color 0.3s ease;
+}
+
+.room-card:hover .room-title {
+    color: #008fd5;
+}
+
+.book-room-btn {
+    transition: all 0.3s ease;
+}
+
+.book-room-btn:hover {
+    background-color: #008fd5;
+    padding: 1.66vw 1.76vw;
+}
+
+/* Page Wrapper enhancement */
+.page-wrapper {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
