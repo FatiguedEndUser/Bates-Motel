@@ -58,11 +58,10 @@ public class DashboardMapping {
     //Update username
     @PostMapping("/user/update/{username}")
     public void UpdateUsername(@RequestParam int id,
-                               @RequestParam(name="username") String userName,
                                @PathVariable String username){
         //Set userName from the username from the user field
         userRepository.findById(id).ifPresent(user ->
-                user.setUsername(userName)
+                user.setUsername(username)
         );
     }
 
