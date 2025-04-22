@@ -1,15 +1,17 @@
 package dev.besharps.batesmotel.DB.Rooms;
 
 import jakarta.transaction.Transactional;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 
 @Service
 public class RoomsService {
-    @Autowired
-    private RoomsRepository roomsRepository;
+    private final RoomsRepository roomsRepository;
+
+    public RoomsService(RoomsRepository roomsRepository) {
+        this.roomsRepository = roomsRepository;
+    }
 
     public List<Rooms> getAllRooms() {
         return roomsRepository.findAll();

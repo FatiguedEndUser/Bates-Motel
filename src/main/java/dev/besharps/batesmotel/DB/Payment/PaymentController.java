@@ -7,19 +7,19 @@ import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.server.ResponseStatusException;
 
-import java.util.List;
-
 @RestController
 @RequestMapping("/payment")
 public class PaymentController {
-    @Autowired
-    private PaymentRepository paymentRepository;
 
-    @Autowired
-    private PaymentService paymentService;
+    private final PaymentRepository paymentRepository;
+    private final PaymentService paymentService;
+    private final CustomerRepository customerRepository;
 
-    @Autowired
-    private CustomerRepository customerRepository;
+    public PaymentController(PaymentRepository paymentRepository, PaymentService paymentService, CustomerRepository customerRepository, CustomerRepository customerRepository1) {
+        this.paymentRepository = paymentRepository;
+        this.paymentService = paymentService;
+        this.customerRepository = customerRepository1;
+    }
 
     @ResponseStatus(HttpStatus.CREATED)
     @PostMapping("/create/payment/{id}")

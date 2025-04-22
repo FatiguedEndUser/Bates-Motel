@@ -7,22 +7,21 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
-import java.util.Optional;
 import java.util.logging.Logger;
 
 @Service
 public class UserService {
+    private final UserRepository userRepository;
+    private final UserTypeRepository userTypeRepository;
+    private final PasswordEncoder passwordEncoder;
 
-    @Autowired
-    private UserRepository userRepository;
+    public UserService(UserRepository userRepository, UserTypeRepository userTypeRepository, PasswordEncoder passwordEncoder) {
+        this.userRepository = userRepository;
+        this.userTypeRepository = userTypeRepository;
+        this.passwordEncoder = passwordEncoder;
+    }
 
     Logger logger = Logger.getLogger(UserService.class.getName());
-
-    @Autowired
-    private UserTypeRepository userTypeRepository;
-
-    //@Autowired
-    private PasswordEncoder passwordEncoder;
 
     @Transactional
     public User updateUser(User user, UserDetails myDetails) {

@@ -1,7 +1,5 @@
 package dev.besharps.batesmotel.DB.Services;
 
-import dev.besharps.batesmotel.DB.Payment.Payments;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.server.ResponseStatusException;
@@ -9,8 +7,12 @@ import org.springframework.web.server.ResponseStatusException;
 @RestController
 @RequestMapping("/services")
 public class ServicesController {
-    @Autowired
-    private ServicesRepository servicesRepository;
+
+    private final ServicesRepository servicesRepository;
+
+    public ServicesController(ServicesRepository servicesRepository) {
+        this.servicesRepository = servicesRepository;
+    }
 
     @ResponseStatus(HttpStatus.OK)
     @DeleteMapping("/delete/{id}")

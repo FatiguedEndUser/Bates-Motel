@@ -5,8 +5,7 @@ import dev.besharps.batesmotel.DB.Staff.Staff;
 import jakarta.persistence.*;
 import lombok.*;
 import java.time.LocalDate;
-import org.springframework.security.core.Authentication;
-import org.springframework.security.core.context.SecurityContextHolder;
+
 @Entity(name = "Maintenance")
 @Table(name = "Maintenance")
 @AllArgsConstructor

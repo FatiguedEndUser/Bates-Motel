@@ -15,16 +15,15 @@ import java.util.List;
 @RequiredArgsConstructor
 public class UserController {
 
-    @Autowired
-
     private final UserRepository userRepository;
-    @Autowired
+    private final UserService userService;
+    private final PasswordEncoder passwordEncoder;
 
-    private UserService userService;
-
-    @Autowired
-    private PasswordEncoder passwordEncoder;
-
+    public UserController(UserRepository userRepository, UserService userService, PasswordEncoder passwordEncoder) {
+        this.userRepository = userRepository;
+        this.userService = userService;
+        this.passwordEncoder = passwordEncoder;
+    }
 
     @ResponseStatus(HttpStatus.OK)
     @GetMapping("/find/{id}")

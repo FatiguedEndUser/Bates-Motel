@@ -3,7 +3,6 @@ package dev.besharps.batesmotel.FrontEnd.Login;
 import dev.besharps.batesmotel.DB.User.UserController;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpSession;
-import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -24,6 +23,7 @@ public class LoginMapping {
                         @RequestParam(required = false, name = "password") String password) {
 
         //PERSISTENT SESSION
+        //TODO: FINISH SETTING UP PERSISTENT SIGNIN
         HttpSession session = request.getSession();
 
         //ADDING EMAIL AND PASSWORD ATTRIBUTES ATTRIBUTES
@@ -34,9 +34,9 @@ public class LoginMapping {
     }
 
     @PostMapping("/login/{username}")
-    public Boolean SignIn(
-                        @RequestParam(name = "email") String email,
-                        @RequestParam(name = "password") String password) {
+    public Boolean SignIn(@PathVariable String username,
+                          @RequestParam(name = "email") String email,
+                          @RequestParam(name = "password") String password) {
 
         //GRABBING USER EMAIL IF EXIST IN THE DATABASE
         String userEmail = userController.getUserByEmail(email).getEmail();

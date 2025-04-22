@@ -1,7 +1,6 @@
 package dev.besharps.batesmotel.DB.Customer;
 
 import dev.besharps.batesmotel.DB.Payment.Payments;
-import dev.besharps.batesmotel.DB.Services.Services;
 import dev.besharps.batesmotel.DB.UserType.UserType;
 import jakarta.persistence.*;
 import lombok.*;

@@ -17,11 +17,13 @@ import java.util.Optional;
 @Controller
 @RequestMapping("/rooms")
 public class RoomsMapping{
-    @Autowired
-    private RoomsRepository roomsRepository;
+    private final RoomsRepository roomsRepository;
+    private final RoomsService roomsService;
 
-    @Autowired
-    private RoomsService roomsService;
+    public RoomsMapping(RoomsRepository roomsRepository, RoomsService roomsService) {
+        this.roomsRepository = roomsRepository;
+        this.roomsService = roomsService;
+    }
 
     // Frontend view mappings
     @GetMapping("/standard-rooms")

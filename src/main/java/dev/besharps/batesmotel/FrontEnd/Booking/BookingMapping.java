@@ -18,6 +18,7 @@ public class BookingMapping {
     private final BookingsRepository bookingsRepository;
     private final CustomerRepository customerRepository;
     private final RoomsRepository roomsRepository;
+
     public BookingMapping(BookingsRepository bookingsRepository,
                           CustomerRepository customerRepository,
                           RoomsRepository roomsRepository) {
@@ -37,7 +38,7 @@ public class BookingMapping {
     }
 
     // Mapping for the booking review page
-    //I like it i was working on adding this to the database but lost in in a merge. Will work on getting
+    //I like it, was working on adding this to the database but lost in a merge. Will work on getting
     // added
     @PostMapping("/booking-form/review")
     public String reviewBooking(@RequestParam("roomTitle") String roomTitle,
@@ -61,8 +62,7 @@ public class BookingMapping {
 
     // Mapping for the booking confirmation page
     @PostMapping("/booking/confirm")
-    public String confirmBooking(@RequestParam("roomType") String roomType,
-                                 @RequestParam("roomTitle") String roomTitle,
+    public String confirmBooking(@RequestParam("roomTitle") String roomTitle,
                                  @RequestParam("checkin") String checkin,
                                  @RequestParam("checkout") String checkout,
                                  @RequestParam("guests") int guests,
@@ -70,7 +70,6 @@ public class BookingMapping {
                                  @RequestParam("floorPreference") String floorPreference,
                                  Model model) {
         // Add all booking details to the model so that the confirmation page can display them
-        model.addAttribute("roomType", roomType);
         model.addAttribute("roomTitle", roomTitle);
         model.addAttribute("checkin", checkin);
         model.addAttribute("checkout", checkout);

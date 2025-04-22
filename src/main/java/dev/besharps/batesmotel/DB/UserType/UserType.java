@@ -1,6 +1,5 @@
 package dev.besharps.batesmotel.DB.UserType;
 
-import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import dev.besharps.batesmotel.DB.User.User;
 import jakarta.persistence.*;

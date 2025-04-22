@@ -1,17 +1,15 @@
 package dev.besharps.batesmotel.DB.Customer;
 
 import jakarta.transaction.Transactional;
-import org.hibernate.service.spi.InjectService;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
-import java.util.Optional;
-import java.util.logging.Logger;
 
 @Service
 public class CustomerService {
-    @Autowired
-    private CustomerRepository customerRepository;
+    private final CustomerRepository customerRepository;
+
+    public CustomerService(CustomerRepository customerRepository) {
+        this.customerRepository = customerRepository;
+    }
 
     @Transactional
     Customer updateNew(Customer customer, CustomerDetails myDetails) {

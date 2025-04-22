@@ -1,7 +1,7 @@
 package dev.besharps.batesmotel.DB.Services;
 
 import dev.besharps.batesmotel.Exceptions.ServiceNotFoundException;
-import org.springframework.beans.factory.annotation.Autowired;
+
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -9,8 +9,12 @@ import java.util.List;
 @Service
 public class ServicesService {
 
-    @Autowired
-    private ServicesRepository servicesRepository;
+
+    private final ServicesRepository servicesRepository;
+
+    public ServicesService(ServicesRepository servicesRepository) {
+        this.servicesRepository = servicesRepository;
+    }
 
     public List<Services> getAllServices() {
         return servicesRepository.findAll();

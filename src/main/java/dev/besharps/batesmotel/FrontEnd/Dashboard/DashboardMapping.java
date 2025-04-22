@@ -2,10 +2,7 @@ package dev.besharps.batesmotel.FrontEnd.Dashboard;
 
 import dev.besharps.batesmotel.DB.Bookings.Bookings;
 import dev.besharps.batesmotel.DB.Bookings.BookingsRepository;
-import dev.besharps.batesmotel.DB.Customer.Customer;
 import dev.besharps.batesmotel.DB.Customer.CustomerRepository;
-import dev.besharps.batesmotel.DB.User.User;
-import dev.besharps.batesmotel.DB.User.UserController;
 import dev.besharps.batesmotel.DB.User.UserRepository;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;

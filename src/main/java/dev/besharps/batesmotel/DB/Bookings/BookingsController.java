@@ -3,8 +3,6 @@ package dev.besharps.batesmotel.DB.Bookings;
 import dev.besharps.batesmotel.DB.Services.Services;
 import dev.besharps.batesmotel.Exceptions.BookingNotFoundException;
 import jakarta.validation.Valid;
-import lombok.RequiredArgsConstructor;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.server.ResponseStatusException;
@@ -16,13 +14,14 @@ import java.util.Optional;
 //Mapping needs to be changed and access limited too admins or clerks
 @RestController
 @RequestMapping("/bookings")
-
 public class BookingsController{
-    @Autowired
-    private BookingsRepository bookingsRepository;
+    private final BookingsRepository bookingsRepository;
+    private final BookingService bookingService;
 
-    @Autowired
-    private BookingService bookingService;
+    public BookingsController(BookingsRepository bookingsRepository, BookingService bookingService) {
+        this.bookingsRepository = bookingsRepository;
+        this.bookingService = bookingService;
+    }
 
     @ResponseStatus(HttpStatus.FOUND)
     @GetMapping("/find-all")
@@ -44,7 +43,7 @@ public class BookingsController{
     @GetMapping("/find/services/{id}")
     List<Services> findBookingsServices(@PathVariable Integer id){
         return bookingsRepository.findServicesByBookingId(id);
-    };
+    }
 
     // TODO Wait for front-end to implement booking creation form
     @ResponseStatus(HttpStatus.CREATED)

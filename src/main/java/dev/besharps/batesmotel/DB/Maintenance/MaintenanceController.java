@@ -2,7 +2,6 @@ package dev.besharps.batesmotel.DB.Maintenance;
 
 //DEPENDENCY IMPORTS
 import jakarta.validation.Valid;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
@@ -16,11 +15,13 @@ import dev.besharps.batesmotel.Exceptions.MaintenanceNotFoundException;
 @RestController
 @RequestMapping("/api/maintenance") // Changed to avoid conflict with MaintenanceMapping
 public class MaintenanceController {
-    @Autowired
-    private MaintenanceRepository maintenanceRepository;
+    private final MaintenanceRepository maintenanceRepository;
+    private final MaintenanceService maintenanceService;
 
-    @Autowired
-    private MaintenanceService maintenanceService;
+    public MaintenanceController(MaintenanceRepository maintenanceRepository, MaintenanceService maintenanceService) {
+        this.maintenanceRepository = maintenanceRepository;
+        this.maintenanceService = maintenanceService;
+    }
 
     //GET
     @ResponseStatus(HttpStatus.FOUND)

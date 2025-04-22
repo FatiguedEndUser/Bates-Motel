@@ -9,7 +9,6 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
-@SuppressWarnings("JpaDataSourceORMInspection")
 @Entity(name = "Payments")
 @Table(name = "Payment")
 @AllArgsConstructor
