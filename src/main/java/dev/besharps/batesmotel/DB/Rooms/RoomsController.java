@@ -24,12 +24,14 @@ public class RoomsController {
     //GET
     @ResponseStatus(HttpStatus.FOUND)
     @GetMapping("/rooms/find-all")
+    @ResponseBody
     List<Rooms> findAll() {
         return roomsRepository.findAll();
     }
 
     @ResponseStatus(HttpStatus.OK)
     @GetMapping("/rooms/{id}")
+    @ResponseBody
     Optional<Rooms> findById(@PathVariable Integer id) {
         Optional<Rooms> rooms = roomsRepository.findById(id);
         if (rooms.isEmpty()) {
@@ -40,6 +42,7 @@ public class RoomsController {
 
     @ResponseStatus(HttpStatus.OK)
     @GetMapping("/type/{roomType}")
+    @ResponseBody
     List<Rooms> findByRoomType(@PathVariable String roomType) {
         List<Rooms> rooms = roomsRepository.findByRoomType(roomType);
         if (rooms.isEmpty()) {
@@ -70,7 +73,8 @@ public class RoomsController {
 
     //POST
     @ResponseStatus(HttpStatus.CREATED)
-    @PostMapping("/rooms/")
+    @PostMapping("/rooms/create")
+    @ResponseBody
     void create(@Valid @RequestBody Rooms room) {
         roomsRepository.save(room);
     }
@@ -78,6 +82,7 @@ public class RoomsController {
     //PUT
     @ResponseStatus(HttpStatus.OK)
     @PutMapping("/update/room")
+    @ResponseBody
     public Rooms update(@Valid @RequestBody Rooms room) {
         if (!roomsRepository.existsById(room.getRoomId().intValue())) {
             throw new RoomNotFoundException();
@@ -110,6 +115,7 @@ public class RoomsController {
     //DELETE
     @ResponseStatus(HttpStatus.NO_CONTENT)
     @DeleteMapping("/rooms/delete/{id}")
+    @ResponseBody
     void deleteById(@PathVariable Integer id) {
         roomsRepository.deleteById(id);
     }

@@ -38,8 +38,8 @@ public class BookingsRepositoryTest {
     @Test
     @Rollback(false)
     public void createBooking() {
-        Rooms selectedRoom = roomsRepository.findById(1).orElseThrow();
-        Customer customer = customerRepository.findById(1).orElseThrow();
+        Rooms selectedRoom = roomsRepository.findById(11).orElseThrow();
+        Customer customer = customerRepository.findById(7).orElseThrow();
         LocalDate startDate = LocalDate.of(2025, 3, 27);
         LocalDate endDate = LocalDate.of(2025, 4, 22);
         Bookings booking = Bookings.builder()

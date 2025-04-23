@@ -42,7 +42,7 @@ public class DashboardMapping {
         return "Dashboard";
     }
 
-    @GetMapping
+
     public void populateDashboard(Model model,
                                   @RequestParam String email,
                                   @RequestParam int loyaltyPoints,

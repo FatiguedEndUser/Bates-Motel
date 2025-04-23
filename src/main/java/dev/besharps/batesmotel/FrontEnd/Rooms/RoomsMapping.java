@@ -4,9 +4,6 @@ import dev.besharps.batesmotel.DB.Rooms.Rooms;
 import dev.besharps.batesmotel.DB.Rooms.RoomsRepository;
 import dev.besharps.batesmotel.DB.Rooms.RoomsService;
 import dev.besharps.batesmotel.Exceptions.RoomNotFoundException;
-import jakarta.validation.Valid;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -28,8 +25,8 @@ public class RoomsMapping{
     // Frontend view mappings
     @GetMapping("/standard-rooms")
     public String standardRooms(Model model) {
-        List<Rooms> standardRooms = roomsService.getRoomsByType("Standard");
-        model.addAttribute("rooms", standardRooms);
+         List<Rooms> standardRooms = roomsService.getRoomsByType("Standard");
+         model.addAttribute("rooms", standardRooms);
         return "StandardRoom";
     }
 
@@ -108,57 +105,57 @@ public class RoomsMapping{
         return "redirect:/rooms/admin/manage";
     }
 
-    // REST API endpoints
-    @ResponseStatus(HttpStatus.FOUND)
-    @GetMapping("/api/all")
-    @ResponseBody
-    List<Rooms> findAll() {
-        return roomsRepository.findAll();
-    }
+// REST API endpoints
+//    @ResponseStatus(HttpStatus.FOUND)
+//    @GetMapping("/api/all")
+//    @ResponseBody
+//    List<Rooms> findAll() {
+//        return roomsRepository.findAll();
+//    }
 
-    @ResponseStatus(HttpStatus.OK)
-    @GetMapping("/api/{id}")
-    @ResponseBody
-    Optional<Rooms> findById(@PathVariable Integer id) {
-        Optional<Rooms> rooms = roomsRepository.findById(id);
-        if (rooms.isEmpty()) {
-            throw new RoomNotFoundException();
-        }
-        return rooms;
-    }
+//    @ResponseStatus(HttpStatus.OK)
+//    @GetMapping("/api/{id}")
+//    @ResponseBody
+//    Optional<Rooms> findById(@PathVariable Integer id) {
+//        Optional<Rooms> rooms = roomsRepository.findById(id);
+//        if (rooms.isEmpty()) {
+//            throw new RoomNotFoundException();
+//        }
+//        return rooms;
+//    }
+//
+//    @ResponseStatus(HttpStatus.OK)
+//    @GetMapping("/api/type/{roomType}")
+//    @ResponseBody
+//    List<Rooms> findByRoomType(@PathVariable String roomType) {
+//        List<Rooms> rooms = roomsRepository.findByRoomType(roomType);
+//        if (rooms.isEmpty()) {
+//            throw new RoomNotFoundException();
+//        }
+//        return rooms;
+//    }
 
-    @ResponseStatus(HttpStatus.OK)
-    @GetMapping("/api/type/{roomType}")
-    @ResponseBody
-    List<Rooms> findByRoomType(@PathVariable String roomType) {
-        List<Rooms> rooms = roomsRepository.findByRoomType(roomType);
-        if (rooms.isEmpty()) {
-            throw new RoomNotFoundException();
-        }
-        return rooms;
-    }
-
-    @ResponseStatus(HttpStatus.CREATED)
-    @PostMapping("/api/create")
-    @ResponseBody
-    void create(@Valid @RequestBody Rooms room) {
-        roomsRepository.save(room);
-    }
-
-    @ResponseStatus(HttpStatus.OK)
-    @PutMapping("/api/update")
-    @ResponseBody
-    public Rooms update(@Valid @RequestBody Rooms room) {
-        if (!roomsRepository.existsById(room.getRoomId().intValue())) {
-            throw new RoomNotFoundException();
-        }
-        return roomsRepository.save(room);
-    }
-
-    @ResponseStatus(HttpStatus.NO_CONTENT)
-    @DeleteMapping("/api/delete/{id}")
-    @ResponseBody
-    void deleteById(@PathVariable Integer id) {
-        roomsRepository.deleteById(id);
-    }
+//    @ResponseStatus(HttpStatus.CREATED)
+//    @PostMapping("/api/create")
+//    @ResponseBody
+//    void create(@Valid @RequestBody Rooms room) {
+//        roomsRepository.save(room);
+//    }
+//
+//    @ResponseStatus(HttpStatus.OK)
+//    @PutMapping("/api/update")
+//    @ResponseBody
+//    public Rooms update(@Valid @RequestBody Rooms room) {
+//        if (!roomsRepository.existsById(room.getRoomId().intValue())) {
+//            throw new RoomNotFoundException();
+//        }
+//        return roomsRepository.save(room);
+//    }
+//
+//    @ResponseStatus(HttpStatus.NO_CONTENT)
+//    @DeleteMapping("/api/delete/{id}")
+//    @ResponseBody
+//    void deleteById(@PathVariable Integer id) {
+//        roomsRepository.deleteById(id);
+//    }
 }
