@@ -1,4 +1,4 @@
-/* Sign Up Style Sheet */
+/* Reset */
 * {
     margin: 0;
     padding: 0;
@@ -51,7 +51,7 @@ body {
 
 .form-group label {
     margin-bottom: 0.5rem;
-    color: #D98D46;
+    color: #fff; /* White label text on black background */
 }
 
 .form-group input {
@@ -59,14 +59,14 @@ body {
     border: none;
     border-radius: 0.25rem;
     font-size: 1rem;
-    background-color: #333;
-    color: #ffffff;
+    background-color: #fff;
+    color: #000;           /* Black text inside the input */
 }
 
 /* Sign Up Button */
 .signup-btn {
     display: inline-block;
-    margin-top: 2rem;
+    margin-top: 2rem;       /* Extra space above the button */
     padding: 12px 24px;
     background-color: #008fd5;
     color: white;

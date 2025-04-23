@@ -14,24 +14,8 @@ public class PaymentMapping {
     private final PaymentRepository paymentRepository;
 
     @GetMapping
-    public String payment(
-            @RequestParam String roomType,
-            @RequestParam String roomTitle,
-            @RequestParam String checkin,
-            @RequestParam String checkout,
-            @RequestParam int    guests,
-            @RequestParam String roomPreference,
-            @RequestParam String floorPreference,
-            Model model
-    ) {
-        model.addAttribute("newPayment", new Payments());
-        model.addAttribute("roomType", roomType);
-        model.addAttribute("roomTitle", roomTitle);
-        model.addAttribute("checkin", checkin);
-        model.addAttribute("checkout", checkout);
-        model.addAttribute("guests", guests);
-        model.addAttribute("roomPreference", roomPreference);
-        model.addAttribute("floorPreference", floorPreference);
+    public String payment(Model model) {
+        model.addAttribute("Payment", new Payments());
         return "payment";
     }
 
