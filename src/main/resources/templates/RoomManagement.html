@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<head>
+    <meta charset="UTF-8"/>
+    <title>BatesHotel - Room Management</title>
+    <link rel="stylesheet" href="/css/RoomManagement.css"/>
+</head>
+<body>
+
+<div class="admin-wrapper">
+    <!-- HEADER -->
+    <header class="admin-header">
+        <h1>Room Management</h1>
+        <nav class="admin-nav">
+            <a th:href="@{/home}">Back to Website</a>
+        </nav>
+    </header>
+
+    <div class="admin-content">
+        <!-- ADD NEW ROOM FORM -->
+        <section class="admin-section">
+            <h2>Add New Room</h2>
+            <form th:action="@{/rooms/admin/add}" th:object="${newRoom}" method="post" class="room-form">
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="roomName">Room Name</label>
+                        <input type="text" id="roomName" th:field="*{roomName}" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="roomType">Room Type</label>
+                        <select id="roomType" th:field="*{roomType}" required>
+                            <option value="Standard">Standard</option>
+                            <option value="Deluxe">Deluxe</option>
+                            <option value="Suite">Suite</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="floor">Floor</label>
+                        <input type="number" id="floor" th:field="*{floor}" min="1" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="roomNumber">Room Number</label>
+                        <input type="number" id="roomNumber" th:field="*{roomNumber}" required>
+                    </div>
+                </div>
+
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="pricePerNight">Price Per Night ($)</label>
+                        <input type="number" id="pricePerNight" th:field="*{pricePerNight}" min="0" step="0.01" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="available">Available</label>
+                        <select id="available" th:field="*{available}">
+                            <option value="true">Yes</option>
+                            <option value="false">No</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="bedConfiguration">Bed Configuration</label>
+                        <input type="text" id="bedConfiguration" th:field="*{bedConfiguration}" placeholder="e.g., 2 Beds | 1 King Bed" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="appliances">Room Appliances</label>
+                        <input type="text" id="appliances" th:field="*{appliances}" placeholder="e.g., Microwave, Minifridge" required>
+                    </div>
+                </div>
+
+                <div class="form-row">
+                    <div class="form-group wide">
+                        <label for="imageUrl">Image URL</label>
+                        <input type="text" id="imageUrl" th:field="*{imageUrl}" placeholder="/img/roomname.jpg" required>
+                    </div>
+                </div>
+
+                <div class="form-row">
+                    <div class="form-group wide">
+                        <label for="description">Description</label>
+                        <textarea id="description" th:field="*{description}" rows="3" placeholder="Room description..."></textarea>
+                    </div>
+                </div>
+
+                <div class="form-actions">
+                    <button type="submit" class="btn-primary">Add Room</button>
+                    <button type="reset" class="btn-secondary">Reset</button>
+                </div>
+            </form>
+        </section>
+
+        <!-- EXISTING ROOMS TABLE -->
+        <section class="admin-section">
+            <h2>Existing Rooms</h2>
+            <div class="table-responsive">
+                <table class="rooms-table">
+                    <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>Name</th>
+                        <th>Type</th>
+                        <th>Room #</th>
+                        <th>Floor</th>
+                        <th>Price</th>
+                        <th>Available</th>
+                        <th>Actions</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr th:each="room : ${rooms}">
+                        <td th:text="${room.roomId}"></td>
+                        <td th:text="${room.roomName}"></td>
+                        <td th:text="${room.roomType}"></td>
+                        <td th:text="${room.roomNumber}"></td>
+                        <td th:text="${room.floor}"></td>
+                        <td th:text="'$' + ${room.pricePerNight}"></td>
+                        <td>
+                            <span th:if="${room.available}" class="status-badge available">Available</span>
+                            <span th:unless="${room.available}" class="status-badge unavailable">Unavailable</span>
+                        </td>
+                        <td class="action-buttons">
+                            <a th:href="@{/rooms/admin/edit/{id}(id=${room.roomId})}" class="btn-edit">Edit</a>
+                            <a th:href="@{/rooms/admin/delete/{id}(id=${room.roomId})}" class="btn-delete"
+                               onclick="return confirm('Are you sure you want to delete this room?')">Delete</a>
+                        </td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+            <!-- Pagination if needed -->
+            <div class="pagination" th:if="${rooms.size() > 10}">
+                <!-- Pagination controls would go here -->
+            </div>
+        </section>
+    </div>
+
+    <!-- ADMIN FOOTER -->
+    <footer class="admin-footer">
+        <p>&copy; 2025 BatesHotel Admin Panel</p>
+    </footer>
+</div>
+
+</body>
+</html>

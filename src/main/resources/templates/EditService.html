@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<head>
+    <meta charset="UTF-8"/>
+    <title>BatesHotel - Edit Service</title>
+    <link rel="stylesheet" href="/css/ServiceManagement.css"/>
+</head>
+<body>
+
+<div class="admin-wrapper">
+    <!-- HEADER -->
+    <header class="admin-header">
+        <h1>Edit Service</h1>
+        <nav class="admin-nav">
+            <a th:href="@{/services/admin/manage}">Back to Services</a>
+            <a th:href="@{/home}">Back to Website</a>
+        </nav>
+    </header>
+
+    <div class="admin-content">
+        <!-- EDIT SERVICE FORM -->
+        <section class="admin-section">
+            <h2>Edit Service Details</h2>
+            <form th:action="@{/services/admin/update/{id}(id=${service.serviceId})}" th:object="${service}" method="post" class="service-form" enctype="multipart/form-data">
+                <input type="hidden" th:field="*{serviceId}">
+
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="serviceName">Service Name</label>
+                        <input type="text" id="serviceName" th:field="*{serviceName}" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="serviceCharge">Service Charge ($)</label>
+                        <input type="number" id="serviceCharge" th:field="*{serviceCharge}" min="0" step="0.01" required>
+                    </div>
+                </div>
+
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="serviceCategory">Service Category</label>
+                        <select id="serviceCategory" th:field="*{serviceCategory}" required>
+                            <option value="Dining">Dining</option>
+                            <option value="Wellness">Wellness</option>
+                            <option value="Transportation">Transportation</option>
+                            <option value="Entertainment">Entertainment</option>
+                            <option value="Business">Business</option>
+                            <option value="Other">Other</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="available">Available</label>
+                        <select id="available" th:field="*{available}">
+                            <option value="true">Yes</option>
+                            <option value="false">No</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="form-row">
+                    <div class="form-group wide">
+                        <label for="description">Description</label>
+                        <textarea id="description" th:field="*{description}" rows="3" placeholder="Service description..."></textarea>
+                    </div>
+                </div>
+
+                <div class="form-row">
+                    <div class="form-group wide">
+                        <label>Current Image</label>
+                        <div class="current-image-container">
+                            <img th:if="${service.imageUrl}" th:src="${service.imageUrl}" alt="Current service image" class="current-image">
+                            <span th:unless="${service.imageUrl}">No image currently set</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="form-row">
+                    <div class="form-group wide">
+                        <label for="imageFile">Update Image (leave empty to keep current)</label>
+                        <input type="file" id="imageFile" name="imageFile" accept="image/*">
+                        <input type="hidden" th:field="*{imageUrl}">
+                    </div>
+                </div>
+
+                <div class="form-actions">
+                    <button type="submit" class="btn-primary">Update Service</button>
+                    <a th:href="@{/services/admin/manage}" class="btn-secondary">Cancel</a>
+                </div>
+            </form>
+        </section>
+    </div>
+
+    <!-- ADMIN FOOTER -->
+    <footer class="admin-footer">
+        <p>&copy; 2025 BatesHotel Admin Panel</p>
+    </footer>
+</div>
+
+</body>
+</html>

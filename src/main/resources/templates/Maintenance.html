@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<head>
+    <meta charset="UTF-8"/>
+    <title>BatesHotel - Maintenance Requests</title>
+    <link rel="stylesheet" href="/css/Maintenance.css"/>
+</head>
+<body>
+
+<!-- Fixed-width wrapper to lock the layout -->
+<div class="page-wrapper">
+
+    <!-- HEADER -->
+    <header class="top-header">
+        <div th:replace="fragments/navbar"></div>
+    </header>
+
+    <!-- SECOND ROW: "MAINTENANCE" TITLE & FILTER LINKS -->
+    <section class="maintenance-header">
+        <h1 class="maintenance-title">MAINTENANCE REQUESTS</h1>
+        <div class="maintenance-status-filters">
+            <!-- Clickable links to filter maintenance requests -->
+            <a th:href="@{/maintenance}" class="active">All</a>
+            <a th:href="@{/maintenance/pending}">Pending</a>
+            <a th:href="@{/maintenance/completed}">Completed</a>
+            <!-- Fixed: Changed authorization check to use a model attribute -->
+            <a th:if="${isAdmin}" th:href="@{/maintenance/admin/manage}" class="admin-link">Manage Maintenance</a>
+        </div>
+    </section>
+
+    <!-- SEARCH SECTION -->
+    <section class="search-container">
+        <form th:action="@{/maintenance/search}" method="get" class="search-form">
+            <div class="form-group">
+                <label for="roomId">Room ID</label>
+                <input type="number" id="roomId" name="roomId" placeholder="Room ID" th:value="${roomId}">
+            </div>
+            <div class="form-group">
+                <label for="pending">Status</label>
+                <select id="pending" name="pending">
+                    <option value="">All Statuses</option>
+                    <option value="true" th:selected="${pending == true}">Pending</option>
+                    <option value="false" th:selected="${pending == false}">Completed</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="startDate">From Date</label>
+                <input type="date" id="startDate" name="startDate" th:value="${startDate}">
+            </div>
+            <div class="form-group">
+                <label for="endDate">To Date</label>
+                <input type="date" id="endDate" name="endDate" th:value="${endDate}">
+            </div>
+            <div class="form-group">
+                <label for="keyword">Description Keyword</label>
+                <input type="text" id="keyword" name="keyword" placeholder="Search descriptions..." th:value="${keyword}">
+            </div>
+            <button type="submit" class="search-btn">Search</button>
+        </form>
+    </section>
+
+    <!-- Search filters summary (when searching) -->
+    <section class="search-summary" th:if="${searching}">
+        <h3>Search Filters</h3>
+        <div class="filter-tags">
+            <span th:if="${roomId}" class="filter-tag" th:text="'Room ID: ' + ${roomId}"></span>
+            <span th:if="${pending != null && pending}" class="filter-tag">Status: Pending</span>
+            <span th:if="${pending != null && !pending}" class="filter-tag">Status: Completed</span>
+            <span th:if="${startDate}" class="filter-tag" th:text="'From: ' + ${startDate}"></span>
+            <span th:if="${endDate}" class="filter-tag" th:text="'To: ' + ${endDate}"></span>
+            <span th:if="${keyword}" class="filter-tag" th:text="'Keyword: ' + ${keyword}"></span>
+            <a th:href="@{/maintenance}" class="clear-filters">Clear All Filters</a>
+        </div>
+    </section>
+
+    <!-- MIDDLE SECTION: MAINTENANCE REQUEST CARDS -->
+    <section class="maintenance-container">
+        <!-- Dynamic Maintenance Cards - Loop through maintenance requests from backend -->
+        <div th:each="maintenance : ${maintenanceList}" class="maintenance-card">
+            <!-- Room Info area -->
+            <div class="maintenance-room-info">
+                <h3 class="room-number" th:text="'Room ' + ${maintenance.room.roomNumber}">Room 101</h3>
+                <p class="room-type" th:text="${maintenance.room.roomType}">Standard Room</p>
+                <p class="floor-info" th:text="'Floor ' + ${maintenance.room.floor}">Floor 1</p>
+            </div>
+
+            <!-- Main info area -->
+            <div class="maintenance-info">
+                <h2 class="maintenance-id" th:text="'Maintenance #' + ${maintenance.maintenanceId}">Maintenance #1</h2>
+                <p class="request-date" th:text="'Requested: ' + ${maintenance.requestDate}">2025-04-15</p>
+                <p class="staff-assigned" th:text="'Staff: ' + ${maintenance.staff.firstName + ' ' + maintenance.staff.lastName}">John Doe</p>
+                <div class="description-box">
+                    <h4>Description:</h4>
+                    <p class="maintenance-description" th:text="${maintenance.description}">Maintenance Description</p>
+                </div>
+
+                <!-- Status section at bottom -->
+                <div class="maintenance-status" th:classappend="${maintenance.finishedDate == null ? 'pending' : 'completed'}">
+                    <span class="status-label" th:text="${maintenance.finishedDate == null ? 'PENDING' : 'COMPLETED'}">PENDING</span>
+                    <span class="completed-date" th:if="${maintenance.finishedDate != null}" th:text="'Completed: ' + ${maintenance.finishedDate}">2025-04-17</span>
+                </div>
+
+                <!-- Actions for admin users - Fixed authorization check -->
+                <div class="maintenance-actions" th:if="${isAdmin}">
+                    <a th:href="@{/maintenance/admin/edit/{id}(id=${maintenance.maintenanceId})}" class="btn-edit">Edit</a>
+                    <a th:if="${maintenance.finishedDate == null}" th:href="@{/maintenance/admin/complete/{id}(id=${maintenance.maintenanceId})}" class="btn-complete">Complete</a>
+                </div>
+            </div>
+        </div>
+
+        <!-- If no maintenance requests are found -->
+        <div th:if="${#lists.isEmpty(maintenanceList)}" class="no-maintenance-message">
+            <p>No maintenance requests match your criteria. Please try different filters.</p>
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+    <div th:replace="fragments/footer"></div>
+</div>
+
+</body>
+</html>

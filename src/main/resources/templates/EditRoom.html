@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<head>
+    <meta charset="UTF-8"/>
+    <title>BatesHotel - Edit Room</title>
+    <link rel="stylesheet" href="/css/RoomManagement.css"/>
+</head>
+<body>
+
+<div class="admin-wrapper">
+    <!-- HEADER -->
+    <header class="admin-header">
+        <h1>Edit Room</h1>
+        <nav class="admin-nav">
+            <a th:href="@{/rooms/admin/manage}">Back to Room Management</a>
+            <a th:href="@{/home}">Back to Website</a>
+        </nav>
+    </header>
+
+    <div class="admin-content">
+        <!-- EDIT ROOM FORM -->
+        <section class="admin-section">
+            <h2 th:text="'Editing: ' + ${room.roomName}"></h2>
+            <form th:action="@{/rooms/admin/update/{id}(id=${room.roomId})}" th:object="${room}" method="post" class="room-form">
+                <input type="hidden" th:field="*{roomId}">
+
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="roomName">Room Name</label>
+                        <input type="text" id="roomName" th:field="*{roomName}" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="roomType">Room Type</label>
+                        <select id="roomType" th:field="*{roomType}" required>
+                            <option value="Standard">Standard</option>
+                            <option value="Deluxe">Deluxe</option>
+                            <option value="Suite">Suite</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="floor">Floor</label>
+                        <input type="number" id="floor" th:field="*{floor}" min="1" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="roomNumber">Room Number</label>
+                        <input type="number" id="roomNumber" th:field="*{roomNumber}" required>
+                    </div>
+                </div>
+
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="pricePerNight">Price Per Night ($)</label>
+                        <input type="number" id="pricePerNight" th:field="*{pricePerNight}" min="0" step="0.01" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="available">Available</label>
+                        <select id="available" th:field="*{available}">
+                            <option value="true">Yes</option>
+                            <option value="false">No</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="bedConfiguration">Bed Configuration</label>
+                        <input type="text" id="bedConfiguration" th:field="*{bedConfiguration}" placeholder="e.g., 2 Beds | 1 King Bed" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="appliances">Room Appliances</label>
+                        <input type="text" id="appliances" th:field="*{appliances}" placeholder="e.g., Microwave, Minifridge" required>
+                    </div>
+                </div>
+
+                <div class="form-row">
+                    <div class="form-group wide">
+                        <label for="imageUrl">Image URL</label>
+                        <input type="text" id="imageUrl" th:field="*{imageUrl}" placeholder="/img/roomname.jpg" required>
+                    </div>
+                </div>
+
+                <div class="form-row">
+                    <div class="form-group wide">
+                        <label for="description">Description</label>
+                        <textarea id="description" th:field="*{description}" rows="3" placeholder="Room description..."></textarea>
+                    </div>
+                </div>
+
+                <div class="form-row">
+                    <div class="form-group wide">
+                        <div class="image-preview">
+                            <h3>Current Image</h3>
+                            <img th:src="${room.imageUrl}" alt="Room Image Preview">
+                        </div>
+                    </div>
+                </div>
+
+                <div class="form-actions">
+                    <button type="submit" class="btn-primary">Update Room</button>
+                    <a th:href="@{/rooms/admin/manage}" class="btn-secondary">Cancel</a>
+                </div>
+            </form>
+        </section>
+    </div>
+
+    <!-- ADMIN FOOTER -->
+    <footer class="admin-footer">
+        <p>&copy; 2025 BatesHotel Admin Panel</p>
+    </footer>
+</div>
+
+</body>
+</html>
