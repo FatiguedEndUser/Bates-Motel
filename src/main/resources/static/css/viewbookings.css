@@ -1,0 +1,103 @@
+body {
+    background-color: #000000;
+    font-family: Steelfish, serif;
+    margin: 0; padding: 0;
+}
+.page-wrapper {
+    padding: 1rem;
+}
+.header-section {
+    text-align: center;
+    padding: 1.5rem 0;
+    background-color: #008FD5;
+    color: #FFFFFF;
+}
+.header-section h1 {
+    margin: 0; font-size: 2.5rem;
+}
+.bookings-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 2rem;
+    max-width: 1200px;
+    margin: 2rem auto;
+    padding: 0 1rem;
+}
+.booking-card {
+    background-color: #FFFFFF;
+    border: 2px solid #FFA500;
+    border-radius: 12px;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.3);
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    padding: 1.5rem;
+    transition: transform 0.3s ease;
+}
+.booking-card:hover {
+    transform: translateY(-5px);
+}
+.booking-card h2 {
+    color: #008FD5;
+    margin: 0 0 0.75rem;
+    font-size: 1.8rem;
+}
+.booking-details {
+    flex-grow: 1;
+}
+.booking-details p {
+    color: #333333;
+    margin: 0.25rem 0;
+    font-size: 1rem;
+}
+.booking-buttons {
+    display: flex;
+    gap: 1rem;
+    margin-top: 1.5rem;
+}
+.booking-buttons .btn-edit,
+.booking-buttons .btn-cancel {
+    flex: 1;
+    text-align: center;
+    padding: 0.75rem;
+    border-radius: 4px;
+    font-weight: bold;
+    text-decoration: none;
+    transition: background-color 0.3s ease, color 0.3s ease;
+    color: #FFFFFF;
+}
+.btn-edit {
+    background-color: #008FD5;
+}
+.btn-edit:hover {
+    background-color: #FFA500;
+}
+.btn-cancel {
+    background-color: #FFA500;
+}
+.btn-cancel:hover {
+    background-color: #008FD5;
+}
+.no-bookings {
+    grid-column: 1 / -1;
+    text-align: center;
+    color: #FFA500;
+    font-size: 1.5rem;
+    margin-top: 2rem;
+}
+.back-link {
+    text-align: center;
+    margin: 2rem 0;
+}
+.back-link a {
+    background-color: #008FD5;
+    color: #FFFFFF;
+    padding: 0.75rem 1.5rem;
+    text-decoration: none;
+    border-radius: 4px;
+    transition: background-color 0.3s ease;
+    font-weight: bold;
+}
+.back-link a:hover {
+    background-color: #FFA500;
+}

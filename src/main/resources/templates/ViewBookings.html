@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Your Bookings - Bates Hotel</title>
+    <link rel="stylesheet" href="/css/viewbookings.css"/>
+</head>
+<body>
+<div class="page-wrapper">
+    <!-- HEADER -->
+    <header class="top-header">
+        <div th:replace="fragments/navbar"></div>
+    </header>
+
+    <section class="header-section">
+        <h1>Your Bookings</h1>
+    </section>
+
+    <section class="bookings-grid">
+        <div th:if="${#lists.isEmpty(bookings)}" class="no-bookings">
+            You have no bookings at this time.
+        </div>
+
+        <div th:each="booking : ${bookings}" class="booking-card">
+            <h2 th:text="${booking.roomType} + ' – ' + ${booking.roomTitle}">Room Type – Title</h2>
+            <div class="booking-details">
+                <p><strong>Date:</strong> <span th:text="${booking.date}">2025-04-15</span></p>
+                <p><strong>Check-in:</strong> <span th:text="${booking.checkin}">2025-04-15</span></p>
+                <p><strong>Check-out:</strong> <span th:text="${booking.checkout}">2025-04-16</span></p>
+                <p><strong>Guests:</strong> <span th:text="${booking.guests}">1</span></p>
+            </div>
+            <div class="booking-buttons">
+                <a th:href="@{/booking/edit(id=${booking.id})}" class="btn-edit">Edit Booking</a>
+                <a th:href="@{/booking/cancel(id=${booking.id})}" class="btn-cancel">Cancel Booking</a>
+            </div>
+        </div>
+    </section>
+
+    <div class="back-link">
+        <a th:href="@{/rooms/standard-rooms}">Back to Rooms</a>
+    </div>
+
+    <!-- FOOTER -->
+    <div th:replace="fragments/footer"></div>
+</div>
+</body>
+</html>

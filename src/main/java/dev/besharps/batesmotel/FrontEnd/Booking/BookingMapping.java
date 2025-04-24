@@ -11,6 +11,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 import java.time.LocalDate;
+import java.util.List;
 
 @Controller
 public class BookingMapping {
@@ -92,5 +93,13 @@ public class BookingMapping {
         bookingsRepository.save(new Bookings(new Customer(firstName, lastName, email), roomType, checkin, checkout, room));
 
         return "redirect:/payment";
+    }
+
+    // Mapping for the "View My Bookings" page
+    @GetMapping("/bookings")
+    public String viewBookings(Model model) {
+        List<Bookings> bookings = bookingsRepository.findAll();
+        model.addAttribute("bookings", bookings);
+        return "ViewBookings";
     }
 }
