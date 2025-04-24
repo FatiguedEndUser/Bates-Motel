@@ -1,164 +1,161 @@
 body {
-     font-family: Arial, sans-serif;
-     margin: 0;
-     padding: 0;
-     background-color: #f4f4f4;
+    font-family: Steelfish, serif;
+    margin: 0;
+    padding: 0;
+    background-color: #000;
+    color: #fff;
 }
 
-.top-header {
-     background-color: #2a2a2a;
-     padding: 20px 0;
-     color: white;
-     text-align: center;
+.logo {
+    font-size: 24px;
+    font-weight: bold;
+    color: #fff;
+}
+
+.logo span {
+    color: #2a9df4;
 }
 
 .hero {
-     background-image: url('images/hero-bg.jpg');
-     background-size: cover;
-     background-position: center;
-     padding: 60px 0;
-     text-align: center;
-     color: white;
+    background: url('../img/Hero.jpg') no-repeat center center/cover;
+    height: 400px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
-.search-bar form {
-     display: flex;
-     justify-content: center;
-     gap: 10px;
-     flex-wrap: wrap;
-     background-color: rgba(0, 0, 0, 0.5);
-     padding: 20px;
-     border-radius: 10px;
+.search-bar {
+    background: rgba(0, 0, 0, 0.8);
+    padding: 15px;
+    border-radius: 10px;
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
+    justify-content: center;
 }
 
 .search-bar input,
 .search-bar select,
 .search-bar button {
-     padding: 10px;
-     border-radius: 5px;
-     border: none;
-     margin: 5px;
+    padding: 10px;
+    border-radius: 5px;
+    border: none;
+    margin: 5px;
+    max-width: 150px;
 }
 
 .search-bar input[type="date"] {
-     max-width: 160px;
-}
-
-.search-bar input[type="number"],
-.search-bar select {
-     max-width: 150px;
+    max-width: 160px;
 }
 
 .search-bar button {
-     background-color: #ff6600;
-     color: white;
-     cursor: pointer;
-     transition: background-color 0.3s ease;
+    background-color: #2a9df4;
+    color: white;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
 }
 
 .search-bar button:hover {
-     background-color: #e55b00;
+    background-color: #1a6fb3;
 }
 
-.rooms {
-     padding: 40px 20px;
-     background-color: #fff;
-     text-align: center;
+.rooms, .services {
+    text-align: center;
+    padding: 50px 20px;
 }
 
-.rooms h2 {
-     font-size: 2.5em;
-     margin-bottom: 20px;
+.rooms h2,
+.services h2 {
+    font-size: 2.5em;
+    margin-bottom: 20px;
+    color: #2a9df4;
 }
 
 .room-list {
-     display: flex;
-     flex-wrap: wrap;
-     justify-content: center;
-     gap: 20px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 20px;
 }
 
 .room {
-     background-color: #f2af6c;
-     padding: 20px;
-     border-radius: 10px;
-     width: 250px;
-     text-align: center;
-     transition: transform 0.3s ease, box-shadow 0.3s ease;
+    background: #F2AF6C;
+    padding: 15px;
+    border-radius: 10px;
+    text-align: center;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
 .room:hover {
-     transform: scale(1.05);
-     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    transform: scale(1.05);
+    box-shadow: 0 4px 8px rgba(255, 255, 255, 0.2);
 }
 
 .room img {
-     width: 100%;
-     height: 150px;
-     border-radius: 5px;
-     object-fit: cover;
+    width: 200px;
+    height: 150px;
+    border-radius: 5px;
+    object-fit: cover;
 }
 
 .room p {
-     margin: 10px 0;
-     font-size: 1.1em;
+    margin: 10px 0;
+    font-size: 1.1em;
+    color: #000;
 }
 
 .room p.price {
-     font-weight: bold;
-     color: #ff6600;
-}
-
-.services {
-     background-color: #f4f4f4;
-     padding: 40px 20px;
-     text-align: center;
-}
-
-.services h2 {
-     font-size: 2.5em;
-     margin-bottom: 20px;
+    font-weight: bold;
+    color: #ff6600;
 }
 
 .services ul {
-     list-style-type: none;
-     padding: 0;
+    list-style: none;
+    padding: 0;
 }
 
-.services li {
-     font-size: 1.2em;
-     margin: 10px 0;
+.services ul li {
+    margin: 10px 0;
+    font-size: 1.2em;
 }
 
 footer {
-     background-color: #2a2a2a;
-     color: white;
-     padding: 20px 0;
-     text-align: center;
+    background-color: #111;
+    text-align: center;
+    padding: 20px;
 }
 
-footer a {
-     color: white;
-     text-decoration: none;
+footer ul {
+    list-style: none;
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    padding: 0;
+    margin: 0;
 }
 
-footer a:hover {
-     text-decoration: underline;
+footer ul li a {
+    text-decoration: none;
+    color: #2a9df4;
+}
+
+footer ul li a:hover {
+    text-decoration: underline;
 }
 
 @media screen and (max-width: 768px) {
-     .search-bar form {
-         flex-direction: column;
-     }
+    .search-bar {
+        flex-direction: column;
+    }
 
-     .room-list {
-         flex-direction: column;
-         align-items: center;
-     }
+    .room-list {
+        flex-direction: column;
+        align-items: center;
+    }
 
-     .room {
-         width: 80%;
-         max-width: 350px;
-         margin: 10px 0;
-     }
+    .room {
+        width: 80%;
+        max-width: 350px;
+    }
 }
+
