@@ -24,6 +24,9 @@ body {
   box-shadow: 0 4px 8px rgba(0,0,0,0.2);
 }
 
+.payment-title {
+  align-items: center;
+}
 /* Form Groups */
 .payment-form .form-group {
   margin-bottom: 1.5rem;

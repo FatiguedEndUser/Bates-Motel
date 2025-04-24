@@ -45,6 +45,14 @@ public class Bookings {
     )
     private Rooms room;
 
+    // mapping roomType into a column
+    @Column(name = "room_type", nullable = false)
+    private String roomType;
+
+    // room_title column:
+    @Column(name = "room_title", nullable = false)
+    private String roomTitle;
+
     @ManyToMany
     @JoinTable(
             name = "booking_services",
@@ -59,6 +67,16 @@ public class Bookings {
     @Column(name = "endDate", nullable = false)
     private LocalDate endDate;
 
+    @Column(name = "guests", nullable = false)
+    private int guests;
 
-
+    public Bookings(Customer customer,
+                    LocalDate startDate,
+                    LocalDate endDate,
+                    Rooms room) {
+        this.customer = customer;
+        this.startDate = startDate;
+        this.endDate = endDate;
+        this.room     = room;
+    }
 }

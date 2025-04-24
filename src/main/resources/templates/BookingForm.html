@@ -7,6 +7,7 @@
 </head>
 <body>
 <div class="page-wrapper">
+
     <!-- Header -->
     <header class="top-header">
         <div th:replace="fragments/navbar"></div>
@@ -17,77 +18,94 @@
         <h1 class="rooms-title">BOOK A ROOM</h1>
     </section>
 
-    <!-- Booking Form Section -->
-    <form class="booking-form" th:action="@{/payment}" method="get">
+    <form class="booking-form"
+          th:action="@{/payment}"
+          method="get">
 
-        <!-- Check-in Section -->
+        <!-- Hidden: carry through data the user won't change here -->
+        <input type="hidden" name="roomType"        th:value="${roomType}"       />
+        <input type="hidden" name="roomTitle"       th:value="${roomTitle}"      />
+        <input type="hidden" name="roomId"          th:value="${roomId}"         />
+        <input type="hidden" name="firstName"       th:value="${firstName}"      />
+        <input type="hidden" name="lastName"        th:value="${lastName}"       />
+        <input type="hidden" name="email"           th:value="${email}"          />
+        <input type="hidden" name="roomPreference"  th:value="${roomPreference}" />
+        <input type="hidden" name="floorPreference" th:value="${floorPreference}"/>
+
+        <!-- customer sees and edits these -->
         <section class="checkin-section">
             <h2 class="checkin-title">Who's checking in?</h2>
             <p class="checkin-subtitle">
                 <a class="sign-in-link" th:href="@{/login}">Sign in for faster checkout</a>
-            </p></br> </br>
+            </p>
+            <br/><br/>
 
-        <!-- Customer Information -->
-        <div class="form-group">
-            <label for="firstName">First Name</label>
-            <input type="text" id="firstName" name="firstName" required placeholder="Enter your first name">
-        </div>
+            <div class="form-group">
+                <label for="checkin">Check-in Date</label>
+                <input type="date"
+                       id="checkin"
+                       name="checkin"
+                       required
+                       th:value="${checkin}"/>
+            </div>
 
-        <div class="form-group">
-            <label for="lastName">Last Name</label>
-            <input type="text" id="lastName" name="lastName" required placeholder="Enter your last name">
-        </div>
+            <div class="form-group">
+                <label for="checkout">Check-out Date</label>
+                <input type="date"
+                       id="checkout"
+                       name="checkout"
+                       required
+                       th:value="${checkout}"/>
+            </div>
 
-        <div class="form-group">
-            <label for="email">Email</label>
-            <input type="email" id="email" name="email" required placeholder="Enter your email">
-        </div>
+            <div class="form-group">
+                <label for="guests">Number of Guests</label>
+                <input type="number"
+                       id="guests"
+                       name="guests"
+                       min="1"
+                       required
+                       th:value="${guests != null ? guests : 1}"/>
+            </div>
         </section>
 
-        <!-- Show selected room info -->
-        <section class="room-details">
-            <h2>Your Room</h2>
-            <p><strong>Type:</strong> <span th:text="${roomType}">Standard</span></p>
-            <p><strong>Title:</strong> <span th:text="${roomTitle}">Room Name</span></p>
+        <!-- Room preferences -->
+        <section class="preferences-section">
+            <div class="form-group">
+                <label for="roomPreference">Room Preference</label>
+                <select id="roomPreference"
+                        name="roomPreference"
+                        th:value="${roomPreference}">
+                    <option value="">Select your preference</option>
+                    <option value="quiet">Quiet Corner</option>
+                    <option value="view">Window with a View</option>
+                    <option value="spacious">Spacious Room</option>
+                    <option value="accessible">Accessible Room</option>
+                </select>
+            </div>
 
-        <!-- Hidden fields to preserve values on submit -->
-        <input type="hidden" name="roomType" th:value="${roomType}">
-        <input type="hidden" name="roomTitle" th:value="${roomTitle}">
+            <div class="form-group">
+                <label for="floorPreference">Preferred Floor</label>
+                <select id="floorPreference"
+                        name="floorPreference"
+                        th:value="${floorPreference}">
+                    <option value="">Select preferred floor</option>
+                    <option value="low">Lower Floor</option>
+                    <option value="middle">Middle Floor</option>
+                    <option value="high">Upper Floor</option>
+                </select>
+            </div>
+        </section>
 
-        <!-- Booking Information Fields -->
-        <label for="checkin">Check-in Date</label>
-        <input type="date" id="checkin" name="checkin" required>
-
-        <label for="checkout">Check-out Date</label>
-        <input type="date" id="checkout" name="checkout" required>
-
-        <label for="guests">Number of Guests</label>
-        <input type="number" id="guests" name="guests" min="1" value="1" required>
-
-        <!-- Dropdown for Room Preference -->
-        <label for="roomPreference">Room Preference</label>
-        <select id="roomPreference" name="roomPreference">
-            <option value="">Select your preference</option>
-            <option value="quiet">Quiet Corner</option>
-            <option value="view">Window with a View</option>
-            <option value="spacious">Spacious Room</option>
-            <option value="accessible">Accessible Room</option>
-        </select>
-
-        <!-- Dropdown for Preferred Floor -->
-        <label for="floorPreference">Preferred Floor</label>
-        <select id="floorPreference" name="floorPreference">
-            <option value="">Select preferred floor</option>
-            <option value="low">Lower Floor</option>
-            <option value="middle">Middle Floor</option>
-            <option value="high">Upper Floor</option>
-        </select>
-
+        <!-- Form actions -->
         <div class="form-buttons">
             <button type="submit">Book Now</button>
-            <button type="button" onclick="window.location.href='/rooms/standard-rooms';">Cancel</button>
+            <button type="button"
+                    onclick="window.location.href='/rooms/standard-rooms';">
+                Cancel
+            </button>
         </div>
-        </section>
+
     </form>
 
     <!-- Footer -->
@@ -95,4 +113,3 @@
 </div>
 </body>
 </html>
-
