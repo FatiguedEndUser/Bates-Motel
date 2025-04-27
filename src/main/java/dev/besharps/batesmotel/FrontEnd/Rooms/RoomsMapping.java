@@ -37,6 +37,7 @@ public class RoomsMapping{
         return "DeluxeRoom";
     }
 
+
     @GetMapping("/suite-rooms")
     public String suiteRooms(Model model) {
         List<Rooms> suiteRooms = roomsService.getRoomsByType("Suite");
@@ -44,6 +45,7 @@ public class RoomsMapping{
         return "SuiteRoom";
     }
 
+    //Backend Funtions
     @GetMapping("/search")
     public String searchRooms(
             @RequestParam(required = false) String roomType,
