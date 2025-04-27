@@ -6,14 +6,6 @@ body {
     color: #fff;
 }
 
-/*header {*/
-/*    display: flex;*/
-/*    justify-content: space-between;*/
-/*    align-items: center;*/
-/*    padding: 20px;*/
-/*    background-color: #111;*/
-/*}*/
-
 .logo {
     font-size: 24px;
     font-weight: bold;
@@ -38,12 +30,33 @@ body {
     border-radius: 10px;
     display: flex;
     gap: 10px;
+    flex-wrap: wrap;
+    justify-content: center;
 }
 
-.search-bar input, .search-bar button {
+.search-bar input,
+.search-bar select,
+.search-bar button {
     padding: 10px;
-    border: none;
     border-radius: 5px;
+    border: none;
+    margin: 5px;
+    max-width: 150px;
+}
+
+.search-bar input[type="date"] {
+    max-width: 160px;
+}
+
+.search-bar button {
+    background-color: #2a9df4;
+    color: white;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.search-bar button:hover {
+    background-color: #1a6fb3;
 }
 
 .rooms, .services {
@@ -51,8 +64,16 @@ body {
     padding: 50px 20px;
 }
 
+.rooms h2,
+.services h2 {
+    font-size: 2.5em;
+    margin-bottom: 20px;
+    color: #2a9df4;
+}
+
 .room-list {
     display: flex;
+    flex-wrap: wrap;
     justify-content: center;
     gap: 20px;
 }
@@ -61,12 +82,31 @@ body {
     background: #F2AF6C;
     padding: 15px;
     border-radius: 10px;
+    text-align: center;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.room:hover {
+    transform: scale(1.05);
+    box-shadow: 0 4px 8px rgba(255, 255, 255, 0.2);
 }
 
 .room img {
     width: 200px;
     height: 150px;
     border-radius: 5px;
+    object-fit: cover;
+}
+
+.room p {
+    margin: 10px 0;
+    font-size: 1.1em;
+    color: #000;
+}
+
+.room p.price {
+    font-weight: bold;
+    color: #ff6600;
 }
 
 .services ul {
@@ -76,6 +116,7 @@ body {
 
 .services ul li {
     margin: 10px 0;
+    font-size: 1.2em;
 }
 
 footer {
@@ -89,9 +130,32 @@ footer ul {
     display: flex;
     justify-content: center;
     gap: 20px;
+    padding: 0;
+    margin: 0;
 }
 
 footer ul li a {
     text-decoration: none;
     color: #2a9df4;
 }
+
+footer ul li a:hover {
+    text-decoration: underline;
+}
+
+@media screen and (max-width: 768px) {
+    .search-bar {
+        flex-direction: column;
+    }
+
+    .room-list {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .room {
+        width: 80%;
+        max-width: 350px;
+    }
+}
+

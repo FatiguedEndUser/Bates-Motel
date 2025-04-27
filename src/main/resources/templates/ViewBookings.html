@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<head>
+    <meta charset="UTF-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>My Bookings – Bates Hotel</title>
+    <link rel="stylesheet" href="/css/viewbookings.css"/>
+</head>
+<body>
+<div class="page-wrapper">
+
+    <!-- HEADER -->
+    <header class="header-section">
+        <div th:replace="fragments/navbar"></div>
+        <h1>My Bookings</h1>
+    </header>
+
+    <!-- BOOKINGS GRID -->
+    <section class="bookings-grid">
+        <!-- No bookings message -->
+        <div th:if="${#lists.isEmpty(bookings)}" class="no-bookings">
+            You have no current bookings.
+        </div>
+
+        <!-- Booking cards -->
+        <div th:each="booking : ${bookings}" class="booking-card">
+            <div class="booking-details">
+                <h2 th:text="${booking.room.roomName}">Room Name</h2>
+                <p><strong>ID:</strong> <span th:text="${booking.bookingId}"/></p>
+                <p><strong>Type:</strong> <span th:text="${booking.room.roomType}"/></p>
+                <p><strong>Guest:</strong>
+                    <span th:text="${booking.customer.firstName + ' ' + booking.customer.lastName}"/>
+                </p>
+                <p><strong>Email:</strong> <span th:text="${booking.customer.email}"/></p>
+                <p><strong>Check-in:</strong> <span th:text="${booking.startDate}"/></p>
+                <p><strong>Check-out:</strong> <span th:text="${booking.endDate}"/></p>
+            </div>
+            <div class="booking-buttons">
+                <a class="btn-edit"
+                   th:href="@{/booking-form(
+               type=${booking.room.roomType},
+               title=${booking.room.roomName},
+               checkin=${booking.startDate},
+               checkout=${booking.endDate},
+               roomId=${booking.room.roomId}
+             )}">
+                    Edit
+                </a>
+                <form th:action="@{'/bookings/delete/' + ${booking.bookingId}}"
+                      method="post" class="inline-form">
+                    <button type="submit" class="btn-cancel">Cancel</button>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <!-- BACK TO ROOMS -->
+    <div class="back-link">
+        <a th:href="@{/rooms/standard-rooms}">← Return to Rooms</a>
+    </div>
+
+    <!-- FOOTER -->
+    <footer th:replace="fragments/footer"></footer>
+</div>
+</body>
+</html>
