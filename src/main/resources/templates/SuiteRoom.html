@@ -43,7 +43,7 @@
         <div class="room-price">
             <span class="price-amount">$1,000</span><span class="price-night">/Night</span>
         </div>
-    </div>
+
 
 
     <!-- SEARCH SECTION -->
@@ -91,7 +91,7 @@
                 <p class="room-beds" th:text="${room.bedConfiguration}">Bed Configuration</p>
                 <p class="room-appliances" th:text="'Room Appliances: ' + ${room.appliances}">Room Appliances</p>
                 <!-- Book Room button goes to /payment -->
-                <a class="book-room-btn" th:href="@{/payment}">Book Room</a>
+                <a class="book-room-btn" th:href="@{/booking-form(type=${room.roomType},title=${room.roomName},roomId=${room.roomId})}">Book Room</a>
             </div>
             <!-- White strip at bottom with price -->
             <div class="room-price">
@@ -142,6 +142,7 @@
         <div class="room-price">
             <span class="price-amount">$2,500</span><span class="price-night">/Night</span>
 
+        </div>
         </div>
     </section>
 
