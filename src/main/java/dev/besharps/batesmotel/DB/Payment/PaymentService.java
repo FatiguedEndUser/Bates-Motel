@@ -18,10 +18,10 @@ public class PaymentService {
     @Transactional
     public Payments createPayment(Payments payment, Integer customerId) {
         Customer customer = customerRepository.findById(customerId).orElse(null);
-        if (customer == null) {
-            throw new IllegalArgumentException("Customer not found");
-        }
-        customer.addPayment(payment);
+//        if (customer == null) {
+//            throw new IllegalArgumentException("Customer not found");
+//        }
+//        customer.addPayment(payment);
         paymentRepository.save(payment);
         return payment;
     }

@@ -34,7 +34,7 @@ public class BookingMapping {
     @GetMapping("/booking-form")
     public String formBooking(@RequestParam(required = false) String type,
                               @RequestParam(required = false) String title,
-                              @RequestParam(required = false) Long roomId,
+                              @RequestParam(required = false) long roomId,
 
                               Model model) {
         model.addAttribute("roomType", type);
@@ -76,7 +76,7 @@ public class BookingMapping {
         model.addAttribute("email",          email);
 
         // room info
-        model.addAttribute("roomId",         roomId);
+        model.addAttribute("roomId", roomId);
         model.addAttribute("roomType",       roomType);
         model.addAttribute("roomTitle",      roomTitle);
 

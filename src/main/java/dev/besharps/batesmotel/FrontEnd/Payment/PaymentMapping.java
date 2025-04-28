@@ -15,7 +15,7 @@ public class PaymentMapping {
 
     @GetMapping
     public String payment(
-            @RequestParam Integer roomId,
+            @RequestParam(required = false) Integer roomId,
             @RequestParam String roomType,
             @RequestParam String roomTitle,
             @RequestParam String checkin,
@@ -25,16 +25,16 @@ public class PaymentMapping {
             @RequestParam String floorPreference,
             Model model
     ) {
-        model.addAttribute("newPayment", new Payments());
-        model.addAttribute("roomId", roomId);
-        model.addAttribute("roomType", roomType);
-        model.addAttribute("roomTitle", roomTitle);
-        model.addAttribute("checkin", checkin);
-        model.addAttribute("checkout", checkout);
-        model.addAttribute("guests", guests);
-        model.addAttribute("roomPreference", roomPreference);
-        model.addAttribute("floorPreference", floorPreference);
-        return "payment";
+          model.addAttribute("newPayment", new Payments());
+          model.addAttribute("roomId", roomId);
+          model.addAttribute("roomType", roomType);
+          model.addAttribute("roomTitle", roomTitle);
+          model.addAttribute("checkin", checkin);
+          model.addAttribute("checkout", checkout);
+          model.addAttribute("guests", guests);
+          model.addAttribute("roomPreference", roomPreference);
+          model.addAttribute("floorPreference", floorPreference);
+          return "payment";
     }
 
     @PostMapping("/processPayment")
