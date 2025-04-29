@@ -39,21 +39,9 @@ public class PaymentMapping {
           return "payment";
     }
 
+
     @PostMapping("/processPayment")
-    public String ProcessPayment(@ModelAttribute Payments payment) {
-                                /* @RequestParam(name = "name") String name,
-                                 @RequestParam(name = "cardNumber") int cardNumber,
-                                 @RequestParam(name = "expiryDate") LocalDate expireDate,
-                                 @RequestParam(name = "cvv") int cvv,
-                                 @RequestParam(name = "billingZip") int zip) {
-        payment = Payments.builder()
-                .name(name)
-                .cardNumber(cardNumber)
-                .date(expireDate)
-                .cvv(cvv)
-                .zip(zip)
-                .build();*/
+    public void ProcessPayment(@ModelAttribute Payments payment) {
         paymentRepository.save(payment);
-        return "redirect:/booking/confirm";
     }
 }

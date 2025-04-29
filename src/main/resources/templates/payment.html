@@ -17,8 +17,7 @@
 
   <!-- PAYMENT SECTION -->
   <section class="payment-section">
-    <form class="payment-form" th:action="@{/payment/processPayment}" method="post" th:object="${newPayment}">
-
+    <form class="payment-form" th:action="@{/booking-form/review}" method="post" th:object="${newPayment}">
       <!-- Payment Details Section -->
       <section class="payment-details-section">
         <h2 class="payment-title">Payment Details</h2>
@@ -59,7 +58,7 @@
         <input type="hidden" name="floorPreference" th:value="${floorPreference}"/>
 
         <!-- payment fields… -->
-        <button type="submit" class="payment-button">
+        <button type="submit" class="payment-button" th:onclick="@{processPayment}">
           Confirm Payment
         </button>
       </section>
