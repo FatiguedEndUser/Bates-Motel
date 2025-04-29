@@ -124,9 +124,9 @@ body {
     background-color: #00B0FF;
 }
 .alert-success {
-    background: #e0f8e9;
-    border: 1px solid #2ca27c;
-    color: #276749;
+    background: #FFB84D;
+    border: 1px solid #ffffff;
+    color: #000000;
     padding: 1rem;
     margin: 1rem 0;
     border-radius: 4px;

@@ -56,7 +56,8 @@
                 Edit
             </a>
                 <form th:action="@{'/bookings/delete/' + ${booking.bookingId}}"
-                      method="post" class="inline-form">
+                      method="post" class="inline-form"
+                      onsubmit="return confirm('Are you sure you want to cancel this booking?');">
                     <button type="submit" class="btn-cancel">Cancel</button>
                 </form>
             </div>
