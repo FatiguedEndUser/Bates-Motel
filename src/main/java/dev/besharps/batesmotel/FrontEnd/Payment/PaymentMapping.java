@@ -7,6 +7,8 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
+import java.time.LocalDate;
+
 @Controller
 @RequestMapping("/payment")
 @RequiredArgsConstructor
@@ -38,17 +40,19 @@ public class PaymentMapping {
     }
 
     @PostMapping("/processPayment")
-    public String ProcessPayment(@ModelAttribute Payments payment,
+    public void ProcessPayment(@ModelAttribute Payments payment,
                                  @RequestParam(name = "name") String name,
                                  @RequestParam(name = "cardNumber") int cardNumber,
-                                 @RequestParam(name = "expiryDate") int expireDate,
+                                 @RequestParam(name = "expiryDate") LocalDate expireDate,
                                  @RequestParam(name = "cvv") int cvv,
                                  @RequestParam(name = "billingZip") int zip) {
-
-        paymentRepository.save(new Payments(name, cardNumber, expireDate, cvv, zip));
-
-        //RETURN TO HOME
-        //SHOULD RETURN TO USER PAGE OR SOMEWHERE ELSE
-        return "redirect:/";
+        payment = Payments.builder()
+                .name(name)
+                .cardNumber(cardNumber)
+                .date(expireDate)
+                .cvv(cvv)
+                .zip(zip)
+                .build();
+        paymentRepository.save(payment);
     }
 }

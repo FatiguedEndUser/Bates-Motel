@@ -71,7 +71,7 @@ public class BookingMapping {
             @RequestParam String email,
 
             // carry room lookup by ID
-            @RequestParam Integer roomId,
+            @RequestParam(required = false) Integer roomId,
 
             // carry all booking details
             @RequestParam String roomType,
@@ -107,11 +107,12 @@ public class BookingMapping {
     // saves and redirects to the GET below
     @PostMapping("/booking/confirm")
     public String confirmBooking(
+            Customer customer,
             @RequestParam String firstName,
             @RequestParam String lastName,
             @RequestParam String email,
 
-            @RequestParam Integer roomId,
+            @RequestParam(required = false) Integer roomId,
             @RequestParam String roomType,
             @RequestParam String roomTitle,
 
@@ -127,7 +128,7 @@ public class BookingMapping {
             RedirectAttributes ra
     ) {
         // persist the customer
-        Customer customer = new Customer(firstName, lastName, email);
+        customer = new Customer(firstName, lastName, email);
         customerRepository.save(customer);
 
         // load the room
@@ -164,21 +165,6 @@ public class BookingMapping {
     public String showConfirmation(Model model) {
 
         return "BookingConfirmation";
-    }
-
-    @PostMapping("/createBooking")
-    public String createBooking(@ModelAttribute Model model,
-                                @RequestParam String firstName,
-                                @RequestParam String lastName,
-                                @RequestParam String email,
-                                @RequestParam String roomType,
-                                @RequestParam LocalDate checkin,
-                                @RequestParam LocalDate checkout,
-                                @RequestParam Rooms room) {
-        //LOGIC FOR CHOOSING ROOM
-        bookingsRepository.save(new Bookings(new Customer(firstName, lastName, email), roomType, checkin, checkout, room));
-
-        return "redirect:/payment";
     }
 
     // Mapping for the "View My Bookings" page
