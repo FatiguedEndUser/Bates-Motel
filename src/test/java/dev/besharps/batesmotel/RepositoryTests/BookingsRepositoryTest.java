@@ -9,6 +9,7 @@ import dev.besharps.batesmotel.DB.Rooms.Rooms;
 import dev.besharps.batesmotel.DB.Rooms.RoomsRepository;
 import dev.besharps.batesmotel.DB.User.User;
 import dev.besharps.batesmotel.DB.User.UserRepository;
+import jakarta.transaction.Transactional;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -37,6 +38,7 @@ public class BookingsRepositoryTest {
 
     @Test
     @Rollback(false)
+    @Transactional
     public void createBooking() {
         Rooms selectedRoom = roomsRepository.findById(11).orElseThrow();
         Customer customer = customerRepository.findById(7).orElseThrow();
@@ -53,7 +55,7 @@ public class BookingsRepositoryTest {
 
     @Test
     public void createBookingWithCustomer() {
-        Rooms selectedRoom = roomsRepository.findById(1).orElseThrow();
+        Rooms selectedRoom = roomsRepository.findById(10).orElseThrow();
         Customer customer = customerRepository.findById(1).orElseThrow();
         User selectedUser = userRepository.findById(1).orElseThrow();
         LocalDate startDate = LocalDate.of(2025, 3, 27);

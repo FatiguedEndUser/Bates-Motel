@@ -35,7 +35,7 @@ public class PaymentService {
             payment.setCvv(myPayment.cvv());
         }
         if (myPayment.expiration() != null) {
-            payment.setDate(myPayment.expiration());
+            payment.setExp(myPayment.expiration().toString());
         }
         if (myPayment.zip() != null) {
             payment.setZip(myPayment.zip());
