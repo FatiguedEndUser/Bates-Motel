@@ -15,6 +15,11 @@
         <h1>My Bookings</h1>
     </header>
 
+    <!-- Cancel Message -->
+    <div th:if="${cancelMessage}" class="alert alert-success">
+        <p th:text="${cancelMessage}">Your booking has been canceled.</p>
+    </div>
+
     <!-- BOOKINGS GRID -->
     <section class="bookings-grid">
         <!-- No bookings message -->
@@ -37,15 +42,19 @@
             </div>
             <div class="booking-buttons">
                 <a class="btn-edit"
-                   th:href="@{/booking-form(
-               type=${booking.room.roomType},
-               title=${booking.room.roomName},
-               checkin=${booking.startDate},
-               checkout=${booking.endDate},
-               roomId=${booking.room.roomId}
-             )}">
-                    Edit
-                </a>
+               th:href="@{/booking-form(
+                type=${booking.room.roomType},
+                title=${booking.room.roomName},
+                roomId=${booking.room.roomId},
+                checkin=${booking.startDate},
+                checkout=${booking.endDate},
+                guests=${booking.guests},
+                firstName=${booking.customer.firstName},
+                lastName=${booking.customer.lastName},
+                email=${booking.customer.email}
+                )}">
+                Edit
+            </a>
                 <form th:action="@{'/bookings/delete/' + ${booking.bookingId}}"
                       method="post" class="inline-form">
                     <button type="submit" class="btn-cancel">Cancel</button>

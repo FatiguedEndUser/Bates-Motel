@@ -26,16 +26,20 @@
         <input type="hidden" name="roomType" th:value="${roomType}">
         <input type="hidden" name="roomTitle" th:value="${roomTitle}">
 
+
         <!-- ——— NEW CUSTOMER FIELDS ——— -->
+        <!-- Customer info -->
         <label for="firstName">First Name</label>
-        <input type="text" id="firstName" name="firstName" required placeholder="John">
+        <input type="text" id="firstName" name="firstName"
+               th:value="${firstName}" required/>
 
         <label for="lastName">Last Name</label>
-        <input type="text" id="lastName" name="lastName" required placeholder="Doe">
+        <input type="text" id="lastName" name="lastName"
+               th:value="${lastName}" required/>
 
         <label for="email">Email</label>
-        <input type="email" id="email" name="email" required placeholder="you@example.com">
-        <!-- ———————————————————————— -->
+        <input type="email" id="email" name="email"
+               th:value="${email}" required/>
 
         <!-- Show selected room info -->
         <div class="room-details">
@@ -46,13 +50,16 @@
 
         <!-- Booking Information Fields -->
         <label for="checkin">Check-in Date</label>
-        <input type="date" id="checkin" name="checkin" required>
+        <input type="date" id="checkin" name="checkin"
+               th:value="${checkin}" required/>
 
         <label for="checkout">Check-out Date</label>
-        <input type="date" id="checkout" name="checkout" required>
+        <input type="date" id="checkout" name="checkout"
+               th:value="${checkout}" required/>
 
         <label for="guests">Number of Guests</label>
-        <input type="number" id="guests" name="guests" min="1" value="1" required>
+        <input type="number" id="guests" name="guests"
+               th:value="${guests}" min="1" required/>
 
         <!-- Dropdown for Room Preference -->
         <label for="roomPreference">Room Preference</label>

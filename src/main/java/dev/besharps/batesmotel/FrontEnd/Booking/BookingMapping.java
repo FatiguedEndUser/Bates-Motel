@@ -35,11 +35,25 @@ public class BookingMapping {
     public String formBooking(@RequestParam(required = false) String type,
                               @RequestParam(required = false) String title,
                               @RequestParam(required = false) long roomId,
+                              @RequestParam(required = false)
+                                  @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) LocalDate checkin,
+                              @RequestParam(required = false)
+                                  @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) LocalDate checkout,
+                              @RequestParam(required = false) Integer guests,
+                              @RequestParam(required = false) String firstName,
+                              @RequestParam(required = false) String lastName,
+                              @RequestParam(required = false) String email,
 
                               Model model) {
         model.addAttribute("roomType", type);
         model.addAttribute("roomTitle", title);
         model.addAttribute("roomId", roomId);
+        model.addAttribute("checkin",   checkin);
+        model.addAttribute("checkout",  checkout);
+        model.addAttribute("guests",    guests);
+        model.addAttribute("firstName", firstName);
+        model.addAttribute("lastName",  lastName);
+        model.addAttribute("email",     email);
 
 
         return "BookingForm";
@@ -177,8 +191,12 @@ public class BookingMapping {
 
     // CANCEL A BOOKING
     @PostMapping("/bookings/delete/{id}")
-    public String deleteBooking(@PathVariable("id") int id) {
+    public String deleteBooking(
+            @PathVariable("id") int id,
+            RedirectAttributes ra
+    ) {
         bookingsRepository.deleteById(id);
+        ra.addFlashAttribute("cancelMessage", "Your booking has been canceled.");
         return "redirect:/bookings";
     }
 }
