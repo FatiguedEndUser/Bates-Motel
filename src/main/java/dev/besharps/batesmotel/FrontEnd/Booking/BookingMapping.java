@@ -6,6 +6,8 @@ import dev.besharps.batesmotel.DB.Customer.Customer;
 import dev.besharps.batesmotel.DB.Customer.CustomerRepository;
 import dev.besharps.batesmotel.DB.Rooms.Rooms;
 import dev.besharps.batesmotel.DB.Rooms.RoomsRepository;
+import jakarta.servlet.http.HttpSession;
+import org.springframework.cglib.core.Local;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -14,6 +16,8 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import java.time.LocalDate;
 import java.util.List;
+
+import static org.springframework.web.util.WebUtils.getSessionAttribute;
 
 @Controller
 public class BookingMapping {
@@ -36,7 +40,9 @@ public class BookingMapping {
                               @RequestParam(required = false) @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) LocalDate checkin,
                               @RequestParam(required = false) @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) LocalDate checkout,
                               @RequestParam(required = false) Integer guests, @RequestParam(required = false) String firstName, @RequestParam(required = false) String lastName,
-                              @RequestParam(required = false) String email, Model model) {
+                              @RequestParam(required = false) String email, Model model,
+                              HttpSession session
+    ) {
         model.addAttribute("roomType", type);
         model.addAttribute("roomTitle", title);
         model.addAttribute("roomId", roomId);
@@ -47,7 +53,6 @@ public class BookingMapping {
         model.addAttribute("lastName",  lastName);
         model.addAttribute("email",     email);
 
-
         return "BookingForm";
     }
 
@@ -55,31 +60,47 @@ public class BookingMapping {
     //I like it, was working on adding this to the database but lost in a merge. Will work on getting
     // added
 
-    @PostMapping("/booking-form/review")
+    // Runs first
+    @GetMapping("/booking-form/review")
     public String reviewBooking(
             // carry customer info from payment form
-            @RequestParam String firstName,
-            @RequestParam String lastName,
-            @RequestParam String email,
+            //@RequestParam String firstName,
+            //@RequestParam String lastName,
+            //@RequestParam String email,
+
+            // carry room lookup by modelAttribute
+            @ModelAttribute("roomId") Integer roomId,
 
             // carry room lookup by ID
-            @RequestParam(required = false) Integer roomId,
+            //@RequestParam(required = false) Integer roomId,
+
+            // carry all booking details via modelAttribute
+            @ModelAttribute("roomType") String roomType,
+            @ModelAttribute("roomTitle") String roomTitle,
+            @ModelAttribute("checkin") LocalDate checkin,
+            @ModelAttribute("checkout") LocalDate checkout,
+            @ModelAttribute("guests") int guests,
+            @ModelAttribute("roomPreference") String roomPreference,
+            @ModelAttribute("floorPreference") String floorPreference,
 
             // carry all booking details
-            @RequestParam String roomType,
-            @RequestParam String roomTitle,
-            @RequestParam @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) LocalDate checkin,
-            @RequestParam @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) LocalDate checkout,
-            @RequestParam int guests,
-            @RequestParam String roomPreference,
-            @RequestParam String floorPreference,
+            //@RequestParam String roomType,
+            //@RequestParam String roomTitle,
+            //@RequestParam @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) LocalDate checkin,
+            //@RequestParam @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) LocalDate checkout,
+            //@RequestParam int guests,
+            //@RequestParam String roomPreference,
+            //@RequestParam String floorPreference,
+            HttpSession session,
 
             Model model
     ) {
+        System.out.println("DEBUG (POST): /booking-form/review");
+
         // customer info
-        model.addAttribute("firstName",      firstName);
-        model.addAttribute("lastName",       lastName);
-        model.addAttribute("email",          email);
+        //model.addAttribute("firstName",      firstName);
+        //model.addAttribute("lastName",       lastName);
+        //model.addAttribute("email",          email);
 
         // room info
         model.addAttribute("roomId", roomId);
@@ -99,13 +120,20 @@ public class BookingMapping {
     // saves and redirects to the GET below
     @PostMapping("/booking/confirm")
     public String confirmBooking(
-            @RequestParam String firstName, @RequestParam String lastName, @RequestParam String email,
             @RequestParam(required = false) Integer roomId, @RequestParam String roomType, @RequestParam String roomTitle,
             @RequestParam @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) LocalDate checkin,
             @RequestParam @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) LocalDate checkout,
             @RequestParam int    guests, @RequestParam String roomPreference, @RequestParam String floorPreference,
-            RedirectAttributes ra
+            RedirectAttributes ra,
+            HttpSession session
     ) {
+        System.out.println("DEBUG (POST): /booking/confirm");
+
+        // Retrieve session attributes
+        String firstName = session.getAttribute("firstName").toString();
+        String lastName = session.getAttribute("lastName").toString();
+        String email = session.getAttribute("email").toString();
+
         // persist the customer
         Customer customer = new Customer(firstName, lastName, email);
         customerRepository.save(customer);
@@ -142,6 +170,7 @@ public class BookingMapping {
     //  renders the confirmation page
     @GetMapping("/booking/confirm")
     public String showConfirmation(Model model) {
+        System.out.println("DEBUG (GET): /booking/confirm");
         return "BookingConfirmation";
     }
 
