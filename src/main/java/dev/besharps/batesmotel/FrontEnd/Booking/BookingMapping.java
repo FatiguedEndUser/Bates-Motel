@@ -59,6 +59,36 @@ public class BookingMapping {
         return "BookingForm";
     }
 
+    @GetMapping("/booking/done")
+    public String showBookingReview(
+            @RequestParam Integer roomId,
+            @RequestParam String roomType,
+            @RequestParam String roomTitle,
+            @RequestParam String checkin,
+            @RequestParam String checkout,
+            @RequestParam int    guests,
+            @RequestParam String roomPreference,
+            @RequestParam String floorPreference,
+            Model model
+        ) {
+
+        System.out.println("\n==== DEBUG booking/done ====");
+        System.out.println("Room ID: " + roomId);
+        System.out.println("Type: " + roomType);
+        System.out.println("===============\n");
+
+        model.addAttribute("roomType", roomType);
+        model.addAttribute("roomId", roomId);
+        model.addAttribute("roomTitle", roomTitle);
+        model.addAttribute("checkin", checkin);
+        model.addAttribute("checkout", checkout);
+        model.addAttribute("guests", guests);
+        model.addAttribute("roomPreference", roomPreference);
+        model.addAttribute("floorPreference", floorPreference);
+
+        return "BookingReview";
+    }
+
     // Mapping for the booking review page
     //I like it, was working on adding this to the database but lost in a merge. Will work on getting
     // added
@@ -82,26 +112,34 @@ public class BookingMapping {
             @RequestParam String roomPreference,
             @RequestParam String floorPreference,
 
-            Model model
+
+            RedirectAttributes ra
+            //Model model
     ) {
+
+        System.out.println("\n==== DEBUG /booking-form/review ====");
+        System.out.println("Room ID: " + roomId);
+        System.out.println("Type: " + roomType);
+        System.out.println("===============\n");
+
         // customer info
-        model.addAttribute("firstName",      firstName);
-        model.addAttribute("lastName",       lastName);
-        model.addAttribute("email",          email);
+        ra.addAttribute("firstName",      firstName);
+        ra.addAttribute("lastName",       lastName);
+        ra.addAttribute("email",          email);
 
         // room info
-        model.addAttribute("roomId", roomId);
-        model.addAttribute("roomType",       roomType);
-        model.addAttribute("roomTitle",      roomTitle);
+        ra.addAttribute("roomId", roomId);
+        ra.addAttribute("roomType",       roomType);
+        ra.addAttribute("roomTitle",      roomTitle);
 
         // booking info
-        model.addAttribute("checkin",        checkin);
-        model.addAttribute("checkout",       checkout);
-        model.addAttribute("guests",         guests);
-        model.addAttribute("roomPreference", roomPreference);
-        model.addAttribute("floorPreference",floorPreference);
+        ra.addAttribute("checkin",        checkin);
+        ra.addAttribute("checkout",       checkout);
+        ra.addAttribute("guests",         guests);
+        ra.addAttribute("roomPreference", roomPreference);
+        ra.addAttribute("floorPreference",floorPreference);
 
-        return "BookingReview";
+        return "redirect:/payment";
     }
 
     // saves and redirects to the GET below
@@ -127,9 +165,14 @@ public class BookingMapping {
 
             RedirectAttributes ra
     ) {
+        System.out.println("DEBUG: First name: " + firstName + " Last name: " + lastName + " Email: " + email);
         // persist the customer
         customer = new Customer(firstName, lastName, email);
         customerRepository.save(customer);
+
+        Customer savedCustomer = customerRepository.findById(customer.getCustomerId()).orElse(null);
+        System.out.println("DEBUG: Customer after save: " + savedCustomer);
+
 
         // load the room
         Rooms room = roomsRepository.findById(roomId)
@@ -147,23 +190,25 @@ public class BookingMapping {
                 .build();
         bookingsRepository.save(booking);
 
-
-        ra.addFlashAttribute("roomType",        roomType);
-        ra.addFlashAttribute("roomTitle",       roomTitle);
-        ra.addFlashAttribute("checkin",         checkin);
-        ra.addFlashAttribute("checkout",        checkout);
-        ra.addFlashAttribute("guests",          guests);
-        ra.addFlashAttribute("roomPreference",  roomPreference);
-        ra.addFlashAttribute("floorPreference", floorPreference);
+        // Add payment info in here when confirm booking is clicked
+        ra.addAttribute("roomType",        roomType);
+        ra.addAttribute("roomTitle",       roomTitle);
+        ra.addAttribute("checkin",         checkin);
+        ra.addAttribute("checkout",        checkout);
+        ra.addAttribute("guests",          guests);
+        ra.addAttribute("roomPreference",  roomPreference);
+        ra.addAttribute("floorPreference", floorPreference);
 
         // redirect to the GET below
-        return "redirect:/booking/confirm";
+       //return "redirect:/booking-form";
+        //return "redirect:/booking/confirm";
+        return "redirect:/payment/";
     }
 
     //  renders the confirmation page
     @GetMapping("/booking/confirm")
     public String showConfirmation(Model model) {
-
+        System.out.println("DEBUG: Confirmation");
         return "BookingConfirmation";
     }
 

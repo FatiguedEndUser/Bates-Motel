@@ -24,13 +24,13 @@ public class Payments {
     private int id;
 
     @Column(name = "cardnumber", nullable = false)
-    private int cardNumber;
+    private String cardNumber;
 
     @Column(name = "cardholder", nullable = false)
     private String name;
 
     @Column(name = "exp", nullable = false)
-    private LocalDate date;
+    private String exp;
 
     @Column(name = "cvv", nullable = false)
     private int cvv;
@@ -49,10 +49,10 @@ public class Payments {
         }
     }
 
-    public Payments(String name, int cardNumber, int exp, int cvv, int zip) {
+    public Payments(String name, String cardNumber, String exp, int cvv, int zip) {
         this.name = name;
         this.cardNumber = cardNumber;
-        this.date = LocalDate.ofEpochDay(exp);
+        this.exp = exp;
         this.cvv = cvv;
         this.zip = zip;
     }
