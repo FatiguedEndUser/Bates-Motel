@@ -19,6 +19,13 @@
 
     <!-- Booking Form Section -->
     <form class="booking-form" th:action="@{/payment}" method="get">
+
+        <!-- Hidden fields to preserve values on submit -->
+        <!-- carry forward the roomId -->
+        <input type="hidden" name="roomId" th:value="${roomId}" />
+        <input type="hidden" name="roomType" th:value="${roomType}">
+        <input type="hidden" name="roomTitle" th:value="${roomTitle}">
+
         <!-- ——— NEW CUSTOMER FIELDS ——— -->
         <label for="firstName">First Name</label>
         <input type="text" id="firstName" name="firstName" required placeholder="John">
@@ -36,10 +43,6 @@
             <p><strong>Type:</strong> <span th:text="${roomType}">Standard</span></p>
             <p><strong>Title:</strong> <span th:text="${roomTitle}">Room Name</span></p>
         </div>
-
-        <!-- Hidden fields to preserve values on submit -->
-        <input type="hidden" name="roomType" th:value="${roomType}">
-        <input type="hidden" name="roomTitle" th:value="${roomTitle}">
 
         <!-- Booking Information Fields -->
         <label for="checkin">Check-in Date</label>
@@ -69,6 +72,7 @@
             <option value="middle">Middle Floor</option>
             <option value="high">Upper Floor</option>
         </select>
+
 
         <div class="form-buttons">
             <button type="submit">Book Now</button>
