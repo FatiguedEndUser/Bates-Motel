@@ -92,9 +92,24 @@ public class BookingMapping {
         return "BookingReview";
     }
 
-    //  renders the confirmation page (no save here)
     @GetMapping("/booking/confirm")
-    public String showConfirmation() {
+    public String showConfirmation(
+            @ModelAttribute("bookingId") Integer bookingId,
+            Model model
+    ) {
+        // 1) Fetch the persisted booking by ID
+        Bookings booking = bookingsRepository.findById(bookingId)
+                .orElseThrow(() -> new IllegalArgumentException("Booking not found: " + bookingId));
+
+        // 2) Push each field into the model so your Thymeleaf template can pick them up
+        model.addAttribute("roomType",       booking.getRoomType());
+        model.addAttribute("roomTitle",      booking.getRoomTitle());
+        model.addAttribute("checkin",        booking.getStartDate());
+        model.addAttribute("checkout",       booking.getEndDate());
+        model.addAttribute("guests",         booking.getGuests());
+        model.addAttribute("roomPreference", booking.getRoomPreference());
+        model.addAttribute("floorPreference",booking.getFloorPreference());
+
         return "BookingConfirmation";
     }
 

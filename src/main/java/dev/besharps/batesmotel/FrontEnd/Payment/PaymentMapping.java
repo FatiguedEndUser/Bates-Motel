@@ -36,7 +36,7 @@ public class PaymentMapping {
             @RequestParam String roomTitle,
             @RequestParam String checkin,
             @RequestParam String checkout,
-            @RequestParam int    guests,
+            @RequestParam(defaultValue = "1") int guests,
             @RequestParam String roomPreference,
             @RequestParam String floorPreference,
             Model model
@@ -64,7 +64,7 @@ public class PaymentMapping {
             @RequestParam String roomTitle,
             @RequestParam @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) LocalDate checkin,
             @RequestParam @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) LocalDate checkout,
-            @RequestParam int guests,
+            @RequestParam(defaultValue = "1") int guests,
             @RequestParam String roomPreference,
             @RequestParam String floorPreference,
             RedirectAttributes ra
