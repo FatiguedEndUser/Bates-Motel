@@ -1,94 +1,168 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org" lang="en">
 <head>
-    <meta charset="UTF-8">
-    <title>Booking Form - Bates Hotel</title>
+    <meta charset="UTF-8"/>
+    <title>BatesHotel – Book & Pay</title>
     <link rel="stylesheet" href="/css/bookingform.css"/>
 </head>
 <body>
 <div class="page-wrapper">
-    <!-- Header -->
     <header class="top-header">
         <div th:replace="fragments/navbar"></div>
     </header>
 
-    <!-- Title -->
-    <section class="rooms-header">
-        <h1 class="rooms-title">BOOK A ROOM</h1>
-    </section>
+    <form th:action="@{/payment/processPayment}" method="post" th:object="${newPayment}" class="forms-container" >
 
-    <!-- Booking Form Section -->
-    <form class="booking-form" th:action="@{/payment}" method="get">
+        <!-- CONTACT INFO -->
+        <div class="left-col">
+            <div class="form-panel">
+                <h2 class="section-title">Contact Info</h2>
+                <div class="form-group">
+                    <label for="firstName">First Name</label>
+                    <input type="text"
+                           id="firstName"
+                           name="firstName"
+                           th:value="${firstName}"
+                           placeholder="First Name"
+                           required/>
+                </div>
+                <div class="form-group">
+                    <label for="lastName">Last Name</label>
+                    <input type="text"
+                           id="lastName"
+                           name="lastName"
+                           th:value="${lastName}"
+                           placeholder="Last Name"
+                           required/>
+                </div>
+                <div class="form-group">
+                    <label for="email">Email</label>
+                    <input type="email"
+                           id="email"
+                           name="email"
+                           th:value="${email}"
+                           placeholder="you@example.com"
+                           required/>
+                </div>
+            </div>
 
-        <!-- Hidden fields to preserve values on submit -->
-        <!-- carry forward the roomId -->
-        <input type="hidden" name="roomId" th:value="${roomId}" />
-        <input type="hidden" name="roomType" th:value="${roomType}">
-        <input type="hidden" name="roomTitle" th:value="${roomTitle}">
-        <input type="hidden" name="roomId" th:value="${roomId}">
+            <!-- BOOKING DETAILS -->
+            <div class="form-panel">
+                <h2 class="section-title">Booking Details</h2>
+                <input type="hidden" name="roomId"    th:value="${roomId}"/>
+                <input type="hidden" name="roomType"  th:value="${roomType}"/>
+                <input type="hidden" name="roomTitle" th:value="${roomTitle}"/>
 
-
-        <!-- ——— NEW CUSTOMER FIELDS ——— -->
-        <!-- Customer info -->
-        <label for="firstName">First Name</label>
-        <input type="text" id="firstName" name="firstName"
-               th:value="${firstName}" required/>
-
-        <label for="lastName">Last Name</label>
-        <input type="text" id="lastName" name="lastName"
-               th:value="${lastName}" required/>
-
-        <label for="email">Email</label>
-        <input type="email" id="email" name="email"
-               th:value="${email}" required/>
-
-        <!-- Show selected room info -->
-        <div class="room-details">
-            <h2>Your Room</h2>
-            <p><strong>Type:</strong> <span th:text="${roomType}">Standard</span></p>
-            <p><strong>Title:</strong> <span th:text="${roomTitle}">Room Name</span></p>
+                <div class="form-group">
+                    <label for="checkin">Check-in Date</label>
+                    <input type="date"
+                           id="checkin"
+                           name="checkin"
+                           th:value="${checkin}"
+                           placeholder="YYYY-MM-DD"
+                           required/>
+                </div>
+                <div class="form-group">
+                    <label for="checkout">Check-out Date</label>
+                    <input type="date"
+                           id="checkout"
+                           name="checkout"
+                           th:value="${checkout}"
+                           placeholder="YYYY-MM-DD"
+                           required/>
+                </div>
+                <div class="form-group">
+                    <label for="guests">Number of Guests</label>
+                    <input type="number"
+                           id="guests"
+                           th:value="${guests} ?: 1"
+                           min="1"
+                           required/>
+                </div>
+                <div class="form-group">
+                    <label for="roomPreference">Room Preference</label>
+                    <select id="roomPreference" name="roomPreference">
+                        <option value="" disabled selected>Select preference</option>
+                        <option value="quiet">Quiet Corner</option>
+                        <option value="view">Window View</option>
+                        <option value="spacious">Spacious</option>
+                        <option value="accessible">Accessible</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="floorPreference">Floor Preference</label>
+                    <select id="floorPreference" name="floorPreference">
+                        <option value="" disabled selected>Select floor</option>
+                        <option value="low">Lower</option>
+                        <option value="middle">Middle</option>
+                        <option value="high">Upper</option>
+                    </select>
+                </div>
+            </div>
         </div>
 
-        <!-- Booking Information Fields -->
-        <label for="checkin">Check-in Date</label>
-        <input type="date" id="checkin" name="checkin"
-               th:value="${checkin}" required/>
+        <!-- PAYMENT DETAILS + SUBMIT -->
+        <div class="form-panel payment-column">
+            <h2 class="section-title">Payment Details</h2>
+            <!-- carry-forward booking data -->
+            <input type="hidden" name="roomId"          th:value="${roomId}"/>
+            <input type="hidden" name="roomType"        th:value="${roomType}"/>
+            <input type="hidden" name="roomTitle"       th:value="${roomTitle}"/>
+            <input type="hidden" name="checkin"         th:value="${checkin}"/>
+            <input type="hidden" name="checkout"        th:value="${checkout}"/>
+            <input type="hidden" name="guests"          th:value="${guests}"/>
+            <input type="hidden" name="roomPreference"  th:value="${roomPreference}"/>
+            <input type="hidden" name="floorPreference" th:value="${floorPreference}"/>
 
-        <label for="checkout">Check-out Date</label>
-        <input type="date" id="checkout" name="checkout"
-               th:value="${checkout}" required/>
+            <div class="form-group">
+                <label for="cardName">Name on Card</label>
+                <input type="text"
+                       id="cardName"
+                       name="name"
+                       placeholder="First & Last Name"
+                       required/>
+            </div>
+            <div class="form-group">
+                <label for="cardNumber">Card Number</label>
+                <input type="text"
+                       id="cardNumber"
+                       name="cardNumber"
+                       placeholder="1234 5678 9012 3456"
+                       required/>
+            </div>
+            <div class="form-group">
+                <label for="expiryDate">Expiry (MM/YY)</label>
+                <input type="text"
+                       id="expiryDate"
+                       name="exp"
+                       placeholder="MM/YY"
+                       required/>
+            </div>
+            <div class="form-group">
+                <label for="cvv">CVV</label>
+                <input type="text"
+                       id="cvv"
+                       name="cvv"
+                       placeholder="123"
+                       required/>
+            </div>
+            <div class="form-group">
+                <label for="billingZip">Billing ZIP</label>
+                <input type="text"
+                       id="billingZip"
+                       name="zip"
+                       placeholder="ZIP code"
+                       required/>
+            </div>
 
-        <label for="guests">Number of Guests</label>
-        <input type="number" id="guests" name="guests"
-               th:value="${guests}" min="1" required/>
-
-        <!-- Dropdown for Room Preference -->
-        <label for="roomPreference">Room Preference</label>
-        <select id="roomPreference" name="roomPreference">
-            <option value="">Select your preference</option>
-            <option value="quiet">Quiet Corner</option>
-            <option value="view">Window with a View</option>
-            <option value="spacious">Spacious Room</option>
-            <option value="accessible">Accessible Room</option>
-        </select>
-
-        <!-- Dropdown for Preferred Floor -->
-        <label for="floorPreference">Preferred Floor</label>
-        <select id="floorPreference" name="floorPreference">
-            <option value="">Select preferred floor</option>
-            <option value="low">Lower Floor</option>
-            <option value="middle">Middle Floor</option>
-            <option value="high">Upper Floor</option>
-        </select>
-
-
-        <div class="form-buttons">
-            <button type="submit">Book Now</button>
-            <button type="button" onclick="window.location.href='/rooms/standard-rooms';">Cancel</button>
+            <!-- submit button in payment panel -->
+            <div class="button-group">
+                <button type="submit">Confirm Booking &amp; Pay</button>
+            </div>
         </div>
+
     </form>
 
-    <!-- Footer -->
     <div th:replace="fragments/footer"></div>
 </div>
 </body>

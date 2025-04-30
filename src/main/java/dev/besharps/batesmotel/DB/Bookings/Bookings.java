@@ -70,6 +70,12 @@ public class Bookings {
     @Column(name = "guests", nullable = false)
     private int guests;
 
+    @Column(name = "room_preference", nullable = true)
+    private String roomPreference;
+
+    @Column(name = "floor_preference", nullable = true)
+    private String floorPreference;
+
     public Bookings(Customer customer,
                     LocalDate startDate,
                     LocalDate endDate,

@@ -19,15 +19,11 @@ import java.util.List;
 public class BookingMapping {
 
     private final BookingsRepository bookingsRepository;
-    private final CustomerRepository customerRepository;
-    private final RoomsRepository roomsRepository;
 
-    public BookingMapping(BookingsRepository bookingsRepository,
-                          CustomerRepository customerRepository,
-                          RoomsRepository roomsRepository) {
+
+    public BookingMapping(BookingsRepository bookingsRepository) {
         this.bookingsRepository = bookingsRepository;
-        this.customerRepository = customerRepository;
-        this.roomsRepository = roomsRepository;
+
     }
 
     // Mapping for the booking form page
@@ -96,52 +92,9 @@ public class BookingMapping {
         return "BookingReview";
     }
 
-    // saves and redirects to the GET below
-    @PostMapping("/booking/confirm")
-    public String confirmBooking(
-            @RequestParam String firstName, @RequestParam String lastName, @RequestParam String email,
-            @RequestParam(required = false) Integer roomId, @RequestParam String roomType, @RequestParam String roomTitle,
-            @RequestParam @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) LocalDate checkin,
-            @RequestParam @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) LocalDate checkout,
-            @RequestParam int    guests, @RequestParam String roomPreference, @RequestParam String floorPreference,
-            RedirectAttributes ra
-    ) {
-        // persist the customer
-        Customer customer = new Customer(firstName, lastName, email);
-        customerRepository.save(customer);
-
-        // load the room
-        Rooms room = roomsRepository.findById(roomId)
-                .orElseThrow(() -> new IllegalArgumentException("Room not found: " + roomId));
-
-         //build & save booking
-        Bookings booking = Bookings.builder()
-                .customer(customer)
-                .room(room)
-                .roomType(roomType)
-                .roomTitle(roomTitle)
-                .startDate(checkin)
-                .endDate(checkout)
-                .guests(guests)
-                .build();
-        bookingsRepository.save(booking);
-
-        ra.addFlashAttribute("roomType",        roomType);
-        ra.addFlashAttribute("roomTitle",       roomTitle);
-        ra.addFlashAttribute("checkin",         checkin);
-        ra.addFlashAttribute("checkout",        checkout);
-        ra.addFlashAttribute("guests",          guests);
-        ra.addFlashAttribute("roomPreference",  roomPreference);
-        ra.addFlashAttribute("floorPreference", floorPreference);
-
-        // redirect to the GET below
-        return "redirect:/booking/confirm";
-    }
-
-
-    //  renders the confirmation page
+    //  renders the confirmation page (no save here)
     @GetMapping("/booking/confirm")
-    public String showConfirmation(Model model) {
+    public String showConfirmation() {
         return "BookingConfirmation";
     }
 
