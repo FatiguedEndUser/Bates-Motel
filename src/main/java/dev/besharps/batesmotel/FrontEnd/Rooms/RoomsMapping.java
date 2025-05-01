@@ -4,9 +4,6 @@ import dev.besharps.batesmotel.DB.Rooms.Rooms;
 import dev.besharps.batesmotel.DB.Rooms.RoomsRepository;
 import dev.besharps.batesmotel.DB.Rooms.RoomsService;
 import dev.besharps.batesmotel.Exceptions.RoomNotFoundException;
-import jakarta.validation.Valid;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -17,17 +14,19 @@ import java.util.Optional;
 @Controller
 @RequestMapping("/rooms")
 public class RoomsMapping{
-    @Autowired
-    private RoomsRepository roomsRepository;
+    private final RoomsRepository roomsRepository;
+    private final RoomsService roomsService;
 
-    @Autowired
-    private RoomsService roomsService;
+    public RoomsMapping(RoomsRepository roomsRepository, RoomsService roomsService) {
+        this.roomsRepository = roomsRepository;
+        this.roomsService = roomsService;
+    }
 
     // Frontend view mappings
     @GetMapping("/standard-rooms")
     public String standardRooms(Model model) {
-        List<Rooms> standardRooms = roomsService.getRoomsByType("Standard");
-        model.addAttribute("rooms", standardRooms);
+         List<Rooms> standardRooms = roomsService.getRoomsByType("Standard");
+         model.addAttribute("rooms", standardRooms);
         return "StandardRoom";
     }
 
@@ -38,6 +37,7 @@ public class RoomsMapping{
         return "DeluxeRoom";
     }
 
+
     @GetMapping("/suite-rooms")
     public String suiteRooms(Model model) {
         List<Rooms> suiteRooms = roomsService.getRoomsByType("Suite");
@@ -45,6 +45,7 @@ public class RoomsMapping{
         return "SuiteRoom";
     }
 
+    //Backend Funtions
     @GetMapping("/search")
     public String searchRooms(
             @RequestParam(required = false) String roomType,
@@ -104,59 +105,5 @@ public class RoomsMapping{
     public String deleteRoom(@PathVariable Integer id) {
         roomsService.deleteRoom(id);
         return "redirect:/rooms/admin/manage";
-    }
-
-    // REST API endpoints
-    @ResponseStatus(HttpStatus.FOUND)
-    @GetMapping("/api/all")
-    @ResponseBody
-    List<Rooms> findAll() {
-        return roomsRepository.findAll();
-    }
-
-    @ResponseStatus(HttpStatus.OK)
-    @GetMapping("/api/{id}")
-    @ResponseBody
-    Optional<Rooms> findById(@PathVariable Integer id) {
-        Optional<Rooms> rooms = roomsRepository.findById(id);
-        if (rooms.isEmpty()) {
-            throw new RoomNotFoundException();
-        }
-        return rooms;
-    }
-
-    @ResponseStatus(HttpStatus.OK)
-    @GetMapping("/api/type/{roomType}")
-    @ResponseBody
-    List<Rooms> findByRoomType(@PathVariable String roomType) {
-        List<Rooms> rooms = roomsRepository.findByRoomType(roomType);
-        if (rooms.isEmpty()) {
-            throw new RoomNotFoundException();
-        }
-        return rooms;
-    }
-
-    @ResponseStatus(HttpStatus.CREATED)
-    @PostMapping("/api/create")
-    @ResponseBody
-    void create(@Valid @RequestBody Rooms room) {
-        roomsRepository.save(room);
-    }
-
-    @ResponseStatus(HttpStatus.OK)
-    @PutMapping("/api/update")
-    @ResponseBody
-    public Rooms update(@Valid @RequestBody Rooms room) {
-        if (!roomsRepository.existsById(room.getRoomId().intValue())) {
-            throw new RoomNotFoundException();
-        }
-        return roomsRepository.save(room);
-    }
-
-    @ResponseStatus(HttpStatus.NO_CONTENT)
-    @DeleteMapping("/api/delete/{id}")
-    @ResponseBody
-    void deleteById(@PathVariable Integer id) {
-        roomsRepository.deleteById(id);
     }
 }

@@ -8,8 +8,6 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
-import java.util.List;
-
 @Repository
 public interface UserRepository extends JpaRepository<User, Integer> {
     @Modifying
@@ -25,6 +23,10 @@ public interface UserRepository extends JpaRepository<User, Integer> {
 
     @Query("SELECT u FROM User u where LOWER(u.username) = LOWER(:username)")
     User findByUsername(@Param("username") String username);
+
+    @Query("SELECT u.email FROM User u where u.id = :id")
+    String findByEmail(@Param("id") Integer id);
+
 }
 
 

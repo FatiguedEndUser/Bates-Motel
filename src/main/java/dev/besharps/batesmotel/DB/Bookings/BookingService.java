@@ -1,6 +1,5 @@
 package dev.besharps.batesmotel.DB.Bookings;
 
-import dev.besharps.batesmotel.DB.Customer.Customer;
 import dev.besharps.batesmotel.DB.Services.Services;
 import dev.besharps.batesmotel.DB.Services.ServicesRepository;
 import jakarta.transaction.Transactional;
@@ -9,11 +8,13 @@ import org.springframework.stereotype.Service;
 
 @Service
 public class BookingService {
-    @Autowired
-    private BookingsRepository bookingsRepository;
+    private final BookingsRepository bookingsRepository;
+    private final ServicesRepository servicesRepository;
 
-    @Autowired
-    private ServicesRepository servicesRepository;
+    public BookingService(BookingsRepository bookingsRepository, ServicesRepository servicesRepository) {
+        this.bookingsRepository = bookingsRepository;
+        this.servicesRepository = servicesRepository;
+    }
 
     @Transactional
     public Bookings addService(Bookings booking, int serviceType) {

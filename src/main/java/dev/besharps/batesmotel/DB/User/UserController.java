@@ -1,8 +1,6 @@
 package dev.besharps.batesmotel.DB.User;
 
 import jakarta.validation.Valid;
-import lombok.RequiredArgsConstructor;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.web.bind.annotation.*;
@@ -12,19 +10,17 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/user")
-@RequiredArgsConstructor
 public class UserController {
 
-    @Autowired
-
     private final UserRepository userRepository;
-    @Autowired
+    private final UserService userService;
+    private final PasswordEncoder passwordEncoder;
 
-    private UserService userService;
-
-    @Autowired
-    private PasswordEncoder passwordEncoder;
-
+    public UserController(UserRepository userRepository, UserService userService, PasswordEncoder passwordEncoder) {
+        this.userRepository = userRepository;
+        this.userService = userService;
+        this.passwordEncoder = passwordEncoder;
+    }
 
     @ResponseStatus(HttpStatus.OK)
     @GetMapping("/find/{id}")

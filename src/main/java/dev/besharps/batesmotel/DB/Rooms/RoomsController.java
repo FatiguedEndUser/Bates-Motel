@@ -3,7 +3,6 @@ package dev.besharps.batesmotel.DB.Rooms;
 //DEPENDENCY IMPORTS
 import jakarta.validation.Valid;
 import dev.besharps.batesmotel.Exceptions.RoomNotFoundException;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
@@ -14,21 +13,25 @@ import java.util.Optional;
 @RestController
 @RequestMapping("/rooms")
 public class RoomsController {
-    @Autowired
-    private RoomsRepository roomsRepository;
+    private final RoomsRepository roomsRepository;
+    private final RoomsService roomsService;
 
-    @Autowired
-    private RoomsService roomsService;
+    public RoomsController(RoomsRepository roomsRepository, RoomsService roomsService) {
+        this.roomsRepository = roomsRepository;
+        this.roomsService = roomsService;
+    }
 
     //GET
     @ResponseStatus(HttpStatus.FOUND)
     @GetMapping("/rooms/find-all")
+    @ResponseBody
     List<Rooms> findAll() {
         return roomsRepository.findAll();
     }
 
     @ResponseStatus(HttpStatus.OK)
     @GetMapping("/rooms/{id}")
+    @ResponseBody
     Optional<Rooms> findById(@PathVariable Integer id) {
         Optional<Rooms> rooms = roomsRepository.findById(id);
         if (rooms.isEmpty()) {
@@ -39,6 +42,7 @@ public class RoomsController {
 
     @ResponseStatus(HttpStatus.OK)
     @GetMapping("/type/{roomType}")
+    @ResponseBody
     List<Rooms> findByRoomType(@PathVariable String roomType) {
         List<Rooms> rooms = roomsRepository.findByRoomType(roomType);
         if (rooms.isEmpty()) {
@@ -69,7 +73,8 @@ public class RoomsController {
 
     //POST
     @ResponseStatus(HttpStatus.CREATED)
-    @PostMapping("/rooms/")
+    @PostMapping("/rooms/create")
+    @ResponseBody
     void create(@Valid @RequestBody Rooms room) {
         roomsRepository.save(room);
     }
@@ -77,6 +82,7 @@ public class RoomsController {
     //PUT
     @ResponseStatus(HttpStatus.OK)
     @PutMapping("/update/room")
+    @ResponseBody
     public Rooms update(@Valid @RequestBody Rooms room) {
         if (!roomsRepository.existsById(room.getRoomId().intValue())) {
             throw new RoomNotFoundException();
@@ -109,6 +115,7 @@ public class RoomsController {
     //DELETE
     @ResponseStatus(HttpStatus.NO_CONTENT)
     @DeleteMapping("/rooms/delete/{id}")
+    @ResponseBody
     void deleteById(@PathVariable Integer id) {
         roomsRepository.deleteById(id);
     }

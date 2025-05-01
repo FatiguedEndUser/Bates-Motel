@@ -15,12 +15,13 @@ import java.util.Optional;
 @RestController
 @RequestMapping("/customer")
 public class CustomerController {
+    private final CustomerRepository customerRepository;
+    private final CustomerService customerService;
 
-    @Autowired
-    private CustomerRepository customerRepository;
-
-    @Autowired
-    private CustomerService customerService;
+    public CustomerController(CustomerRepository customerRepository, CustomerService customerService) {
+        this.customerRepository = customerRepository;
+        this.customerService = customerService;
+    }
 
     @ResponseStatus(HttpStatus.FOUND)
     @GetMapping("/find-all")

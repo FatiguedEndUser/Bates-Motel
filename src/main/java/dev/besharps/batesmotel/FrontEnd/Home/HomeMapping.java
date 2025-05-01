@@ -10,6 +10,4 @@ public class HomeMapping {
     public String home() {
         return "home";
     }
-
-
 }

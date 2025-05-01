@@ -2,6 +2,7 @@ package dev.besharps.batesmotel.DB.Staff;
 
 import jakarta.persistence.*;
 import lombok.*;
+import org.hibernate.annotations.GenericGenerator;
 
 import java.sql.Date;
 
@@ -15,15 +16,8 @@ import java.sql.Date;
 @ToString
 public class Staff {
     @Id
-    @SequenceGenerator(
-            name = "staff_sequence",
-            sequenceName = "staff_sequence",
-            allocationSize = 1
-    )
-    @GeneratedValue(
-            strategy = GenerationType.IDENTITY,
-            generator = "staff_sequence"
-    )
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+
     @Column(
             name = "staffId",
             updatable = false
@@ -60,8 +54,38 @@ public class Staff {
 
     @Column(
             name = "endDate",
+            nullable = true,
             columnDefinition = "DATE"
     )
     private Date endDate;
 
+    @Column(
+            name = "imageUrl",
+            columnDefinition = "TEXT"
+    )
+    private String imageUrl;
+
+    @Column(
+            name = "description",
+            columnDefinition = "TEXT"
+    )
+    private String description;
+
+    @Column(
+            name = "contactEmail",
+            columnDefinition = "TEXT"
+    )
+    private String contactEmail;
+
+    @Column(
+            name = "contactPhone",
+            columnDefinition = "TEXT"
+    )
+    private String contactPhone;
+
+    @Column(
+            name = "department",
+            columnDefinition = "TEXT"
+    )
+    private String department;
 }

@@ -1,6 +1,5 @@
 package dev.besharps.batesmotel.DB.Staff;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
@@ -11,8 +10,11 @@ import java.util.Optional;
 @RequestMapping("/api/staff")
 public class StaffController {
 
-    @Autowired
-    private StaffRepository staffRepository;
+    private final StaffRepository staffRepository;
+
+    public StaffController(StaffRepository staffRepository) {
+        this.staffRepository = staffRepository;
+    }
 
     @GetMapping("/all")
     @ResponseStatus(HttpStatus.OK)
@@ -29,6 +31,7 @@ public class StaffController {
     @PostMapping("/create")
     @ResponseStatus(HttpStatus.CREATED)
     public Staff createStaff(@RequestBody Staff staff) {
+        // Don't set ID for new staff - let the generator handle it
         return staffRepository.save(staff);
     }
 

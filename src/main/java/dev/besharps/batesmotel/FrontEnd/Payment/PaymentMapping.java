@@ -7,6 +7,8 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
+import java.time.LocalDate;
+
 @Controller
 @RequestMapping("/payment")
 @RequiredArgsConstructor
@@ -14,23 +16,32 @@ public class PaymentMapping {
     private final PaymentRepository paymentRepository;
 
     @GetMapping
-    public String payment(Model model) {
-        model.addAttribute("Payment", new Payments());
-        return "payment";
+    public String payment(
+            @RequestParam(required = false) Integer roomId,
+            @RequestParam String roomType,
+            @RequestParam String roomTitle,
+            @RequestParam String checkin,
+            @RequestParam String checkout,
+            @RequestParam int    guests,
+            @RequestParam String roomPreference,
+            @RequestParam String floorPreference,
+            Model model
+    ) {
+          model.addAttribute("newPayment", new Payments());
+          model.addAttribute("roomId", roomId);
+          model.addAttribute("roomType", roomType);
+          model.addAttribute("roomTitle", roomTitle);
+          model.addAttribute("checkin", checkin);
+          model.addAttribute("checkout", checkout);
+          model.addAttribute("guests", guests);
+          model.addAttribute("roomPreference", roomPreference);
+          model.addAttribute("floorPreference", floorPreference);
+          return "payment";
     }
 
+
     @PostMapping("/processPayment")
-    public String ProcessPayment(@ModelAttribute Payments payment,
-                                 @RequestParam(name = "name") String name,
-                                 @RequestParam(name = "cardNumber") int cardNumber,
-                                 @RequestParam(name = "expiryDate") int expireDate,
-                                 @RequestParam(name = "cvv") int cvv,
-                                 @RequestParam(name = "billingZip") int zip) {
-
-        paymentRepository.save(new Payments(name, cardNumber, expireDate, cvv, zip));
-
-        //RETURN TO HOME
-        //SHOULD RETURN TO USER PAGE OR SOMEWHERE ELSE
-        return "redirect:/";
+    public void ProcessPayment(@ModelAttribute Payments payment) {
+        paymentRepository.save(payment);
     }
 }

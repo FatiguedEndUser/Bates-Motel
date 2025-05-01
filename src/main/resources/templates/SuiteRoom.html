@@ -19,7 +19,6 @@
     <section class="rooms-header">
         <h1 class="rooms-title">ROOMS</h1>
         <div class="room-types">
-            <!-- Clickable links to other room pages -->
             <a th:href="@{/rooms/standard-rooms}">Standard</a>
             <a th:href="@{/rooms/deluxe-rooms}">Deluxe</a>
             <a th:href="@{/rooms/suite-rooms}" class="active">Suite</a>
@@ -40,7 +39,7 @@
             </div>
             <div class="form-group">
                 <label for="maxPrice">Max Price</label>
-                <input type="number" id="maxPrice" name="maxPrice" placeholder="Max Price" min="0">
+                <input type="number" id="maxPrice" name="maxPrice" placeholder="Max Price" min="0"/>
             </div>
             <div class="form-group">
                 <label for="bedType">Bed Type</label>
@@ -61,17 +60,22 @@
         <div th:each="room : ${rooms}" class="room-card">
             <!-- Room Image -->
             <div class="room-image">
-                <img th:src="${room.imageUrl}" th:alt="${room.roomName}">
+                <img th:src="${room.imageUrl}" th:alt="${room.roomName}"/>
             </div>
+
             <!-- Orange info area -->
             <div class="room-info">
                 <h2 class="room-title" th:text="${room.roomName}">Room Name</h2>
                 <p class="room-subtitle" th:text="${room.roomType} + ' Room'">Room Type</p>
                 <p class="room-beds" th:text="${room.bedConfiguration}">Bed Configuration</p>
                 <p class="room-appliances" th:text="'Room Appliances: ' + ${room.appliances}">Room Appliances</p>
-                <!-- Book Room button goes to /payment -->
-                <a class="book-room-btn" th:href="@{/payment}">Book Room</a>
+                <div class="availability-circle positioned"
+                     th:classappend="${room.available} ? '' : 'unavailable'"
+                     th:text="${room.available} ? 'Available' : 'Unavailable'">Available</div>
+                <a class="book-room-btn"
+                   th:href="@{/booking-form(type=${room.roomType},title=${room.roomName},roomId=${room.roomId})}">Book Room</a>
             </div>
+
             <!-- White strip at bottom with price -->
             <div class="room-price">
                 <span class="price-amount" th:text="'$' + ${room.pricePerNight}">$250</span>
