@@ -1,0 +1,133 @@
+/* View Booking Style Sheet*/
+* {
+    font-family: Steelfish, serif;
+    margin: 0; padding: 0;
+}
+
+body {
+    background-color: #000000;
+    color: #eee;
+}
+
+/* HEADER */
+.header-section {
+    background: #000000;
+    padding: 2rem 1rem;
+    text-align: center;
+    border-radius: 0 0 12px 12px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.4);
+}
+.header-section h1 {
+    color: #fff;
+    font-size: 2.5rem;
+    margin-top: 1rem;
+}
+
+/* GRID LAYOUT */
+.bookings-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 2rem;
+    margin: 2rem 0;
+}
+
+/* NO BOOKINGS */
+.no-bookings {
+    grid-column: 1 / -1;
+    text-align: center;
+    font-size: 1.25rem;
+    color: #FFA500;
+}
+
+/* CARD */
+.booking-card {
+    background: #000000;
+    border: 2px solid #FFA500;
+    border-radius: 12px;
+    padding: 1.5rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+.booking-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 16px rgba(0,0,0,0.6);
+}
+
+/* CARD CONTENT */
+.booking-details h2 {
+    color: #008FD5;
+    font-size: 1.8rem;
+    margin-bottom: 0.5rem;
+}
+.booking-details p {
+    margin: 0.4rem 0;
+    font-size: 1rem;
+    line-height: 1.4;
+}
+
+/* BUTTONS */
+.booking-buttons {
+    display: flex;
+    gap: 0.75rem;
+    margin-top: 1.5rem;
+}
+.booking-buttons .btn-edit,
+.booking-buttons .btn-cancel {
+    flex: 1;
+    padding: 0.75rem;
+    text-align: center;
+    border-radius: 6px;
+    text-decoration: none;
+    font-weight: bold;
+    transition: background-color 0.2s ease, color 0.2s ease;
+    cursor: pointer;
+    border: none;
+}
+
+/* EDIT */
+.btn-edit {
+    background-color: #008FD5;
+    color: #fff;
+}
+.btn-edit:hover {
+    background-color: #00B0FF;
+}
+
+/* CANCEL */
+.btn-cancel {
+    background-color: #FFA500;
+    color: #111;
+}
+.btn-cancel:hover {
+    background-color: #FFB84D;
+}
+
+
+
+/* BACK LINK */
+.back-link {
+    text-align: center;
+    margin: 2rem 0;
+}
+.back-link a {
+    background-color: #008FD5;
+    color: #fff;
+    padding: 0.75rem 1.5rem;
+    border-radius: 6px;
+    text-decoration: none;
+    font-weight: bold;
+    transition: background-color 0.2s ease;
+}
+.back-link a:hover {
+    background-color: #00B0FF;
+}
+.alert-success {
+    background: #FFB84D;
+    border: 1px solid #ffffff;
+    color: #000000;
+    padding: 1rem;
+    margin: 1rem 0;
+    border-radius: 4px;
+}

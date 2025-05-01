@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<head>
+    <meta charset="UTF-8"/>
+    <title>BatesHotel - Edit Staff</title>
+    <link rel="stylesheet" href="/css/Staff.css"/>
+    <link rel="stylesheet" href="/css/AdminForms.css"/>
+</head>
+<body>
+
+<!-- Fixed-width wrapper to lock the layout -->
+<div class="page-wrapper admin-page">
+
+    <!-- HEADER -->
+    <header class="top-header">
+        <div th:replace="fragments/navbar"></div>
+    </header>
+
+    <!-- ADMIN HEADER -->
+    <section class="admin-header">
+        <h1 class="admin-title">EDIT STAFF MEMBER</h1>
+        <a href="/staff/admin/manage" class="admin-home-link">Back to Staff Management</a>
+    </section>
+
+    <!-- EDIT STAFF FORM -->
+    <section class="admin-form-container">
+        <h2 class="section-title" th:text="'Editing: ' + ${staff.firstName} + ' ' + ${staff.lastName}">Editing Staff Member</h2>
+        <form th:action="@{/staff/admin/update/{id}(id=${staff.id})}" method="post" th:object="${staff}" class="admin-form">
+            <div class="form-row">
+                <div class="form-group">
+                    <label for="firstName">First Name:</label>
+                    <input type="text" id="firstName" th:field="*{firstName}" required />
+                </div>
+                <div class="form-group">
+                    <label for="lastName">Last Name:</label>
+                    <input type="text" id="lastName" th:field="*{lastName}" required />
+                </div>
+            </div>
+
+            <div class="form-row">
+                <div class="form-group">
+                    <label for="jobTitle">Job Title:</label>
+                    <input type="text" id="jobTitle" th:field="*{jobTitle}" required />
+                </div>
+                <div class="form-group">
+                    <label for="department">Department:</label>
+                    <select id="department" th:field="*{department}" required>
+                        <option value="Management">Management</option>
+                        <option value="FrontDesk">Front Desk</option>
+                        <option value="Housekeeping">Housekeeping</option>
+                        <option value="Restaurant">Restaurant</option>
+                        <option value="Security">Security</option>
+                        <option value="Maintenance">Maintenance</option>
+                    </select>
+                </div>
+            </div>
+
+            <div class="form-row">
+                <div class="form-group">
+                    <label for="startDate">Start Date:</label>
+                    <input type="date" id="startDate" th:field="*{startDate}" required />
+                </div>
+                <div class="form-group">
+                    <label for="endDate">End Date (optional):</label>
+                    <input type="date" id="endDate" th:field="*{endDate}" />
+                </div>
+            </div>
+
+            <div class="form-row">
+                <div class="form-group">
+                    <label for="contactEmail">Email:</label>
+                    <input type="email" id="contactEmail" th:field="*{contactEmail}" />
+                </div>
+                <div class="form-group">
+                    <label for="contactPhone">Phone:</label>
+                    <input type="tel" id="contactPhone" th:field="*{contactPhone}" />
+                </div>
+            </div>
+
+            <div class="form-row">
+                <div class="form-group full-width">
+                    <label for="imageUrl">Image URL:</label>
+                    <input type="text" id="imageUrl" th:field="*{imageUrl}" placeholder="URL to staff member's photo" />
+                </div>
+            </div>
+
+            <div class="form-row">
+                <div class="form-group full-width">
+                    <label for="description">Description:</label>
+                    <textarea id="description" th:field="*{description}" rows="3" placeholder="Brief description about the staff member"></textarea>
+                </div>
+            </div>
+
+            <div class="form-actions">
+                <button type="submit" class="btn-primary">Update Staff Member</button>
+                <a href="/staff/admin/manage" class="btn-secondary">Cancel</a>
+            </div>
+        </form>
+    </section>
+
+    <!-- Current Staff Preview -->
+    <section class="preview-container" th:if="${staff != null}">
+        <h2 class="section-title">Preview</h2>
+        <div class="staff-card">
+            <div class="staff-image">
+                <img th:src="${staff.imageUrl != null ? staff.imageUrl : '/images/default-staff.jpg'}" th:alt="${staff.firstName + ' ' + staff.lastName}"/>
+            </div>
+            <div class="staff-info">
+                <h2 class="staff-name" th:text="${staff.firstName + ' ' + staff.lastName}">Staff Name</h2>
+                <p class="staff-jobtitle" th:text="${staff.jobTitle}">Job Title</p>
+                <p class="staff-department" th:text="'Department: ' + ${staff.department}">Department</p>
+                <p class="staff-description" th:text="${staff.description}">Description</p>
+                <div class="contact-info">
+                    <p th:if="${staff.contactEmail != null}" th:text="'Email: ' + ${staff.contactEmail}">Email</p>
+                    <p th:if="${staff.contactPhone != null}" th:text="'Phone: ' + ${staff.contactPhone}">Phone</p>
+                </div>
+            </div>
+            <div class="staff-dates">
+                <span class="employment-label">With us since: </span>
+                <span class="employment-date" th:text="${#dates.format(staff.startDate, 'dd MMM yyyy')}">Start Date</span>
+            </div>
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+    <div th:replace="fragments/footer"></div>
+</div>
+</body>
+</html>

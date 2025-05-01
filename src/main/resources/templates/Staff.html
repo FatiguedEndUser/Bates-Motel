@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<head>
+    <meta charset="UTF-8"/>
+    <title>BatesHotel - Our Staff</title>
+    <link rel="stylesheet" href="/css/Staff.css"/>
+</head>
+<body>
+
+<!-- Fixed-width wrapper to lock the layout -->
+<div class="page-wrapper">
+
+    <!-- HEADER -->
+    <header class="top-header">
+        <div th:replace="fragments/navbar"></div>
+    </header>
+
+    <!-- SECOND ROW: "STAFF" TITLE & DEPARTMENT LINKS -->
+    <section class="staff-header">
+        <h1 class="staff-title">OUR STAFF</h1>
+
+    </section>
+
+    <!-- SEARCH SECTION -->
+    <section class="search-container">
+        <form th:action="@{/staff/search}" method="get" class="search-form">
+            <div class="form-group">
+                <label for="jobTitle">Job Title</label>
+                <select id="jobTitle" name="jobTitle">
+                    <option value="">All Positions</option>
+                    <option value="Manager">Manager</option>
+                    <option value="Receptionist">Receptionist</option>
+                    <option value="Housekeeper">Housekeeper</option>
+                    <option value="Chef">Chef</option>
+                    <option value="Security">Security</option>
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label for="firstName">First Name</label>
+                <input type="text" id="firstName" name="firstName" placeholder="First Name">
+            </div>
+
+            <div class="form-group">
+                <label for="lastName">Last Name</label>
+                <input type="text" id="lastName" name="lastName" placeholder="Last Name">
+            </div>
+
+            <button type="submit" class="search-btn">Search</button>
+        </form>
+    </section>
+
+    <!-- MIDDLE SECTION: DYNAMIC STAFF CARDS -->
+    <section class="staff-container">
+        <div th:each="staff : ${staffList}" class="staff-card">
+
+            <!-- Staff Image -->
+            <div class="staff-image">
+                <img th:src="${staff.imageUrl != null ? staff.imageUrl : '/images/default-staff.jpg'}" th:alt="${staff.firstName + ' ' + staff.lastName}"/>
+            </div>
+
+            <!-- Orange info area -->
+            <div class="staff-info">
+                <h2 class="staff-name" th:text="${staff.firstName + ' ' + staff.lastName}">Staff Name</h2>
+                <p class="staff-jobtitle" th:text="${staff.jobTitle}">Job Title</p>
+                <p class="staff-department" th:text="'Department: ' + ${staff.department}">Department</p>
+                <p class="staff-description" th:text="${staff.description}">Description</p>
+                <div class="contact-info">
+                    <p th:if="${staff.contactEmail != null}" th:text="'Email: ' + ${staff.contactEmail}">Email</p>
+                    <p th:if="${staff.contactPhone != null}" th:text="'Phone: ' + ${staff.contactPhone}">Phone</p>
+                </div>
+            </div>
+
+            <!-- White strip at bottom with employment date -->
+            <div class="staff-dates">
+                <span class="employment-label">With us since: </span>
+                <span class="employment-date" th:text="${#dates.format(staff.startDate, 'dd MMM yyyy')}">Start Date</span>
+            </div>
+        </div>
+
+        <div th:if="${#lists.isEmpty(staffList)}" class="no-staff-message">
+            <p>No staff members match your search criteria.</p>
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+    <div th:replace="fragments/footer"></div>
+</div>
+</body>
+</html>
