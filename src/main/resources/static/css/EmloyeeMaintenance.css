@@ -1,0 +1,132 @@
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+body {
+    background-color: #000;
+    color: #ccc;
+    line-height: 1.6;
+}
+
+.page-wrapper {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+.top-header {
+    background-color: #D98D46;
+    padding: 15px 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.logo {
+    font-size: 28px;
+    font-weight: bold;
+    color: white;
+}
+
+.logo .highlight {
+    color: #2095F3;
+}
+
+.top-header nav {
+    display: flex;
+    gap: 20px;
+}
+
+.top-header nav a {
+    color: white;
+    text-decoration: none;
+    font-weight: bold;
+    padding: 8px 12px;
+    transition: background-color 0.3s;
+}
+
+.top-header nav a:hover {
+    background-color: #555;
+    border-radius: 5px;
+}
+
+.search-section {
+    margin-top: 20px;
+}
+
+.action-form {
+    display: flex;
+    gap: 10px;
+}
+
+.action-form input {
+    flex: 1;
+    padding: 10px;
+    border: none;
+    border-radius: 5px;
+    background-color: #222;
+    color: white;
+}
+
+.action-form button {
+    padding: 10px 20px;
+    background-color: #2095F3;
+    border: none;
+    border-radius: 5px;
+    color: black;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.action-form button:hover {
+    background-color: #0a6abf;
+}
+
+.rooms-section {
+    margin-top: 30px;
+}
+
+.room-card {
+    background-color: #111;
+    padding: 20px;
+    border-radius: 10px;
+    margin-bottom: 30px;
+    box-shadow: 0 0 10px rgba(255, 255, 255, 0.05);
+}
+
+.room-card h3 {
+    color: #2095F3;
+    margin-bottom: 10px;
+}
+
+.room-card p {
+    margin: 5px 0;
+}
+
+.room-card img {
+    max-width: 100%;
+    height: auto;
+    border-radius: 5px;
+    margin-top: 10px;
+}
+
+.maintenance-section {
+    margin-top: 20px;
+    background-color: #222;
+    padding: 15px;
+    border-radius: 8px;
+}
+
+.maintenance-section h4 {
+    color: #D98D46;
+    margin-bottom: 10px;
+}
+
+.maintenance-section li {
+    margin-bottom: 15px;
+    border-bottom: 1px solid #333;
+    padding-bottom: 10px;
+}
