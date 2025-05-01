@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Employee Dashboard - Bates Motel</title>
+    <link rel="stylesheet" href="EmloyeeMaintenance.css">
+</head>
+<body>
+    <header class="top-header">
+        <div class="logo">Bates<span class="highlight">Hotel</span></div>
+        <nav>
+            <a href="Home.html">Home</a>
+            <a href="StaffDashboard.html">Dashboard</a>
+        </nav>
+    </header>
+
+    <div class="page-wrapper">
+        <h1>Welcome, <span th:text="${employee.name}">Employee Name</span></h1>
+        <p>Employee ID: <span th:text="${employee.staffId}"></span></p>
+        <p>Position: <span th:text="${employee.position}"></span></p>
+
+        <section class="search-section">
+            <form th:action="@{/rooms/search}" method="get" class="action-form">
+                <input type="text" name="query" placeholder="Search by Room Number or Name" required>
+                <button type="submit">Search</button>
+            </form>
+        </section>
+
+        <section class="rooms-section">
+            <h2>Room List</h2>
+            <div class="room-card" th:each="room : ${rooms}">
+                <h3 th:text="'Room ' + ${room.roomNumber} + ' - ' + ${room.roomName}"></h3>
+                <p>Type: <span th:text="${room.roomType}"></span></p>
+                <p>Floor: <span th:text="${room.floor}"></span></p>
+                <p>Available: <span th:text="${room.available} ? 'Yes' : 'No'"></span></p>
+                <p>Price/Night: $<span th:text="${room.pricePerNight}"></span></p>
+                <p>Bed: <span th:text="${room.bedConfiguration}"></span></p>
+                <p>Appliances: <span th:text="${room.appliances}"></span></p>
+                <p>Description: <span th:text="${room.description}"></span></p>
+                <img th:src="${room.imageUrl}" alt="Room Image" />
+
+                <div class="maintenance-section">
+                    <h4>Maintenance Requests</h4>
+                    <div th:if="${room.maintenanceList.isEmpty()}">
+                        <p>No maintenance requests.</p>
+                    </div>
+                    <ul th:if="${!room.maintenanceList.isEmpty()}">
+                        <li th:each="maint : ${room.maintenanceList}">
+                            <p><strong>Date:</strong> <span th:text="${maint.requestDate}"></span></p>
+                            <p><strong>Description:</strong> <span th:text="${maint.description}"></span></p>
+                            <p><strong>Status:</strong>
+                                <span th:text="${maint.finishedDate != null ? 'Completed on ' + maint.finishedDate : 'Pending'}"></span>
+                            </p>
+                            <p><strong>Assigned To:</strong> <span th:text="${maint.staff.name}"></span></p>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+    </div>
+</body>
+</html>
